@@ -16,11 +16,11 @@ Here's a [tutorial video](https://www.youtube.com/watch?v=iWowJBRMtpc) that outl
 
 ## Modifying the Website
 
-In order to make changes to the website you need to checkout the [`master`](https://github.com/allenai/allennlp-website/tree/master) branch on the [`allennlp`](https://github.com/allenai/allennlp-website) repo. The process for making changes is:
+In order to make changes to the website you need to checkout the [`master`](https://github.com/allenai/allennlp-website/tree/master) branch on the [`allennlp-website`](https://github.com/allenai/allennlp-website) repo. The process for making changes is:
 
 1. Edit file(s) locally
 2. [Test changes](#install-jekyll-locally) in browser at *localhost*
-3. Commit changes and push to `gh-pages` branch
+3. Commit changes and push to `master`
 4. Test changes in browser at http://www.allennlp.org (usually takes at least 30s to update)
 
 After you've commited your changes, push with the following command:
@@ -69,7 +69,7 @@ $ gem install jekyll bundler
 Navigate to the local directory where you've checked out the [`master`](https://github.com/allenai/allennlp-website/tree/master) branch and enter the command to run Jekyll.
 
 ````shell
-$ cd allennlp
+$ cd allennlp-website
 $ bundle exec jekyll serve
 # => Now browse to http://localhost:4000
 ````
