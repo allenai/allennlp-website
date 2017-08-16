@@ -16,7 +16,7 @@ Here's a [tutorial video](https://www.youtube.com/watch?v=iWowJBRMtpc) that outl
 
 ## Modifying the Website
 
-In order to make changes to the website you need to checkout the [`gh-pages`](https://github.com/allenai/allennlp/tree/gh-pages) branch on the [`allennlp`](https://github.com/allenai/allennlp) repo. The process for making changes is:
+In order to make changes to the website you need to checkout the [`master`](https://github.com/allenai/allennlp-website/tree/master) branch on the [`allennlp`](https://github.com/allenai/allennlp-website) repo. The process for making changes is:
 
 1. Edit file(s) locally
 2. [Test changes](#install-jekyll-locally) in browser at *localhost*
@@ -66,7 +66,7 @@ $ gem install jekyll bundler
 
 ### Running Jekyll Server
 
-Navigate to the local directory where you've checked out the [`gh-pages`](https://github.com/allenai/allennlp/tree/gh-pages) branch and enter the command to run Jekyll.
+Navigate to the local directory where you've checked out the [`master`](https://github.com/allenai/allennlp-website/tree/master) branch and enter the command to run Jekyll.
 
 ````shell
 $ cd allennlp
