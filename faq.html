@@ -1,0 +1,43 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - FAQ</title>
+  </head>
+  <body data-page="faq">
+    <div id="page-content">
+      {% include header.html %}
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h1>Frequently Asked Questions</h1></div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+        <ul class="faq">
+          <li>
+            <h2>Why is AllenNLP based on PyTorch?</h2>
+            <p>AllenNLP is designed to be a platform for doing high quality research, and enabling researchers to rapidly design, build, train, and debug innovative new models is our top priority. PyTorch is also designed with these goals in mind, and we have found it to work well in recent research efforts at the University of Washington. We recommend you give it a try!</p>
+          </li>
+          <li>
+            <h2>Do you support models in languages other than English?</h2>
+            <p>Research within AI2 focuses primarily on English, and that is reflected in the features and models we directly support in AllenNLP. However, the framework is general and it is easy for researchers to develop their own models for any natural language. We look forward to seeing what you do with the toolkit!</p>
+          </li>
+          <li>
+            <h2>Does AllenNLP accept contributed models?</h2>
+            <p>Yes, AllenNLP accepts contributed models to the allenai-contrib repository. We have two type of models, verified and contributed. AI2 has extensively tested and experimentally validated the verified models, but also provides a repository for contributed models that may be generally useful.</p>
+          </li>
+          <li>
+            <h2>How should I cite AllenNLP in my research?</h2>
+            <p>If you are using the framework to design a new model, please cite our technical report, for example, by saying something like “we implemented our model in the AllenNLP toolkit (XXX, 2017).” If you are citing a model we have reproduced, please cite both the white paper and the original paper. For example, you might say “We use the AllenNLP (XXX, 2017) implementation of BiDAF (Seo et al., 2017)."</p>
+          </li>
+        </ul>
+      </div>
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
