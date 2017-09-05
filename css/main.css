@@ -1277,12 +1277,12 @@ svg {
   fill: #000
 }
 
-.metrics-table {
+.models-table {
   margin-bottom: 3.75em
 }
 
 @media screen and (max-width:960px) {
-  .metrics-table {
+  .models-table {
     margin-bottom: 2.5em
   }
 }
