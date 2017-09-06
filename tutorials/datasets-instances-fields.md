@@ -1,11 +1,12 @@
 ---
 layout: tutorial
-title: Data Pipelines
-id: data-pipelines
+title: Datasets, Instances, and Fields
+id: datasets-instances-fields
 ---
 
-Allennlp uses a hierarchical system of data structures to represent a Dataset which allow easy padding, batching and iteration. This tutorial will cover some of the basic concepts.
+[Jupyter notebook version](https://github.com/allenai/allennlp/blob/master/tutorials/notebooks/data_pipeline.ipynb)
 
+Allennlp uses a hierarchical system of data structures to represent a Dataset which allow easy padding, batching and iteration. This tutorial will cover some of the basic concepts.
 
 At a high level, we use `DatasetReaders` to read a particular dataset into a `Dataset` of self-contained individual `Instances`,
 which are made up of a dictionary of named `Fields`. There are many types of `Fields` which are useful for different types of data, such as `TextField`, for sentences, or `LabelField` for representing a categorical class label. Users who are familiar with the `torchtext` library from `Pytorch` will find a similar abstraction here.

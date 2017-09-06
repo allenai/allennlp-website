@@ -115,4 +115,4 @@ that runs on the AllenNLP website.
 
 ### Next Steps
 
-Continue on to the [Training a Model](training-a-model) tutorial.
+Continue on to the [Training and Evaluating Models](training-and-evaluating) tutorial.
