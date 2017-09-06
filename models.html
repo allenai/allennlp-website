@@ -22,55 +22,7 @@
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>SRL Benchmarks</h2>
-            <p class="t-sm">SRL, or Semantic Role Labeling, models recover the latent predicate argument structure of a sentence. The build representations that support answer very basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of <a href="https://homes.cs.washington.edu/~luheng/files/acl2017_hllz.pdf" target="_blank">a deep BiLSTM model (He et al, 2017)</a>. It closely matches state-of-the-art accuracy on benchmark datasets (including <a href="http://www.lsi.upc.edu/~srlconll/" target="_blank">CoNLL 2005</a> shown below), while significantly improving training and and prediction runtimes.</p>
-          </div>
-          <div class="scroll-box">
-            <table class="models-table">
-              <thead>
-                <tr>
-                  <th>System</th>
-                  <th>Precision</th>
-                  <th>Recall</th>
-                  <th>F-Measure</th>
-                  <th>GPU Speed</th>
-                  <th>CPU Speed</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="tr--featured">
-                  <td>AllenNLP</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                </tr>
-                <tr>
-                  <td>He</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                </tr>
-                <tr>
-                  <td>FitzGerald</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                </tr>
-                <tr>
-                  <td>Pradhan</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>00.0</td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                  <td>0.0<sub>examples/sec</sub></td>
-                </tr>
-              </tbody>
-            </table>
+            <p class="t-sm">SRL, or Semantic Role Labeling, models recover the latent predicate argument structure of a sentence. SRL builds representations that support answer very basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of <a href="https://homes.cs.washington.edu/~luheng/files/acl2017_hllz.pdf" target="_blank">a deep BiLSTM model (He et al, 2017)</a>. The AllenNLP SRL model closely matches the published model, achieving a F1 of 78.9 on <a href="http://www.lsi.upc.edu/~srlconll/" target="_blank">CoNLL 2005</a>.</p>
           </div>
         </div>
       </div>
@@ -78,7 +30,7 @@
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>Machine Comprehension Benchmarks</h2>
-            <p class="t-sm">Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02" target="_blank">BiDAF (Seo et al, 2017)</a>, or Bi-Directional Attention Flow, a widely used MC baseline that achieves near state-of-the-art accuracies on <a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank">the SQuAD dataset</a>.  The AllenNLP BIDAF model achieves an EM score of 68.7 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7.</p>
+            <p class="t-sm">Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02" target="_blank">BiDAF (Seo et al, 2017)</a>, or Bi-Directional Attention Flow, a widely used MC baseline that achieves near state-of-the-art accuracies on <a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank">the SQuAD dataset</a>.  The AllenNLP BIDAF model achieves an EM score of 68.7 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7, while also training at a 10x speedup (4 hours on a p2.xlarge).</p>
           </div>
         </div>
       </div>
@@ -86,7 +38,7 @@
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>Textual Entailment Benchmarks</h2>
-            <p class="t-sm">Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one. The AllenNLP TE model is a reimplementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that is relatively simple and achieves near state-of-the-art performance on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a>.  The AllenNLP TE system achieves an accuracy of 84.7 on the SNLI test dataset, which is comparable to the original system's score of 86.3%.</p>
+            <p class="t-sm">Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one. The AllenNLP TE model is a reimplementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that is relatively simple and achieves near state-of-the-art performance on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a>.  The AllenNLP TE model achieves an accuracy of 84.7 on the SNLI test dataset, which is comparable to the original system's score of 86.3%.</p>
           </div>
         </div>
       </div>
