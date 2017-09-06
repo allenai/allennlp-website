@@ -4,9 +4,13 @@ title: Vocabularies in AllenNLP
 id: vocabulary
 ---
 
+[Jupyter notebook version](https://github.com/allenai/allennlp/blob/master/tutorials/notebooks/vocabulary.ipynb)
+
 ### Vocabularies in AllenNLP
 
-Before we start, this tutorial assumes you've already gone through the tutorial on `Datasets`, `Instances` and `Fields`. If you haven't, you might want to check out that one first as we make use of some of these constructs to explain the `Vocabulary` functionality.
+Before we start, this tutorial assumes you've already gone through
+[the tutorial on `Datasets`, `Instances` and `Fields`](datasets-instances-fields).
+If you haven't, you might want to check out that one first as we make use of some of these constructs to explain the `Vocabulary` functionality.
 
 A `Vocabulary` maps strings to integers, allowing for strings to be mapped to an
  out-of-vocabulary token.

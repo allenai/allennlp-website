@@ -1,10 +1,10 @@
 ---
 layout: tutorial
-title: Training a Model
-id: training-a-model
+title: Training and Evaluating Models
+id: training-and-evaluating
 ---
 
-### Training a Model
+### Training and Evaluating Models
 
 In this tutorial we'll train a simple part-of-speech tagger using AllenNLP.
 The model is defined in [allennlp/models/simple_tagger.py](https://github.com/allenai/allennlp/blob/master/allennlp/models/simple_tagger.py).
