@@ -1,0 +1,170 @@
+<p>Allennlp uses a hierarchical system of data structures to represent a Dataset which allow easy padding, batching and iteration. This tutorial will cover some of the basic concepts.</p>
+
+<p>At a high level, we use <code class="highlighter-rouge">DatasetReaders</code> to read a particular dataset into a <code class="highlighter-rouge">Dataset</code> of self-contained individual <code class="highlighter-rouge">Instances</code>,
+which are made up of a dictionary of named <code class="highlighter-rouge">Fields</code>. There are many types of <code class="highlighter-rouge">Fields</code> which are useful for different types of data, such as <code class="highlighter-rouge">TextField</code>, for sentences, or <code class="highlighter-rouge">LabelField</code> for representing a categorical class label. Users who are familiar with the <code class="highlighter-rouge">torchtext</code> library from <code class="highlighter-rouge">Pytorch</code> will find a similar abstraction here.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># This cell just makes sure the library paths are correct.</span>
+<span class="c"># You need to run this cell before you run the rest of this</span>
+<span class="c"># tutorial, but you can ignore the contents!</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'../..'</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">module_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Let’s create two of the most common <code class="highlighter-rouge">Fields</code>, imagining we are preparing some data for a sentiment analysis model.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data.fields</span> <span class="kn">import</span> <span class="n">TextField</span><span class="p">,</span> <span class="n">LabelField</span>
+<span class="kn">from</span> <span class="nn">allennlp.data.token_indexers</span> <span class="kn">import</span> <span class="n">SingleIdTokenIndexer</span>
+
+<span class="n">review</span> <span class="o">=</span> <span class="n">TextField</span><span class="p">([</span><span class="s">"This"</span><span class="p">,</span> <span class="s">"movie"</span><span class="p">,</span> <span class="s">"was"</span><span class="p">,</span> <span class="s">"awful"</span><span class="p">,</span> <span class="s">"!"</span><span class="p">],</span> <span class="n">token_indexers</span><span class="o">=</span><span class="p">{</span><span class="s">"tokens"</span><span class="p">:</span> <span class="n">SingleIdTokenIndexer</span><span class="p">()})</span>
+<span class="n">review_sentiment</span> <span class="o">=</span> <span class="n">LabelField</span><span class="p">(</span><span class="s">"negative"</span><span class="p">,</span> <span class="n">label_namespace</span><span class="o">=</span><span class="s">"tags"</span><span class="p">)</span>
+
+<span class="c"># Access the original strings and labels using the methods on the Fields.</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Tokens in TextField: "</span><span class="p">,</span> <span class="n">review</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Label of LabelField"</span><span class="p">,</span> <span class="n">review_sentiment</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>['This', 'movie', 'was', 'awful', '!']
+negative
+</code></pre>
+</div>
+
+<p>Once we’ve made our <code class="highlighter-rouge">Fields</code>, we need to pair them together to form an <code class="highlighter-rouge">Instance</code>.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data</span> <span class="kn">import</span> <span class="n">Instance</span>
+
+<span class="n">instance1</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">({</span><span class="s">"review"</span><span class="p">:</span> <span class="n">review</span><span class="p">,</span> <span class="s">"label"</span><span class="p">:</span> <span class="n">review_sentiment</span><span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Fields in instance: "</span><span class="p">,</span> <span class="n">instance1</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">'review':</span><span class="w"> </span><span class="err">&lt;allennlp.data.fields.text_field.TextField</span><span class="w"> </span><span class="err">object</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">0x10bc93eb8&gt;,</span><span class="w"> </span><span class="err">'label':</span><span class="w"> </span><span class="err">&lt;allennlp.data.fields.label_field.LabelField</span><span class="w"> </span><span class="err">object</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">0x10bc93e80&gt;</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>… and once we’ve made our <code class="highlighter-rouge">Instance</code>, we can group several of these into a <code class="highlighter-rouge">Dataset</code>.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="c"># Create another</span>
+<span class="n">review2</span> <span class="o">=</span> <span class="n">TextField</span><span class="p">([</span><span class="s">"This"</span><span class="p">,</span> <span class="s">"movie"</span><span class="p">,</span> <span class="s">"was"</span><span class="p">,</span> <span class="s">"quite"</span><span class="p">,</span> <span class="s">"slow"</span><span class="p">,</span> <span class="s">"but"</span><span class="p">,</span> <span class="s">"good"</span> <span class="s">"."</span><span class="p">],</span> <span class="n">token_indexers</span><span class="o">=</span><span class="p">{</span><span class="s">"tokens"</span><span class="p">:</span> <span class="n">SingleIdTokenIndexer</span><span class="p">()})</span>
+<span class="n">review_sentiment2</span> <span class="o">=</span> <span class="n">LabelField</span><span class="p">(</span><span class="s">"positive"</span><span class="p">,</span> <span class="n">label_namespace</span><span class="o">=</span><span class="s">"tags"</span><span class="p">)</span>
+<span class="n">instance2</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">({</span><span class="s">"review"</span><span class="p">:</span> <span class="n">review2</span><span class="p">,</span> <span class="s">"label"</span><span class="p">:</span> <span class="n">review_sentiment2</span><span class="p">})</span>
+
+<span class="n">review_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">([</span><span class="n">instance1</span><span class="p">,</span> <span class="n">instance2</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<p>In order to get our tiny sentiment analysis dataset ready for use in a model, we need to be able to do a few things:</p>
+<ul>
+  <li>Create a vocabulary from the Dataset (using <code class="highlighter-rouge">Vocabulary.from_dataset</code>)</li>
+  <li>Index the words and labels in the<code class="highlighter-rouge">Fields</code> to use the integer indices specified by the <code class="highlighter-rouge">Vocabulary</code></li>
+  <li>Pad the instances to the same length</li>
+  <li>Convert them into arrays.
+The <code class="highlighter-rouge">Dataset</code>, <code class="highlighter-rouge">Instance</code> and <code class="highlighter-rouge">Fields</code> have some similar parts of their API.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data</span> <span class="kn">import</span> <span class="n">Vocabulary</span>
+
+<span class="c"># This will automatically create a vocab from our dataset.</span>
+<span class="c"># It will have "namespaces" which correspond to two things:</span>
+<span class="c"># 1. Namespaces passed to fields (e.g. the "tags" namespace we passed to our LabelField)</span>
+<span class="c"># 2. The keys of the 'Token Indexer' dictionary in 'TextFields'.</span>
+<span class="c"># passed to Fields (so it will have a 'tags' namespace).</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="n">Vocabulary</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">review_dataset</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"This is the id -&gt; word mapping for the 'tokens' namespace: "</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tokens"</span><span class="p">),</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"This is the id -&gt; word mapping for the 'tags' namespace: "</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tags"</span><span class="p">),</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Vocab Token to Index dictionary: "</span><span class="p">,</span> <span class="n">vocab</span><span class="o">.</span><span class="n">_token_to_index</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="c"># Note that the "tags" namespace doesn't contain padding or unknown tokens.</span>
+
+<span class="c"># Next, we index our dataset using our newly generated vocabulary.</span>
+<span class="c"># This modifies the current object. You must perform this step before</span>
+<span class="c"># trying to generate arrays.</span>
+<span class="n">review_dataset</span><span class="o">.</span><span class="n">index_instances</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+
+<span class="c"># Finally, we return the dataset as arrays, padded using padding lengths</span>
+<span class="c"># extracted from the dataset itself, which will be the max sentence length</span>
+<span class="c"># from our two instances.</span>
+<span class="n">padding_lengths</span> <span class="o">=</span> <span class="n">review_dataset</span><span class="o">.</span><span class="n">get_padding_lengths</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Lengths used for padding: "</span><span class="p">,</span> <span class="n">padding_lengths</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">array_dict</span> <span class="o">=</span> <span class="n">review_dataset</span><span class="o">.</span><span class="n">as_array_dict</span><span class="p">(</span><span class="n">padding_lengths</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array_dict</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>100%|██████████| 2/2 [00:00&lt;00:00, 9857.35it/s]
+100%|██████████| 2/2 [00:00&lt;00:00, 10578.32it/s]
+
+This is the id -&gt; word mapping for the 'tokens' namespace:
+{0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'This', 3: 'was', 4: 'movie', 5: 'slow', 6: 'quite', 7: '!', 8: 'good.', 9: 'but', 10: 'awful'}
+This is the id -&gt; word mapping for the 'tags' namespace:
+{0: 'positive', 1: 'negative'}
+defaultdict(None, {'tokens': {'slow': 5, '@@PADDING@@': 0, 'This': 2, '!': 7, 'quite': 6, 'was': 3, 'good.': 8, '@@UNKNOWN@@': 1, 'awful': 10, 'but': 9, 'movie': 4}, 'tags': {'positive': 0, 'negative': 1}})
+Lengths used for padding:  {'review': {'num_tokens': 7}}
+{'review': {'tokens': array([[ 2,  4,  3, 10,  7,  0,  0],
+       [ 2,  4,  3,  6,  5,  9,  8]])}, 'label': array([[1],
+       [0]])}
+</code></pre>
+</div>
+
+<p>Here, we’ve seen how to transform a dataset of 2 instances into arrays for feeding into an allennlp <code class="highlighter-rouge">Model</code>. One nice thing about the <code class="highlighter-rouge">Dataset</code> API is that we don’t require the concept of a <code class="highlighter-rouge">Batch</code> - it’s just a small dataset! If you are iterating over a large number of <code class="highlighter-rouge">Instances</code>, such as during training, you may want to look into <code class="highlighter-rouge">allennlp.data.Iterators</code>, which specify several different ways of iterating over a <code class="highlighter-rouge">Dataset</code> in batches, such as fixed batch sizes, bucketing and stochastic sorting.</p>
+
+<p>There’s been one thing we’ve left out of this tutorial so far - explaining the role of the <code class="highlighter-rouge">TokenIndexer</code> in <code class="highlighter-rouge">TextField</code>. We decided to introduce a new step into the typical <code class="highlighter-rouge">tokenisation -&gt; indexing -&gt; embedding</code> pipeline, because for more complicated encodings of words, such as those including character embeddings, this pipeline becomes difficult. Our pipeline contains the following steps: <code class="highlighter-rouge">tokenisation -&gt; TokenIndexers -&gt; TokenEmbedders -&gt; TextFieldEmbedders</code>.</p>
+
+<p>The token indexer we used above is the most basic one - it assigns a single ID to each word in the <code class="highlighter-rouge">TextField</code>. This is classically what you might think of when indexing words.
+However, let’s take a look at using a <code class="highlighter-rouge">TokenCharacterIndexer</code> as well - this takes the words in a <code class="highlighter-rouge">TextField</code> and generates indices for the characters in the words.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data.token_indexers</span> <span class="kn">import</span> <span class="n">TokenCharactersIndexer</span>
+
+<span class="n">word_and_character_text_field</span> <span class="o">=</span> <span class="n">TextField</span><span class="p">([</span><span class="s">"Here"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"some"</span><span class="p">,</span> <span class="s">"longer"</span><span class="p">,</span> <span class="s">"words"</span><span class="p">,</span> <span class="s">"."</span><span class="p">],</span>
+                                          <span class="n">token_indexers</span><span class="o">=</span><span class="p">{</span><span class="s">"tokens"</span><span class="p">:</span> <span class="n">SingleIdTokenIndexer</span><span class="p">(),</span> <span class="s">"chars"</span><span class="p">:</span> <span class="n">TokenCharactersIndexer</span><span class="p">()})</span>
+<span class="n">mini_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">([</span><span class="n">Instance</span><span class="p">({</span><span class="s">"sentence"</span><span class="p">:</span> <span class="n">word_and_character_text_field</span><span class="p">})])</span>
+
+<span class="c"># Fit a new vocabulary to this Field and index it:</span>
+<span class="n">word_and_char_vocab</span> <span class="o">=</span> <span class="n">Vocabulary</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">mini_dataset</span><span class="p">)</span>
+<span class="n">mini_dataset</span><span class="o">.</span><span class="n">index_instances</span><span class="p">(</span><span class="n">word_and_char_vocab</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"This is the id -&gt; word mapping for the 'tokens' namespace: "</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tokens"</span><span class="p">),</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"This is the id -&gt; word mapping for the 'chars' namespace: "</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"chars"</span><span class="p">),</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="c"># Now, the padding lengths method will find the max sentence length</span>
+<span class="c"># _and_ max word length in the batch and pad all sentences to the max</span>
+<span class="c"># sentence length and all words to the max word length.</span>
+<span class="n">padding_lengths</span> <span class="o">=</span> <span class="n">mini_dataset</span><span class="o">.</span><span class="n">get_padding_lengths</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Lengths used for padding (Note that we now have a new "</span>
+      <span class="s">"padding key num_token_characters from the TokenCharactersIndexer): "</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">padding_lengths</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+<span class="n">array_dict</span> <span class="o">=</span> <span class="n">mini_dataset</span><span class="o">.</span><span class="n">as_array_dict</span><span class="p">(</span><span class="n">padding_lengths</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">array_dict</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>100%|██████████| 1/1 [00:00&lt;00:00, 4364.52it/s]
+100%|██████████| 1/1 [00:00&lt;00:00, 3758.34it/s]
+
+This is the id -&gt; word mapping for the 'tokens' namespace:
+{0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'This', 3: 'was', 4: 'movie', 5: 'slow', 6: 'quite', 7: '!', 8: 'good.', 9: 'but', 10: 'awful'}
+This is the id -&gt; word mapping for the 'chars' namespace:
+{0: '@@PADDING@@', 1: '@@UNKNOWN@@'}
+Lengths used for padding (Note that we now have a new padding key from the TokenCharactersIndexer):  {'sentence': {'num_tokens': 5, 'num_token_characters': 5}}
+{'sentence': {'num_tokens': 5, 'num_token_characters': 5}}
+{'sentence': {'chars': array([[[ 6,  2,  3,  2,  0],
+        [11,  3,  2,  0,  0],
+        [ 5,  4, 10,  2,  0],
+        [ 8,  4,  3,  7,  5],
+        [ 9,  0,  0,  0,  0]]]), 'tokens': array([[2, 5, 3, 4, 6]])}}
+</code></pre>
+</div>
+
+<p>Now we’ve used a new token indexer, you can see that the <code class="highlighter-rouge">review</code> field of the returned dictionary now has 2 elements: <code class="highlighter-rouge">tokens</code>, an array representing the indexed tokens and <code class="highlighter-rouge">chars</code>, an array representing each word in the <code class="highlighter-rouge">TextField</code> as a list of character indices. Crucially, each list of integers for each word has been padded to the length of the maximum word in the sentence.</p>

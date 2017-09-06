@@ -1,0 +1,320 @@
+<p>Now that we know how to train and evaluate models,
+let’s take a deeper look at our experiment configuration file,
+<a href="https://github.com/allenai/allennlp/blob/master/tutorials/getting_started/simple_tagger.json">tutorials/getting_started/simple_tagger.json</a>.</p>
+
+<p>The configuration is a <a href="https://github.com/typesafehub/config/blob/master/HOCON.md">HOCON</a> file
+that defines all the parameters for our experiment and model. Don’t worry if you’re not familiar
+with HOCON, any JSON file is valid HOCON; indeed, the configuration file we use in this tutorial
+is just JSON.</p>
+
+<p>In this tutorial we’ll go through
+each section of the configuration file in detail, explaining what all the parameters mean.</p>
+
+<h2 id="a-preliminary-registrable-and-from_params">A preliminary: Registrable and from_params</h2>
+
+<p>Most AllenNLP classes inherit from the
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.common.html#allennlp.common.registrable.Registrable"><code class="highlighter-rouge">Registrable</code></a>
+base class,
+which gives them a named registry for their subclasses. This means that if we had
+a <code class="highlighter-rouge">Model(Registrable)</code> base class (<a href="http://docs.allennlp.org/en/latest/api/allennlp.models.html#allennlp.models.model.Model">we do</a>),
+and we decorated a subclass like</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="nd">@Model.register</span><span class="p">(</span><span class="s">"custom"</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">CustomModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre>
+</div>
+
+<p>then we would be able to recover the <code class="highlighter-rouge">CustomModel</code> class using</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.by_name("custom")
+</code></pre>
+</div>
+
+<p>By convention, all such classes have a <code class="highlighter-rouge">from_params</code> factory method that
+allows you to instantiate instances from a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.common.html#allennlp.common.params.Params"><code class="highlighter-rouge">Params</code></a>
+object, which is basically a <code class="highlighter-rouge">dict</code> of parameters
+with some added functionality that we won’t get into here.</p>
+
+<p>This is how AllenNLP is able to use configuration files to instantiate the objects it needs.
+It can do (in essence):</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Grab the part of the `config` that defines the model</span>
+<span class="n">model_params</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">"model"</span><span class="p">)</span>
+
+<span class="c"># Find out which model subclass we want</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="n">model_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">"type"</span><span class="p">)</span>
+
+<span class="c"># Instantiate that subclass with the remaining model params</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">by_name</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span><span class="o">.</span><span class="n">from_params</span><span class="p">(</span><span class="n">model_params</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Because a class doesn’t get registered until it’s loaded, any code that uses
+<code class="highlighter-rouge">BaseClass.by_name('subclass_name')</code> must have already imported the code for <code class="highlighter-rouge">Subclass</code>.
+In particular, this means that once you start creating your own named models and helper classes,
+the included <code class="highlighter-rouge">allennlp.run</code> command will not be aware of them. However, <code class="highlighter-rouge">allennlp.run</code> is simply
+a wrapper around the <code class="highlighter-rouge">allennlp.commands.main</code> function,
+which means you just need to create your own script
+that imports all of your custom classes and then calls <code class="highlighter-rouge">allennlp.commands.main()</code>.</p>
+
+<h2 id="datasets-and-instances-and-fields"><code class="highlighter-rouge">Dataset</code>s and <code class="highlighter-rouge">Instance</code>s and <code class="highlighter-rouge">Field</code>s</h2>
+
+<p>We train and evaluate our models on <code class="highlighter-rouge">Dataset</code>s. A
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.html#allennlp.data.dataset.Dataset"><code class="highlighter-rouge">Dataset</code></a>
+is a collection of
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.html#allennlp.data.instance.Instance"><code class="highlighter-rouge">Instance</code></a>s.
+In our tagging experiment,
+each dataset is a collection of tagged sentences, and each instance is one of those tagged sentences.</p>
+
+<p>An instance consists of
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.fields.html#allennlp.data.fields.field.Field"><code class="highlighter-rouge">Field</code></a>s,
+each of which represents some part of the instance as arrays suitable for feeding into a model.</p>
+
+<p>In our tagging setup, each instance will contain a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.fields.html#allennlp.data.fields.text_field.TextField"><code class="highlighter-rouge">TextField</code></a>
+representing the words/tokens of the sentence and a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.fields.html#allennlp.data.fields.sequence_label_field.SequenceLabelField"><code class="highlighter-rouge">SequenceLabelField</code></a>
+representing the corresponding part-of-speech tags.</p>
+
+<p>How do we turn a text file full of sentences into a <code class="highlighter-rouge">Dataset</code>? With a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.dataset_readers.html#allennlp.data.dataset_readers.dataset_reader.DatasetReader"><code class="highlighter-rouge">DatasetReader</code></a>
+specified by our configuration file.</p>
+
+<h2 id="dataset_reader"><code class="highlighter-rouge">dataset_reader</code></h2>
+
+<p>The first section of our configuration file defines the <code class="highlighter-rouge">dataset_reader</code>:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="s2">"dataset_reader"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"sequence_tagging"</span><span class="p">,</span>
+    <span class="s2">"word_tag_delimiter"</span><span class="err">:</span> <span class="s2">"/"</span><span class="p">,</span>
+    <span class="s2">"token_indexers"</span><span class="err">:</span> <span class="p">{</span>
+      <span class="s2">"tokens"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"single_id"</span><span class="p">,</span>
+        <span class="s2">"lowercase_tokens"</span><span class="err">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="s2">"token_characters"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"characters"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+</code></pre>
+</div>
+
+<p>Here we’ve specified that we want to use the <code class="highlighter-rouge">DatasetReader</code> subclass that’s registered
+under the name <code class="highlighter-rouge">"sequence_tagging"</code>. Unsurprisingly, this is the
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.dataset_readers.html#allennlp.data.dataset_readers.sequence_tagging.SequenceTaggingDatasetReader"><code class="highlighter-rouge">SequenceTaggingDatasetReader</code></a>
+subclass. This reader assumes a text file of newline-separated sentences, where each sentence looks like</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>word1{wtd}tag1{td}word2{wtd}tag2{td}...{td}wordn{wtd}tagn
+</code></pre>
+</div>
+
+<p>For some “word tag delimiter” <code class="highlighter-rouge"><span class="p">{</span><span class="err">wtd</span><span class="p">}</span></code> and some “token delimiter” <code class="highlighter-rouge"><span class="p">{</span><span class="err">td</span><span class="p">}</span></code>.</p>
+
+<p><em>Our</em> data files look like</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>The/at detectives/nns placed/vbd Barco/np under/in arrest/nn
+</code></pre>
+</div>
+
+<p>which is why we need to specify</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="s2">"word_tag_delimiter"</span><span class="err">:</span> <span class="s2">"/"</span><span class="p">,</span>
+</code></pre>
+</div>
+
+<p>We don’t need to specify anything for the “token delimiter”,
+since the default split-on-whitespace behavior is already correct.</p>
+
+<p>If you look at the code for <code class="highlighter-rouge">SequenceTaggingDatasetReader.read()</code>,
+it turns each sentence into a <code class="highlighter-rouge">TextField</code>
+of tokens and a <code class="highlighter-rouge">SequenceLabelField</code> of tags. The latter isn’t
+really configurable, but the former wants a dictionary of
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.token_indexers.html#allennlp.data.token_indexers.token_indexer.TokenIndexer">TokenIndexer</a>s
+that indicate how to convert the tokens into arrays.</p>
+
+<p>Our configuration specifies two token indexers:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="s2">"token_indexers"</span><span class="err">:</span> <span class="p">{</span>
+      <span class="s2">"tokens"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"single_id"</span><span class="p">,</span>
+        <span class="s2">"lowercase_tokens"</span><span class="err">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="s2">"token_characters"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"characters"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>The first, <code class="highlighter-rouge">"tokens"</code>, is a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.token_indexers.html#allennlp.data.token_indexers.single_id_token_indexer.SingleIdTokenIndexer"><code class="highlighter-rouge">SingleIdTokenIndexer</code></a>
+that just represents each token (word) as a single integer.
+The configuration also specifies that we <em>lowercase</em> the tokens before encoding;
+that is, that this token indexer should ignore case.</p>
+
+<p>The second, <code class="highlighter-rouge">"token_characters"</code>, is a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.token_indexers.html#allennlp.data.token_indexers.token_characters_indexer.TokenCharactersIndexer"><code class="highlighter-rouge">TokenCharactersIndexer</code></a>
+that represents each token as a list of int-encoded characters.</p>
+
+<p>Notice that this gives us two different encodings for each token.
+Each encoding has a name, in this case <code class="highlighter-rouge">"tokens"</code> and <code class="highlighter-rouge">"token_characters"</code>,
+and these names will be referenced later by the model.</p>
+
+<h2 id="training-and-validation-data">Training and Validation Data</h2>
+
+<p>The next section specifies the data to train and validate the model on:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="s2">"train_data_path"</span><span class="err">:</span> <span class="s2">"https://allennlp.s3.amazonaws.com/datasets/getting-started/sentences.small.train"</span><span class="p">,</span>
+  <span class="s2">"validation_data_path"</span><span class="err">:</span> <span class="s2">"https://allennlp.s3.amazonaws.com/datasets/getting-started/sentences.small.dev"</span><span class="p">,</span>
+</code></pre>
+</div>
+
+<p>They can be specified either as local paths on your machine or as URLs to files hosted on, for example, Amazon S3.
+In the latter case, AllenNLP will cache (and reuse) the downloaded files in <code class="highlighter-rouge">~/.allennlp/datasets</code>, using the
+<a href="https://en.wikipedia.org/wiki/HTTP_ETag">ETag</a> to determine when to download a new version.</p>
+
+<h2 id="the-model">The Model</h2>
+
+<p>The next section configures our model.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="s2">"model"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"simple_tagger"</span><span class="p">,</span>
+</code></pre>
+</div>
+
+<p>This indicates we want to use the <code class="highlighter-rouge">Model</code> subclass that’s registered as <code class="highlighter-rouge">"simple_tagger"</code>,
+which is the
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.models.html#allennlp.models.simple_tagger.SimpleTagger"><code class="highlighter-rouge">SimpleTagger</code></a> model.</p>
+
+<p>If you look at its code, you’ll see it consists of a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.text_field_embedders.html#allennlp.modules.text_field_embedders.text_field_embedder.TextFieldEmbedder"><code class="highlighter-rouge">TextFieldEmbedder</code></a>
+that embeds the output of our text fields, a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.seq2seq_encoders.html#allennlp.modules.seq2seq_encoders.seq2seq_encoder.Seq2SeqEncoder"><code class="highlighter-rouge">Seq2SeqEncoder</code></a>
+that transforms that sequence into an output sequence,
+and a linear layer to convert the output sequences
+into logits representing the probabilities of predicted tags.
+(The last layer is not configurable and so won’t appear in our configuration file.)</p>
+
+<h3 id="the-text-field-embedder">The Text Field Embedder</h3>
+
+<p>Let’s first look at the text field embedder configuration:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="s2">"text_field_embedder"</span><span class="err">:</span> <span class="p">{</span>
+            <span class="s2">"tokens"</span><span class="err">:</span> <span class="p">{</span>
+                    <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"embedding"</span><span class="p">,</span>
+                    <span class="s2">"embedding_dim"</span><span class="err">:</span> <span class="mi">50</span>
+            <span class="p">},</span>
+            <span class="s2">"token_characters"</span><span class="err">:</span> <span class="p">{</span>
+              <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"character_encoding"</span><span class="p">,</span>
+              <span class="s2">"embedding"</span><span class="err">:</span> <span class="p">{</span>
+                <span class="s2">"embedding_dim"</span><span class="err">:</span> <span class="mi">8</span>
+              <span class="p">},</span>
+              <span class="s2">"encoder"</span><span class="err">:</span> <span class="p">{</span>
+                <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"cnn"</span><span class="p">,</span>
+                <span class="s2">"embedding_dim"</span><span class="err">:</span> <span class="mi">8</span><span class="p">,</span>
+                <span class="s2">"num_filters"</span><span class="err">:</span> <span class="mi">50</span><span class="p">,</span>
+                <span class="s2">"ngram_filter_sizes"</span><span class="err">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+              <span class="p">},</span>
+              <span class="s2">"dropout"</span><span class="err">:</span> <span class="mf">0.2</span>
+            <span class="p">}</span>
+    <span class="p">},</span>
+</code></pre>
+</div>
+
+<p>You can see that it has an entry for each of the named encodings in our <code class="highlighter-rouge">TextField</code>.
+Each entry specifies a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.token_embedders.html?highlight=embedding#allennlp.modules.token_embedders.token_embedder.TokenEmbedder"><code class="highlighter-rouge">TokenEmbedder</code></a>
+that indicates how to embed
+the tokens encoded with that name. The <code class="highlighter-rouge">TextFieldEmbedder</code>’s output is the concatenation
+of these embeddings.</p>
+
+<p>The <code class="highlighter-rouge">"tokens"</code> input (which consists of integer encodings of the lowercased words in the input)
+gets fed into an
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.token_embedders.html?highlight=embedding#allennlp.modules.token_embedders.embedding.Embedding"><code class="highlighter-rouge">Embedding</code></a>
+module that embeds the vocabulary words in a 50-dimensional space, as specified by the <code class="highlighter-rouge">embedding_dim</code> parameter.</p>
+
+<p>The <code class="highlighter-rouge">"token_characters"</code> input (which consists of integer-sequence encodings of the characters in each word)
+gets fed into a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.token_embedders.html?highlight=embedding#allennlp.modules.token_embedders.token_characters_encoder.TokenCharactersEncoder"><code class="highlighter-rouge">TokenCharactersEncoder</code></a>,
+which embeds the characters in an 8-dimensional space
+and then applies a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.seq2vec_encoders.html#allennlp.modules.seq2vec_encoders.cnn_encoder.CnnEncoder"><code class="highlighter-rouge">CnnEncoder</code></a>
+that uses 50 filters and so also produces a 50-dimensional output. You can see that this encoder also uses a 20% dropout during training.</p>
+
+<p>The output of this <code class="highlighter-rouge">TextFieldEmbedder</code> is a 50-dimensional vector for <code class="highlighter-rouge">"tokens"</code>
+concatenated with a 50-dimensional vector for <code class="highlighter-rouge">"token_characters</code>”;
+that is, a 100-dimensional vector.</p>
+
+<p>Because both the encoding of <code class="highlighter-rouge">TextFields</code> and the <code class="highlighter-rouge">TextFieldEmbedder</code> are configurable in this way,
+it is trivial to experiment with different word representations as input to your model, switching
+between simple word embeddings, word embeddings concatenated with a character-level CNN, or even
+using a pre-trained model to get word-in-context embeddings, without changing a single line of
+code.</p>
+
+<h3 id="the-seq2seqencoder">The Seq2SeqEncoder</h3>
+
+<p>The output of the <code class="highlighter-rouge">TextFieldEmbedder</code> is processed by the “stacked encoder”,
+which needs to be a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.modules.seq2seq_encoders.html#allennlp.modules.seq2seq_encoders.seq2seq_encoder.Seq2SeqEncoder"><code class="highlighter-rouge">Seq2SeqEncoder</code></a>:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>    <span class="s2">"stacked_encoder"</span><span class="err">:</span> <span class="p">{</span>
+            <span class="s2">"type"</span><span class="err">:</span> <span class="s2">"lstm"</span><span class="p">,</span>
+            <span class="s2">"input_size"</span><span class="err">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s2">"hidden_size"</span><span class="err">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s2">"num_layers"</span><span class="err">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">"dropout"</span><span class="err">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="s2">"bidirectional"</span><span class="err">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Here the <code class="highlighter-rouge">"lstm"</code> encoder is just a thin wrapper around
+<a href="http://pytorch.org/docs/master/nn.html#torch.nn.LSTM"><code class="highlighter-rouge">torch.nn.LSTM</code></a>,
+and its parameters are simply passed through to the PyTorch constructor.
+Its input size needs to match the 100-dimensional output size of the
+previous embedding layer.</p>
+
+<p>And, as mentioned above, the output of this layer gets passed to a linear layer
+that doesn’t need any configuration. That’s all for the model.</p>
+
+<h2 id="training-the-model">Training the Model</h2>
+
+<p>The rest of the config file is dedicated to the training process.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="s2">"iterator"</span><span class="err">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="err">:</span> <span class="s2">"basic"</span><span class="p">,</span> <span class="s2">"batch_size"</span><span class="err">:</span> <span class="mi">32</span><span class="p">},</span>
+</code></pre>
+</div>
+
+<p>We’ll iterate over our datasets using a
+<a href="http://docs.allennlp.org/en/latest/api/allennlp.data.iterators.html#allennlp.data.iterators.basic_iterator.BasicIterator"><code class="highlighter-rouge">BasicIterator</code></a>
+that pads our data and processes it in batches of size 32.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="s2">"trainer"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"optimizer"</span><span class="err">:</span> <span class="s2">"adam"</span><span class="p">,</span>
+    <span class="s2">"num_epochs"</span><span class="err">:</span> <span class="mi">40</span><span class="p">,</span>
+    <span class="s2">"patience"</span><span class="err">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"cuda_device"</span><span class="err">:</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Finally, we’ll optimize using
+<a href="http://pytorch.org/docs/master/optim.html#torch.optim.Adam"><code class="highlighter-rouge">torch.optim.Adam</code></a>
+with its default parameters;
+we’ll run the training for 40 epochs;
+we’ll stop prematurely if we get no improvement for 10 epochs;
+and we’ll train on the CPU.  If you wanted to train on a GPU,
+you’d change <code class="highlighter-rouge">cuda_device</code> to its device id.
+If you have just one GPU that should be <code class="highlighter-rouge">0</code>.</p>
+
+<p>That’s our entire experiment configuration. If we want to change our optimizer,
+our batch size, our embedding dimensions, or any other hyperparameters,
+all we need to do is modify this config file and <code class="highlighter-rouge">train</code> another model.</p>
+
+<p>The training configuration is always saved as part of the model archive,
+which means that you can always see how a saved model was trained.</p>

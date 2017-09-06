@@ -1,0 +1,128 @@
+<h3 id="vocabularies-in-allennlp">Vocabularies in AllenNLP</h3>
+
+<p>Before we start, this tutorial assumes you’ve already gone through the tutorial on <code class="highlighter-rouge">Datasets</code>, <code class="highlighter-rouge">Instances</code> and <code class="highlighter-rouge">Fields</code>. If you haven’t, you might want to check out that one first as we make use of some of these constructs to explain the <code class="highlighter-rouge">Vocabulary</code> functionality.</p>
+
+<p>A <code class="highlighter-rouge">Vocabulary</code> maps strings to integers, allowing for strings to be mapped to an
+ out-of-vocabulary token.</p>
+
+<p>Vocabularies can be fit to a particular dataset, which we use to decide which tokens are
+ in-vocabulary, or alternatively, they can be loaded directly from a static vocabulary file.</p>
+
+<p>First, let’s import the vocabulary class from <code class="highlighter-rouge">allennlp</code> and create a vocabulary.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># This cell just makes sure the library paths are correct.</span>
+<span class="c"># You need to run this cell before you run the rest of this</span>
+<span class="c"># tutorial, but you can ignore the contents!</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'../..'</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">module_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data</span> <span class="kn">import</span> <span class="n">Vocabulary</span>
+</code></pre>
+</div>
+
+<p>Let’s create an empty <code class="highlighter-rouge">Vocabulary</code> so we can look at the arguments it takes.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">vocab</span> <span class="o">=</span> <span class="n">Vocabulary</span><span class="p">(</span><span class="n">counter</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_vocab_size</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The vocabulary takes 4 arguments (we’ve used 3 of these here):</p>
+
+<ul>
+  <li>
+    <p>A counter, which is a <code class="highlighter-rouge">Dict[str, Dict[str, int]]</code>: This is a nested dictionary because the allennlp Vocabulary class supports the idea of “namespaces”. A namespace is a vocabulary which is associated with a part of your data. For instance, in a sequence tagging model, you would typically have two namespaces: A namespace of words for your textual input and a namespace of tags(e.g. “NP”, “VP”, etc) for your labels. This counter is therefore a mapping from string namespace names to their respective mapping dictionaries of <code class="highlighter-rouge">Dict[tokens =&gt; counts]</code>.</p>
+  </li>
+  <li>
+    <p>A minimum count: Tokens with smaller counts than this won’t be included in your <code class="highlighter-rouge">Vocabulary</code>.</p>
+  </li>
+  <li>
+    <p>A maximum vocab size: The lowest frequency words will be dropped to make your vocabulary this size.</p>
+  </li>
+  <li>
+    <p>Non padded namespaces (left as the defaults for this tutorial): These are <code class="highlighter-rouge">namespace</code> suffixes which won’t contain padding and unknown tokens. By default, these are <code class="highlighter-rouge">*labels</code> and <code class="highlighter-rouge">*tags</code>, so any namespace you create which ends with one of these names (e.g <code class="highlighter-rouge">sequence_labels</code>) won’t contain these additional tokens. The reason for this is explained a bit more below.</p>
+  </li>
+</ul>
+
+<p>For some namespaces, such as words, we provide additional tokens commonly used in NLP applications - specifically, “@@PADDING@@” and “@@UNKNOWN@@”. Why did we use these slightly odd tokens? Well, if anything goes wrong in your model, it’s going to be pretty obvious, because these tokens are pretty hard to miss. However, for other namespaces, such as tags, you <em>don’t</em> want these extra tokens, because in your model, you are going to be creating a distribution over the size of this namespace, so if we have added extra tags, your model could predict these.</p>
+
+<p>It’s easy to interact with the vocabulary we just created. Let’s add some words!</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">vocab</span><span class="o">.</span><span class="n">add_token_to_namespace</span><span class="p">(</span><span class="s">"Barack"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tokens"</span><span class="p">)</span>
+<span class="n">vocab</span><span class="o">.</span><span class="n">add_token_to_namespace</span><span class="p">(</span><span class="s">"Obama"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tokens"</span><span class="p">)</span>
+
+<span class="n">vocab</span><span class="o">.</span><span class="n">add_token_to_namespace</span><span class="p">(</span><span class="s">"PERSON"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tags"</span><span class="p">)</span>
+<span class="n">vocab</span><span class="o">.</span><span class="n">add_token_to_namespace</span><span class="p">(</span><span class="s">"PLACE"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tags"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tokens"</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tags"</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">0:</span><span class="w"> </span><span class="err">'@@PADDING@@',</span><span class="w"> </span><span class="err">1:</span><span class="w"> </span><span class="err">'@@UNKNOWN@@',</span><span class="w"> </span><span class="err">2:</span><span class="w"> </span><span class="err">'Barack',</span><span class="w"> </span><span class="err">3:</span><span class="w"> </span><span class="err">'Obama'</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="err">0:</span><span class="w"> </span><span class="err">'PERSON',</span><span class="w"> </span><span class="err">1:</span><span class="w"> </span><span class="err">'PLACE'</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Notice that when we print the namespace for <code class="highlighter-rouge">tags</code> we don’t have any padding tokens or unknown tokens. Additionally, you can add tokens to a <code class="highlighter-rouge">namespace</code> by loading them directly from a file using the <code class="highlighter-rouge">set_from_file</code> method. It needs to contain the OOV token as well and will overwrite tokens in the namespace specified.</p>
+
+<p>It’s also easy to interact with the Vocabulary to retrieve specific word ids or tokens for a given id.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Index 2 has token: "</span><span class="p">,</span> <span class="n">vocab</span><span class="o">.</span><span class="n">get_token_from_index</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tokens"</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Word 'Barack' has index: "</span><span class="p">,</span> <span class="n">vocab</span><span class="o">.</span><span class="n">get_token_index</span><span class="p">(</span><span class="s">"Barack"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tokens"</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Index 2 has token:  Barack
+Word 'Barack' has index:  2
+</code></pre>
+</div>
+
+<p>Also note that <code class="highlighter-rouge">namespaces</code> will deal with OOV tokens differently depending on whether they contain an OOV Token. See the difference between asking for an index for “pernacious” in the two different <code class="highlighter-rouge">namespaces</code> we’ve created in our toy <code class="highlighter-rouge">Vocabulary</code>:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"The index of 'pernacious' in the 'tokens' namespace should be 1 (The @@UNKOWN@@ token): "</span><span class="p">,</span> <span class="n">vocab</span><span class="o">.</span><span class="n">get_token_index</span><span class="p">(</span><span class="s">"pernacious"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tokens"</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">vocab</span><span class="o">.</span><span class="n">get_token_index</span><span class="p">(</span><span class="s">"pernacious"</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">"tags"</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"As 'tags' doesn't have an unknown token, fetching non-existent tags will throw a KeyError."</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>The index of 'pernacious' in the 'tokens' namespace should be 1 (The @@UNKOWN@@ token):  1
+As 'tags' doesn't have an unknown token, fetching non-existent tags will throw a KeyError.
+</code></pre>
+</div>
+
+<p>Above, we demonstrated the basic functionality of the namespaces in the Vocabulary. So far so good - probably not much different to other <code class="highlighter-rouge">Vocabulary</code> type classes for NLP that you’ve seen before. However, we’d ideally like to
+generate a full <code class="highlighter-rouge">Vocabulary</code> without having to individually add all the different words. Below, we’ll generate a <code class="highlighter-rouge">Dataset</code> consisting of a single <code class="highlighter-rouge">Instance</code> and use it to automatically generate a <code class="highlighter-rouge">Vocabulary</code>.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">allennlp.data.fields</span> <span class="kn">import</span> <span class="n">TextField</span><span class="p">,</span> <span class="n">SequenceLabelField</span>
+<span class="kn">from</span> <span class="nn">allennlp.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Instance</span>
+<span class="kn">from</span> <span class="nn">allennlp.data.token_indexers</span> <span class="kn">import</span> <span class="n">SingleIdTokenIndexer</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="n">TextField</span><span class="p">(</span><span class="n">tokens</span><span class="o">=</span><span class="p">[</span><span class="s">"Barack"</span><span class="p">,</span> <span class="s">"Obama"</span><span class="p">,</span> <span class="s">"is"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"great"</span><span class="p">,</span> <span class="s">"guy"</span><span class="p">,</span> <span class="s">"."</span><span class="p">],</span>
+                     <span class="n">token_indexers</span><span class="o">=</span><span class="p">{</span><span class="s">"tokens"</span><span class="p">:</span> <span class="n">SingleIdTokenIndexer</span><span class="p">()})</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">SequenceLabelField</span><span class="p">([</span><span class="s">"PERSON"</span><span class="p">,</span> <span class="s">"PERSON"</span><span class="p">,</span> <span class="s">"O"</span><span class="p">,</span> <span class="s">"O"</span><span class="p">,</span> <span class="s">"O"</span><span class="p">,</span> <span class="s">"O"</span><span class="p">,</span> <span class="s">"O"</span><span class="p">],</span> <span class="n">sentence</span><span class="p">,</span> <span class="n">label_namespace</span><span class="o">=</span><span class="s">"tags"</span><span class="p">)</span>
+<span class="n">toy_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">([</span><span class="n">Instance</span><span class="p">({</span><span class="s">"sentence"</span><span class="p">:</span> <span class="n">sentence</span><span class="p">,</span> <span class="s">"tags"</span><span class="p">:</span> <span class="n">tags</span><span class="p">})])</span>
+</code></pre>
+</div>
+
+<p>Now we’ve generated this baby dataset with one training instance, we can generate a <code class="highlighter-rouge">Vocabulary</code> using a classmethod on <code class="highlighter-rouge">Vocabulary</code>.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">vocab</span> <span class="o">=</span> <span class="n">Vocabulary</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">toy_dataset</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tokens"</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vocab</span><span class="o">.</span><span class="n">get_index_to_token_vocabulary</span><span class="p">(</span><span class="s">"tags"</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>100%|██████████| 1/1 [00:00&lt;00:00, 6797.90it/s]
+
+{0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'Barack', 3: 'is', 4: 'guy', 5: 'Obama', 6: 'a', 7: '.', 8: 'great'}
+{0: 'O', 1: 'PERSON'}
+</code></pre>
+</div>
+
+<p>Note that the vocab we created has <code class="highlighter-rouge">tokens</code> and <code class="highlighter-rouge">tags</code> namespaces. These come from the key in the <code class="highlighter-rouge">token_indexers</code> dict in the <code class="highlighter-rouge">TextField</code> and the <code class="highlighter-rouge">tag_namespace</code> parameter in the <code class="highlighter-rouge">TagField</code>. At first, it seems confusing as to why it’s possible to have multiple <code class="highlighter-rouge">TokenIndexers</code>. This is because in <code class="highlighter-rouge">allennlp</code>, we make a distinction between <em>tokenisation</em> and <em>token representation</em>. More on this in the NLP API Tutorial!</p>
