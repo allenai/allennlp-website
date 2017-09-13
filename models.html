@@ -30,7 +30,7 @@
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>Semantic Role Labeling</h2>
-            <p class="t-sm">SRL, or Semantic Role Labeling, models recover the latent predicate argument structure of a sentence. SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Deep-Semantic-Role-Labeling-What-Works-and-What-s-He-Lee/a3ccff7ad63c2805078b34b8514fa9eab80d38e9" target="_blank">a deep BiLSTM model (He et al, 2017)</a>. The AllenNLP SRL model closely matches the published model, achieving a F1 of 78.9 on <a href="http://conll.cemantix.org/2012/" target="_blank">CoNLL 2012</a>.</p>
+            <p class="t-sm">SRL, or Semantic Role Labeling, models recover the latent predicate argument structure of a sentence. SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of <a href="https://homes.cs.washington.edu/~luheng/files/acl2017_hllz.pdf" target="_blank">a deep BiLSTM model (He et al, 2017)</a>. The AllenNLP SRL model closely matches the published model, achieving a F1 of 78.9 on <a href="http://conll.cemantix.org/2012/" target="_blank">CoNLL 2012</a>.</p>
           </div>
         </div>
       </div>
@@ -39,14 +39,6 @@
           <div class="padded-med">
             <h2>Textual Entailment</h2>
             <p class="t-sm">Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one. The AllenNLP TE model is a reimplementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that is relatively simple and achieves near state-of-the-art performance on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a>.  The AllenNLP TE model achieves an accuracy of 84.7% on the SNLI 1.0 test dataset, which is comparable to the original system's score of 86.3%.</p>
-            <p class="t-sm">You can evaluate the textual entailment model yourself within AllenNLP with the following command:</p>
-            <pre>
-allennlp/run evaluate \
-    --archive_file \
-    https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-2017.09.04.tar.gz \
-    --evaluation_data_file \
-    https://s3-us-west-2.amazonaws.com/allennlp/datasets/snli_1.0_test.jsonl
-            </pre>
           </div>
         </div>
       </div>
