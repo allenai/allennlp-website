@@ -4,7 +4,7 @@ The AllenNLP website is for the most part a static website. There is no CMS driv
 
 Since the AllenNLP website is hosted on GitHub Pages, Jekyll was the logical choice, as GitHub supports Jekyll out of the box. *More about [GitHub Pages and Jekyll](https://help.github.com/articles/about-github-pages-and-jekyll/)*
 
-## Introdution to Jekyll
+## Introduction to Jekyll
 
 From the [Jekyll Homepage](https://jekyllrb.com/):
 
@@ -23,7 +23,7 @@ In order to make changes to the website you need to checkout the [`master`](http
 3. Commit changes and push to `master`
 4. Test changes in browser at http://www.allennlp.org (usually takes at least 30s to update)
 
-After you've commited your changes, push with the following command:
+After you've committed your changes, push with the following command:
 
 ````shell
 $ git push
