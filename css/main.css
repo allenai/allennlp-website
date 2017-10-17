@@ -1761,3 +1761,8 @@ ul.publications li:last-child {
     border-bottom: 0.0625em solid #ccc
   }
 }
+
+a.separator {
+  pointer-events: none;
+  cursor: default;
+}
