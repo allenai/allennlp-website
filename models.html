@@ -31,7 +31,30 @@
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>Machine Comprehension</h2>
-            <p class="t-sm">Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02" target="_blank">BiDAF (Seo et al, 2017)</a>, or Bi-Directional Attention Flow, a widely used MC baseline that achieves near state-of-the-art accuracies on <a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank">the SQuAD dataset</a>.  The AllenNLP BIDAF model achieves an EM score of 68.3 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7, while also training at a 10x speedup (4 hours on a p2.xlarge).</p>
+            <p class="t-sm">Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02" target="_blank">BiDAF (Seo et al, 2017)</a>, or Bi-Directional Attention Flow, a widely used MC baseline that achieves near state-of-the-art accuracies on <a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank">the SQuAD dataset</a>. The AllenNLP BIDAF model achieves an EM score of 68.3 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7, while also training at a 10x speedup (4 hours on a p2.xlarge).</p>
+            <div id="tab--mc" class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <svg>
+                    <use xlink:href="#icon__disclosure"></use>
+                  </svg>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaulation</span>
+                  <svg>
+                    <use xlink:href="#icon__disclosure"></use>
+                  </svg>
+                </li>
+              </ul>
+              <div class="tab__page-container">
+                <div id="test" data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > examples.jsonl
+  allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz examples.jsonl</code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">allennlp/run evaluate --archive_file https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz --evaluation_data_file https://s3-us-west-2.amazonaws.com/allennlp/datasets/dev-v1.1.json --cuda_device 0</code></pre></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -40,6 +63,31 @@
           <div class="padded-med">
             <h2>Semantic Role Labeling</h2>
             <p class="t-sm">SRL, or Semantic Role Labeling, models recover the latent predicate argument structure of a sentence. SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Deep-Semantic-Role-Labeling-What-Works-and-What-s-He-Lee/a3ccff7ad63c2805078b34b8514fa9eab80d38e9" target="_blank">a deep BiLSTM model (He et al, 2017)</a>. The AllenNLP SRL model closely matches the published model, achieving a F1 of 78.9 on <a href="http://conll.cemantix.org/2012/" target="_blank">CoNLL 2012</a>.</p>
+            <div id="tab--srl" class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <svg>
+                    <use xlink:href="#icon__disclosure"></use>
+                  </svg>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaulation</span>
+                  <svg>
+                    <use xlink:href="#icon__disclosure"></use>
+                  </svg>
+                </li>
+              </ul>
+              <div class="tab__page-container">
+                <div data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > examples.jsonl
+  allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2017.09.05.tar.gz examples.jsonl</code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The SRL model was evaluated on the CoNLL 2012 dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can put together evaluation data yourself by following the CoNLL 2012 <a href="http://conll.cemantix.org/2012/data.html" target="_blank">instructions for working with the data</a>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -47,7 +95,30 @@
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>Textual Entailment</h2>
-            <p class="t-sm">Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one. The AllenNLP TE model is a reimplementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that is relatively simple and achieves near state-of-the-art performance on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a>.  The AllenNLP TE model achieves an accuracy of 84.7% on the SNLI 1.0 test dataset, which is comparable to the original system's score of 86.3%.</p>
+            <p class="t-sm">Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one. The AllenNLP TE model is a reimplementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that is relatively simple and achieves near state-of-the-art performance on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a>. The AllenNLP TE model achieves an accuracy of 84.7% on the SNLI 1.0 test dataset, which is comparable to the original system's score of 86.3%.</p>
+            <div id="tab--te" class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <svg>
+                    <use xlink:href="#icon__disclosure"></use>
+                  </svg>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaulation</span>
+                  <svg>
+                    <use xlink:href="#icon__disclosure"></use>
+                  </svg>
+                </li>
+              </ul>
+              <div class="tab__page-container">
+                <div data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > examples.jsonl
+  allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-2017.09.04.tar.gz examples.jsonl</code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">allennlp/run evaluate --archive_file https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-2017.09.04.tar.gz --evaluation_data_file https://s3-us-west-2.amazonaws.com/allennlp/datasets/snli_1.0_test.jsonl</code></pre></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
