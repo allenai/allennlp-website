@@ -1424,16 +1424,23 @@ ul.publications li:last-child {
   transition: opacity 0.075s ease-in-out
 }
 
-.tab ul.tab__nav li.tab__nav__item svg {
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
+.tab ul.tab__nav li.tab__nav__item .tab__nav__item__glyph {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  display: inline-block;
   width: 0.6875em;
   height: 0.4375em;
   opacity: .3;
   margin-left: 0.5em;
   margin-bottom: 0.0625em;
   transition: opacity 0.075s ease-in-out, transform 0.075s ease-in-out, -webkit-transform 0.075s ease-in-out
+}
+
+.tab ul.tab__nav li.tab__nav__item .tab__nav__item__glyph svg {
+  display: block;
+  width: 0.6875em;
+  height: 0.4375em
 }
 
 .tab ul.tab__nav li.tab__nav__item:hover {
@@ -1444,7 +1451,7 @@ ul.publications li:last-child {
   opacity: .75
 }
 
-.tab ul.tab__nav li.tab__nav__item:hover svg {
+.tab ul.tab__nav li.tab__nav__item:hover .tab__nav__item__glyph {
   opacity: .66
 }
 
@@ -1460,7 +1467,7 @@ ul.publications li:last-child {
   opacity: .4
 }
 
-.tab ul.tab__nav li.tab__nav__item:active svg {
+.tab ul.tab__nav li.tab__nav__item:active .tab__nav__item__glyph {
   -webkit-transition-duration: 0s;
   transition-duration: 0s;
   opacity: .25
@@ -1474,14 +1481,11 @@ ul.publications li:last-child {
   opacity: 1
 }
 
-.tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected svg {
-  opacity: .75
-}
-
-.tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected svg {
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg)
+.tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected .tab__nav__item__glyph {
+  opacity: .75;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg)
 }
 
 .tab .tab__page-container {
