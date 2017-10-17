@@ -51,8 +51,9 @@
               </ul>
               <div class="tab__page-container">
                 <div id="test" data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > examples.jsonl
-  allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz examples.jsonl</code></pre></div>
+                  <div class="tab__page__content">
+                    <pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > examples.jsonl
+allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">allennlp/run evaluate --archive_file https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz --evaluation_data_file https://s3-us-west-2.amazonaws.com/allennlp/datasets/dev-v1.1.json --cuda_device 0</code></pre></div>
@@ -87,7 +88,7 @@
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > examples.jsonl
-  allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2017.09.05.tar.gz examples.jsonl</code></pre></div>
+allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2017.09.05.tar.gz examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content">
@@ -124,7 +125,7 @@
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > examples.jsonl
-  allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-2017.09.04.tar.gz examples.jsonl</code></pre></div>
+allennlp/run predict https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-2017.09.04.tar.gz examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">allennlp/run evaluate --archive_file https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-2017.09.04.tar.gz --evaluation_data_file https://s3-us-west-2.amazonaws.com/allennlp/datasets/snli_1.0_test.jsonl</code></pre></div>
