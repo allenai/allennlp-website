@@ -1277,12 +1277,12 @@ svg {
   fill: #000
 }
 
-.models-table {
+.metrics-table {
   margin-bottom: 3.75em
 }
 
 @media screen and (max-width:960px) {
-  .models-table {
+  .metrics-table {
     margin-bottom: 2.5em
   }
 }
@@ -1379,6 +1379,188 @@ ul.publications li:last-child {
 @media screen and (max-width:960px) {
   ul.publications {
     padding: 0em 1.25em 2.5em 1.25em!important
+  }
+}
+
+.tab {
+  margin-top: 2.25em;
+  border: 0.0625em solid rgba(0, 0, 0, 0.08)
+}
+
+.tab ul.tab__nav {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  background: rgba(246, 248, 250, 0.33)
+}
+
+.tab ul.tab__nav li.tab__nav__item {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  font-size: 1em;
+  padding: 1.125em 1.25em;
+  cursor: pointer;
+  background: rgba(246, 248, 250, 0.5);
+  -webkit-transition: background-color 0.075s ease-in-out;
+  transition: background-color 0.075s ease-in-out;
+  border-right: 0.125em solid #fff
+}
+
+.tab ul.tab__nav li.tab__nav__item span {
+  font-weight: bold;
+  font-size: 1em;
+  opacity: .45;
+  -webkit-transition: opacity 0.075s ease-in-out;
+  transition: opacity 0.075s ease-in-out
+}
+
+.tab ul.tab__nav li.tab__nav__item .tab__nav__item__glyph {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  display: inline-block;
+  width: 0.6875em;
+  height: 0.4375em;
+  opacity: .3;
+  margin-left: 0.5em;
+  margin-bottom: 0.0625em;
+  transition: opacity 0.075s ease-in-out, transform 0.075s ease-in-out, -webkit-transform 0.075s ease-in-out
+}
+
+.tab ul.tab__nav li.tab__nav__item .tab__nav__item__glyph svg {
+  display: block;
+  width: 0.6875em;
+  height: 0.4375em
+}
+
+.tab ul.tab__nav li.tab__nav__item:hover {
+  background: rgba(246, 248, 250, 0.75)
+}
+
+.tab ul.tab__nav li.tab__nav__item:hover span {
+  opacity: .75
+}
+
+.tab ul.tab__nav li.tab__nav__item:hover .tab__nav__item__glyph {
+  opacity: .66
+}
+
+.tab ul.tab__nav li.tab__nav__item:active {
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+  background: rgba(246, 248, 250, 0.66)
+}
+
+.tab ul.tab__nav li.tab__nav__item:active span {
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+  opacity: .4
+}
+
+.tab ul.tab__nav li.tab__nav__item:active .tab__nav__item__glyph {
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+  opacity: .25
+}
+
+.tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected {
+  background: #f6f8fa
+}
+
+.tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected span {
+  opacity: 1
+}
+
+.tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected .tab__nav__item__glyph {
+  opacity: .75;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg)
+}
+
+.tab .tab__page-container {
+  height: 0;
+  -webkit-transition: height 0.075s ease-in-out;
+  transition: height 0.075s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box
+}
+
+.tab .tab__page {
+  width: 100%;
+  position: absolute;
+  background: #f6f8fa;
+  opacity: 0;
+  -webkit-transition: opacity 0.075s ease-in-out, z-index 0.075s ease-in-out;
+  transition: opacity 0.075s ease-in-out, z-index 0.075s ease-in-out;
+  z-index: 0
+}
+
+.tab .tab__page.tab__page--selected {
+  opacity: 1;
+  z-index: 9
+}
+
+.tab .tab__page .tab__page__content {
+  padding: 1.25em
+}
+
+.tab .tab__page .tab__page__content pre {
+  box-shadow: 0 0 2.5em rgba(0, 0, 0, 0.05)
+}
+
+.tab .tab__page .tab__page__content pre code {
+  background: #fff
+}
+
+.tab .tab__page .tab__page__content p {
+  padding: 1.25em
+}
+
+.tab .tab__page .tab__page__content >:first-child {
+  margin-top: 0
+}
+
+.tab .tab__page .tab__page__content >:last-child {
+  margin-bottom: 0
+}
+
+.c-bg-gray-light .tab ul.tab__nav {
+  background: rgba(237, 241, 245, 0.33)
+}
+
+.c-bg-gray-light .tab ul.tab__nav li.tab__nav__item {
+  background: rgba(237, 241, 245, 0.5);
+  border-right: 0.125em solid #f6f8fa
+}
+
+.c-bg-gray-light .tab ul.tab__nav li.tab__nav__item.tab__nav__item--selected,
+.c-bg-gray-light .tab ul.tab__nav li.tab__nav__item:hover {
+  background: #edf1f5
+}
+
+.c-bg-gray-light .tab .tab__page {
+  background: #edf1f5
+}
+
+.c-bg-gray-light .tab .tab__page .tab__page__content pre code {
+  background: #f6f8fa
+}
+
+@media screen and (max-width:960px) {
+  .tab .tab__page .tab__page__content pre {
+    box-shadow: none
   }
 }
 
@@ -1550,7 +1732,7 @@ ul.publications li:last-child {
 }
 
 .tutorial__content li p {
-  font-size: 1em;
+  font-size: 1em
 }
 
 @media screen and (max-width:960px) {
