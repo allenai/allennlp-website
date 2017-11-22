@@ -74,4 +74,4 @@ $ bundle exec jekyll serve
 # => Now browse to http://localhost:4000
 ````
 
-Now you should be able to see your edits reflected instantly.
+Now you should be able to see your edits reflected instantly..
