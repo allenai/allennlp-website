@@ -40,8 +40,8 @@ print("Tokens in TextField: ", review.tokens)
 print("Label of LabelField", review_sentiment.label)
 ```
 
-    ['This', 'movie', 'was', 'awful', '!']
-    negative
+    Tokens in TextField:  [<allennlp.data.tokenizers.token.Token object at 0x7f8e2c3b4a58>, <allennlp.data.tokenizers.token.Token object at 0x7f8e2c3b4cf8>, <allennlp.data.tokenizers.token.Token object at 0x7f8dd6047208>, <allennlp.data.tokenizers.token.Token object at 0x7f8dd5fc4208>, <allennlp.data.tokenizers.token.Token object at 0x7f8dc74312b0>]
+    Label of LabelField negative
 
 
 Once we've made our `Fields`, we need to pair them together to form an `Instance`. 
@@ -54,7 +54,7 @@ instance1 = Instance({"review": review, "label": review_sentiment})
 print("Fields in instance: ", instance1.fields)
 ```
 
-    {'review': <allennlp.data.fields.text_field.TextField object at 0x10bc93eb8>, 'label': <allennlp.data.fields.label_field.LabelField object at 0x10bc93e80>}
+    Fields in instance:  {'review': <allennlp.data.fields.text_field.TextField object at 0x7f8e2c3b4b00>, 'label': <allennlp.data.fields.label_field.LabelField object at 0x7f8e2c3b4ac8>}
 
 
 ... and once we've made our `Instance`, we can group several of these into a `Dataset`.
@@ -74,7 +74,7 @@ In order to get our tiny sentiment analysis dataset ready for use in a model, we
 - Create a vocabulary from the Dataset (using `Vocabulary.from_dataset`)
 - Index the words and labels in the`Fields` to use the integer indices specified by the `Vocabulary`
 - Pad the instances to the same length
-- Convert them into arrays.
+- Convert them into tensors.
 The `Dataset`, `Instance` and `Fields` have some similar parts of their API. 
 
 
@@ -105,22 +105,32 @@ review_dataset.index_instances(vocab)
 # from our two instances.
 padding_lengths = review_dataset.get_padding_lengths()
 print("Lengths used for padding: ", padding_lengths, "\n")
-array_dict = review_dataset.as_array_dict(padding_lengths, verbose=False)
-print(array_dict)
+tensor_dict = review_dataset.as_tensor_dict(padding_lengths)
+print(tensor_dict)
 ```
 
-    100%|██████████| 2/2 [00:00<00:00, 9857.35it/s]
-    100%|██████████| 2/2 [00:00<00:00, 10578.32it/s]
+    100%|██████████| 2/2 [00:00<00:00, 7294.44it/s]
+    100%|██████████| 2/2 [00:00<00:00, 17260.51it/s]
 
     This is the id -> word mapping for the 'tokens' namespace: 
-    {0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'This', 3: 'was', 4: 'movie', 5: 'slow', 6: 'quite', 7: '!', 8: 'good.', 9: 'but', 10: 'awful'}
+    {0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'This', 3: 'movie', 4: 'was', 5: 'awful', 6: '!', 7: 'quite', 8: 'slow', 9: 'but', 10: 'good.'} 
+    
     This is the id -> word mapping for the 'tags' namespace: 
-    {0: 'positive', 1: 'negative'}
-    defaultdict(None, {'tokens': {'slow': 5, '@@PADDING@@': 0, 'This': 2, '!': 7, 'quite': 6, 'was': 3, 'good.': 8, '@@UNKNOWN@@': 1, 'awful': 10, 'but': 9, 'movie': 4}, 'tags': {'positive': 0, 'negative': 1}})
-    Lengths used for padding:  {'review': {'num_tokens': 7}}
-    {'review': {'tokens': array([[ 2,  4,  3, 10,  7,  0,  0],
-           [ 2,  4,  3,  6,  5,  9,  8]])}, 'label': array([[1],
-           [0]])}
+    {0: 'negative', 1: 'positive'} 
+    
+    Vocab Token to Index dictionary:  defaultdict(None, {'tokens': {'@@PADDING@@': 0, '@@UNKNOWN@@': 1, 'This': 2, 'movie': 3, 'was': 4, 'awful': 5, '!': 6, 'quite': 7, 'slow': 8, 'but': 9, 'good.': 10}, 'tags': {'negative': 0, 'positive': 1}}) 
+    
+    Lengths used for padding:  {'review': {'num_tokens': 7}} 
+    
+    {'review': {'tokens': Variable containing:
+        2     3     4     5     6     0     0
+        2     3     4     7     8     9    10
+    [torch.LongTensor of size 2x7]
+    }, 'label': Variable containing:
+     0
+     1
+    [torch.LongTensor of size 2x1]
+    }
 
 
     
@@ -161,28 +171,39 @@ print("Lengths used for padding (Note that we now have a new "
       "padding key num_token_characters from the TokenCharactersIndexer): ")
 print(padding_lengths, "\n")
 
-array_dict = mini_dataset.as_array_dict(padding_lengths, verbose=False)
+tensor_dict = mini_dataset.as_tensor_dict(padding_lengths)
 
-print(array_dict)
+print(tensor_dict)
 ```
 
-    100%|██████████| 1/1 [00:00<00:00, 4364.52it/s]
-    100%|██████████| 1/1 [00:00<00:00, 3758.34it/s]
+    100%|██████████| 1/1 [00:00<00:00, 5722.11it/s]
+    100%|██████████| 1/1 [00:00<00:00, 2695.57it/s]
 
     This is the id -> word mapping for the 'tokens' namespace: 
-    {0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'This', 3: 'was', 4: 'movie', 5: 'slow', 6: 'quite', 7: '!', 8: 'good.', 9: 'but', 10: 'awful'}
+    {0: '@@PADDING@@', 1: '@@UNKNOWN@@', 2: 'This', 3: 'movie', 4: 'was', 5: 'awful', 6: '!', 7: 'quite', 8: 'slow', 9: 'but', 10: 'good.'} 
+    
     This is the id -> word mapping for the 'chars' namespace: 
-    {0: '@@PADDING@@', 1: '@@UNKNOWN@@'}
-    Lengths used for padding (Note that we now have a new padding key from the TokenCharactersIndexer):  {'sentence': {'num_tokens': 5, 'num_token_characters': 5}}
-    {'sentence': {'num_tokens': 5, 'num_token_characters': 5}}
-    {'sentence': {'chars': array([[[ 6,  2,  3,  2,  0],
-            [11,  3,  2,  0,  0],
-            [ 5,  4, 10,  2,  0],
-            [ 8,  4,  3,  7,  5],
-            [ 9,  0,  0,  0,  0]]]), 'tokens': array([[2, 5, 3, 4, 6]])}}
+    {0: '@@PADDING@@', 1: '@@UNKNOWN@@'} 
+    
+    Lengths used for padding (Note that we now have a new padding key num_token_characters from the TokenCharactersIndexer): 
+    {'sentence': {'num_tokens': 6, 'num_token_characters': 6}} 
+    
+    {'sentence': {'tokens': Variable containing:
+     2  3  4  5  6  7
+    [torch.LongTensor of size 1x6]
+    , 'chars': Variable containing:
+    (0 ,.,.) = 
+       6   2   3   2   0   0
+       7   3   2   0   0   0
+       5   4   8   2   0   0
+       9   4  10  11   2   3
+      12   4   3  13   5   0
+      14   0   0   0   0   0
+    [torch.LongTensor of size 1x6x6]
+    }}
 
 
     
 
 
-Now we've used a new token indexer, you can see that the `review` field of the returned dictionary now has 2 elements: `tokens`, an array representing the indexed tokens and `chars`, an array representing each word in the `TextField` as a list of character indices. Crucially, each list of integers for each word has been padded to the length of the maximum word in the sentence. 
+Now we've used a new token indexer, you can see that the `review` field of the returned dictionary now has 2 elements: `tokens`, a tensor representing the indexed tokens and `chars`, a tensor representing each word in the `TextField` as a list of character indices. Crucially, each list of integers for each word has been padded to the length of the maximum word in the sentence. 

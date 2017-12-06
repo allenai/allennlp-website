@@ -70,8 +70,8 @@ dataset.index_instances(vocab)
 
 ```
 
-    100%|██████████| 2/2 [00:00<00:00, 6452.78it/s]
-    100%|██████████| 2/2 [00:00<00:00, 5845.72it/s]
+    100%|██████████| 2/2 [00:00<00:00, 5419.00it/s]
+    100%|██████████| 2/2 [00:00<00:00, 6786.90it/s]
 
     This is the token vocabulary we created: 
     
@@ -113,22 +113,19 @@ Now we've actually created all the parts which we need to create concatenated wo
 
 
 ```python
-from allennlp.nn.util import arrays_to_variables
-
 # Convert the indexed dataset into Pytorch Variables. 
-arrays = dataset.as_array_dict(dataset.get_padding_lengths())
-torch_arrays = arrays_to_variables(arrays)
-print("Torch arrays for passing to a model: \n\n", torch_arrays)
+tensors = dataset.as_tensor_dict(dataset.get_padding_lengths())
+print("Torch tensors for passing to a model: \n\n", tensors)
 print("\n\n")
-# arrays is a nested dictionary, first keyed by the
+# tensors is a nested dictionary, first keyed by the
 # name we gave our instances (in most cases you'd have more
 # than one field in an instance) and then by the key of each
 # token indexer we passed to TextField.
 
-# This will contain two arrays: one from representing each
+# This will contain two tensors: one from representing each
 # word as an index and one representing each _character_
 # in each word as an index. 
-text_field_variables = torch_arrays["sentence"]
+text_field_variables = tensors["sentence"]
 
 # This will have shape: (batch_size, sentence_length, word_embedding_dim + character_cnn_output_dim)
 embedded_text = text_field_embedder(text_field_variables)
@@ -141,7 +138,7 @@ print("Embedding Size: ", dimensions[2])
 
 ```
 
-    Torch arrays for passing to a model: 
+    Torch tensors for passing to a model: 
     
      {'sentence': {'tokens': Variable containing:
         2     3     4     5     6     7     8     9
