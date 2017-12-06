@@ -1766,3 +1766,60 @@ a.separator {
   pointer-events: none;
   cursor: default;
 }
+
+.banner--hero {
+  flex-direction: column;
+}
+
+.banner--hero__logo {
+  margin-top: 25px;
+}
+
+header {
+  position: relative;
+  z-index: 1;
+}
+
+.banner--hero__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.banner--hero__cta-container {
+  max-width: 432px;
+  width: 100%;
+}
+
+.ai2-bar {
+  width: 100%;
+  background: rgba(0,0,0,.16);
+  height: 50px;
+  line-height: 50px;
+  color: rgba(255,255,255,.5);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+}
+
+.ai2-bar a {
+  color: rgba(255,255,255,.66);
+  transition: color 0.2s ease;
+}
+
+.ai2-bar a:hover {
+  color: #fff;
+}

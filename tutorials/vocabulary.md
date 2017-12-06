@@ -4,13 +4,9 @@ title: Vocabularies in AllenNLP
 id: vocabulary
 ---
 
-[Jupyter notebook version](https://github.com/allenai/allennlp/blob/master/tutorials/notebooks/vocabulary.ipynb)
-
 ### Vocabularies in AllenNLP
 
-Before we start, this tutorial assumes you've already gone through
-[the tutorial on `Datasets`, `Instances` and `Fields`](datasets-instances-fields).
-If you haven't, you might want to check out that one first as we make use of some of these constructs to explain the `Vocabulary` functionality.
+Before we start, this tutorial assumes you've already gone through the tutorial on `Datasets`, `Instances` and `Fields`. If you haven't, you might want to check out that one first as we make use of some of these constructs to explain the `Vocabulary` functionality.
 
 A `Vocabulary` maps strings to integers, allowing for strings to be mapped to an
  out-of-vocabulary token.
@@ -24,7 +20,7 @@ First, let's import the vocabulary class from `allennlp` and create a vocabulary
 
 
 ```python
-# This cell just makes sure the library paths are correct.
+# This cell just makes sure the library paths are correct. 
 # You need to run this cell before you run the rest of this
 # tutorial, but you can ignore the contents!
 import os
@@ -49,7 +45,7 @@ vocab = Vocabulary(counter=None, min_count=1, max_vocab_size=100000)
 ```
 
 
-The vocabulary takes 4 arguments (we've used 3 of these here):
+The vocabulary takes 4 arguments (we've used 3 of these here): 
 
 - A counter, which is a `Dict[str, Dict[str, int]]`: This is a nested dictionary because the allennlp Vocabulary class supports the idea of "namespaces". A namespace is a vocabulary which is associated with a part of your data. For instance, in a sequence tagging model, you would typically have two namespaces: A namespace of words for your textual input and a namespace of tags(e.g. "NP", "VP", etc) for your labels. This counter is therefore a mapping from string namespace names to their respective mapping dictionaries of `Dict[tokens => counts]`.
 
@@ -63,7 +59,7 @@ The vocabulary takes 4 arguments (we've used 3 of these here):
 - Non padded namespaces (left as the defaults for this tutorial): These are `namespace` suffixes which won't contain padding and unknown tokens. By default, these are `*labels` and `*tags`, so any namespace you create which ends with one of these names (e.g `sequence_labels`) won't contain these additional tokens. The reason for this is explained a bit more below.
 
 
-For some namespaces, such as words, we provide additional tokens commonly used in NLP applications - specifically, "@@PADDING@@" and "@@UNKNOWN@@". Why did we use these slightly odd tokens? Well, if anything goes wrong in your model, it's going to be pretty obvious, because these tokens are pretty hard to miss. However, for other namespaces, such as tags, you _don't_ want these extra tokens, because in your model, you are going to be creating a distribution over the size of this namespace, so if we have added extra tags, your model could predict these.
+For some namespaces, such as words, we provide additional tokens commonly used in NLP applications - specifically, "@@PADDING@@" and "@@UNKNOWN@@". Why did we use these slightly odd tokens? Well, if anything goes wrong in your model, it's going to be pretty obvious, because these tokens are pretty hard to miss. However, for other namespaces, such as tags, you _don't_ want these extra tokens, because in your model, you are going to be creating a distribution over the size of this namespace, so if we have added extra tags, your model could predict these. 
 
 
 It's easy to interact with the vocabulary we just created. Let's add some words!
@@ -117,16 +113,16 @@ except KeyError:
 
 
 
-Above, we demonstrated the basic functionality of the namespaces in the Vocabulary. So far so good - probably not much different to other `Vocabulary` type classes for NLP that you've seen before. However, we'd ideally like to
-generate a full `Vocabulary` without having to individually add all the different words. Below, we'll generate a `Dataset` consisting of a single `Instance` and use it to automatically generate a `Vocabulary`.
+Above, we demonstrated the basic functionality of the namespaces in the Vocabulary. So far so good - probably not much different to other `Vocabulary` type classes for NLP that you've seen before. However, we'd ideally like to 
+generate a full `Vocabulary` without having to individually add all the different words. Below, we'll generate a `Dataset` consisting of a single `Instance` and use it to automatically generate a `Vocabulary`. 
 
 
 
 ```python
 from allennlp.data.fields import TextField, SequenceLabelField
-from allennlp.data import Dataset, Instance
+from allennlp.data import Dataset, Instance, Token
 from allennlp.data.token_indexers import SingleIdTokenIndexer
-sentence = TextField(tokens=["Barack", "Obama", "is", "a", "great", "guy", "."],
+sentence = TextField(tokens=list(map(Token, ["Barack", "Obama", "is", "a", "great", "guy", "."])),
                      token_indexers={"tokens": SingleIdTokenIndexer()})
 tags = SequenceLabelField(["PERSON", "PERSON", "O", "O", "O", "O", "O"], sentence, label_namespace="tags")
 toy_dataset = Dataset([Instance({"sentence": sentence, "tags": tags})])
@@ -148,7 +144,7 @@ print(vocab.get_index_to_token_vocabulary("tags"))
     {0: 'O', 1: 'PERSON'}
 
 
-
+    
 
 
 Note that the vocab we created has `tokens` and `tags` namespaces. These come from the key in the `token_indexers` dict in the `TextField` and the `tag_namespace` parameter in the `TagField`. At first, it seems confusing as to why it's possible to have multiple `TokenIndexers`. This is because in `allennlp`, we make a distinction between _tokenisation_ and _token representation_. More on this in the NLP API Tutorial!

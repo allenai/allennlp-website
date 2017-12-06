@@ -325,3 +325,8 @@ all we need to do is modify this config file and `train` another model.
 
 The training configuration is always saved as part of the model archive,
 which means that you can always see how a saved model was trained.
+
+
+### Next Steps
+
+Continue on to our [Creating a Model](creating-a-model) tutorial.
