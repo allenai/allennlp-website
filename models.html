@@ -43,6 +43,7 @@
           </div>
         </div>
       </div>
+      <!-- Machine Comprehension -->
       <div class="banner">
         <div class="constrained constrained--med">
           <div class="padded-med">
@@ -94,6 +95,7 @@ python -m allennlp.run predict \
           </div>
         </div>
       </div>
+      <!-- Semantic Role Labeling -->
       <div class="banner c-bg-gray-light">
         <div class="constrained constrained--med">
           <div class="padded-med">
@@ -145,6 +147,7 @@ python -m allennlp.run predict \
           </div>
         </div>
       </div>
+      <!-- Coreference Resolution -->
       <div class="banner c-bg-gray-light">
         <div class="constrained constrained--med">
           <div class="padded-med">
@@ -196,6 +199,7 @@ python -m allennlp.run predict \
           </div>
         </div>
       </div>
+      <!-- Textual Entailment -->
       <div class="banner">
         <div class="constrained constrained--med">
           <div class="padded-med">
@@ -245,6 +249,61 @@ python -m allennlp.run predict \
           </div>
         </div>
       </div>
+      <!-- Named Entity Recognition -->
+      <div class="banner c-bg-gray-light">
+        <div class="constrained constrained--med">
+          <div class="padded-med">
+            <h2>Named Entity Recognition</h2>
+            <p class="t-sm">
+              The named entity recognition model identifies named entities (people, locations, organizations, and miscellaneous) in the input text. This model is the "baseline" model described in <a href = "https://www.semanticscholar.org/paper/Semi-supervised-sequence-tagging-with-bidirectiona-Peters-Ammar/73e59cb556351961d1bdd4ab68cbbefc5662a9fc">Peters, Ammar, Bhagavatula, and Power 2017</a>. It uses a Gated Recurrent Unit (GRU) character encoder as well as a GRU phrase encoder, and it starts with pretrained <a href = "https://nlp.stanford.edu/projects/glove/">GloVe vectors</a> for its token embeddings. It was trained on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset. The trained model gets 89% F1-score on the CoNLL 2003 NER task. (This is also the model constructed in our <a href = "https://github.com/allenai/allennlp/blob/master/tutorials/getting_started/creating_a_model.md">Creating a Model</a> tutorial.)
+            </p>
+            <div class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaluation</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="training" class="tab__nav__item"><span>Training</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+              </ul>
+              <div class="tab__page-container">
+                <div data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' > examples.jsonl
+python -m allennlp.run predict \
+    https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2017.11.15.tar.gz \
+    examples.jsonl</code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The NER model was evaluated on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset. Unfortunately we cannot release this data due to licensing restrictions.</p>
+                  </div>
+                </div>
+                <div data-tab="training" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The NER model was trained on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset. Unfortunately we cannot release this data due to licensing restrictions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {% include footer.html %}
     </div>
     {% include svg-sprite.html %}
