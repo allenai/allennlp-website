@@ -1823,3 +1823,45 @@ header {
 .ai2-bar a:hover {
   color: #fff;
 }
+
+.nav__badge {
+  margin-top: 2px;
+  display: block;
+  width: 78px;
+  height: 78px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__badge__bg {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 25px rgba(0,0,0,.4);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav__badge__logo {
+  width: 34px;
+  height: 27px;
+  background: url("../assets/ai2-logo.svg") center center no-repeat;
+  background-size: 100%;
+  display: block;
+  margin: 0.425em 0 0 -0.1em;
+}
+
+.nav__badge__label,
+footer .nav__badge {
+  display: none;
+}
+
+@media screen and (max-width:1030px) {
+  .header__content .nav__link {
+    padding: 0 .85em;
+  }
+}
