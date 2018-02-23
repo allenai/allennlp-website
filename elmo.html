@@ -1,0 +1,56 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>ELMo: Deep contextualized word representations</title>
+  </head>
+  <body data-page="elmo">
+    <div id="page-content">
+      {% include header.html %}
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h1>ELMo</h1>
+            <p class="t-sm"><i><a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a></i><br>Matthew E. Peters, Mark Neumann, Mohit Iyyer, Matt Gardner,<br>Christopher Clark, Kenton Lee, Luke Zettlemoyer.<br>NAACL 2018.</p>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+        <h1>Introduction</h1>
+        <p>ELMo is a deep contextualized word representation that models
+both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary
+across linguistic contexts (i.e., to model polysemy).
+These word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pre-trained on a large text corpus.
+They can be easily added to existing models and significantly improve the state of the art across a broad range of challenging NLP problems, including question answering, textual entailment and sentiment analysis.
+    <h1>Salient features</h1>
+    <p>ELMo representations are:
+    <ul>
+    <li><i>Contextual</i>: The representation for each word depends on the entire context in which it is used.
+    <li><i>Deep</i>: The word representations combine all layers of a deep pre-trained neural network.
+    <li><i>Character based</i>: ELMo representations are purely character based, allowing the network to use morphological clues to form robust representations for out-of-vocabulary tokens unseen in training.
+    </ul>
+
+    <h1>Key result</h1>
+    <p>Adding ELMo to existing NLP systems significantly improves the state-of-the-art for every considered task.  In most cases, they can be simply swapped for pre-trained GloVe or other word vectors.
+    <table>
+    <tr style="border-bottom: 2px solid black;"><td style="border-right: 1px solid black;"><b>Task</b></td><td><b>Previous SOTA</b></td><td style="border-right: 2px solid black;">&nbsp;</td><td><b>Our baseline</b></td><td><b>ELMo + Baseline</b></td><td><b>Increase (Absolute/Relative)</b></td></tr>
+    <tr><td style="border-right: 1px solid black;">SQuAD</td><td>SAN</td><td style="border-right: 2px solid black;">84.4</td><td>81.1</td><td>85.8</td><td>4.7 / 24.9%</td></tr>
+    <tr><td style="border-right: 1px solid black;">SNLI</td><td>Chen et al (2017)</td><td style="border-right: 2px solid black;">88.6</td><td>88.0</td><td>88.7 +/- 0.17</td><td>0.7 / 5.8%</td></tr>
+    <tr><td style="border-right: 1px solid black;">SRL</td><td>He et al (2017)</td><td style="border-right: 2px solid black;">81.7</td><td>81.4</td><td>84.6</td><td>3.2 / 17.2%</td></tr>
+    <tr><td style="border-right: 1px solid black;">Coref</td><td>Lee et al (2017)</td><td style="border-right: 2px solid black;">67.2</td><td>67.2</td><td>70.4</td><td>3.2 / 9.8%</td></tr>
+    <tr><td style="border-right: 1px solid black;">NER</td><td>Peters et al (2017)</td><td style="border-right: 2px solid black;">91.93 +/- 0.19</td><td>90.15</td><td>92.22 +/- 0.10</td><td>2.06 / 21%</td></tr>
+    <tr><td style="border-right: 1px solid black;">Sentiment (5-class)</td><td>McCann et al (2017)</td><td style="border-right: 2px solid black;">53.7</td><td>51.4</td><td>54.7 +/- 0.5</td><td>3.3 / 6.8%</td></tr>
+</table>
+    <h1>Pre-trained models</h1>
+    <p>There are reference implementations of the pre-trained bidirectional language model available in both PyTorch and TensorFlow.  The PyTorch verison is fully integrated into AllenNLP, with a <a href="https://github.com/allenai/allennlp/blob/master/tutorials/how_to/elmo.md">detailed tutorial available.</a>  The TensorFlow version is also available in <a href="https://github.com/allenai/bilm-tf">bilm-tf.</a>
+    <h1>More information</h1>
+    <p>See our paper <a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a> for more information about the algorithm and a detailed analysis.
+      </div>
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
