@@ -1121,7 +1121,7 @@ body[data-page="home"] header .header__content__logo {
     z-index: 99
   }
   header .header__content nav {
-    opacity: 0;
+    display: none;
     overflow: hidden;
     width: 100%;
     height: auto;
@@ -1170,7 +1170,7 @@ body[data-page="home"] header .header__content__logo {
     margin-top: 0
   }
   header .header__content nav.nav--mow-active {
-    opacity: 1;
+    display: block;
     z-index: 9999;
     position: static
   }
