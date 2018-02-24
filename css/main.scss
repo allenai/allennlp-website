@@ -1,6 +1,7 @@
 ---
 ---
 
+// Vars and Mixins
 @import "vars.scss";
 @import "colors.scss";
 @import "flex.scss";
@@ -8,6 +9,7 @@
 @import "text.scss";
 @import "utils.scss";
 
+// SCSS Modules
 @import "base.scss";
 @import "banner.scss";
 @import "btn.scss";
@@ -22,8 +24,3 @@
 @import "publications.scss";
 @import "tab.scss";
 @import "tutorial.scss";
-
-a.separator {
-  pointer-events: none;
-  cursor: default;
-}

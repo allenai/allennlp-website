@@ -110,3 +110,10 @@
     }
   }
 }
+
+/* Post-launch edits */
+
+a.separator {
+  pointer-events: none;
+  cursor: default;
+}
