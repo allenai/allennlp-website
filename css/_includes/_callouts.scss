@@ -1,0 +1,49 @@
+.callouts {
+  max-width: 1100*$em;
+}
+
+.callouts__card {
+
+}
+
+.callouts__card__content {
+  @include t-center;
+  @include flex-container-column;
+  @include flex-justify-content(center);
+  padding: 0 $nav-padding * 2;
+
+  h2 {
+    @include u-mp0;
+  }
+
+  h2 + p {
+    margin-top: 32*$em;
+  }
+
+  p {
+    @include u-mp0;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .callouts.constrained {
+    padding: $nav-padding * 2 $nav-padding;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .callouts.constrained {
+    padding: 0;
+  }
+  .callouts__card__content {
+    padding: $nav-padding * 2 $nav-padding;
+
+
+    h2 {
+      font-size: 30*$em;
+    }
+    h2 + p {
+      margin-top: 12*$em !important;
+    }
+  }
+}

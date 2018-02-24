@@ -1,0 +1,244 @@
+html,
+body {
+  @include u-100;
+  @include u-mp0;
+  background: $black;
+  font-size: $base-font-size;
+}
+
+.constrained {
+  max-width: $max-page-width;
+  margin: auto;
+}
+
+.constrained--med {
+  max-width: 1040*$em;
+  padding: 20*$em $nav-padding 60*$em $nav-padding;
+}
+
+.constrained--sm {
+  max-width: 800*$em;
+  padding: 20*$em 0 60*$em 0;
+}
+
+.constrained--narrow {
+  max-width: 760*$em;
+}
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $text;
+}
+
+.constrained h1 {
+  font-weight: 200;
+  font-size: 40*$em;
+}
+
+section {
+  background: $white;
+}
+
+#page-content {
+  background: $white;
+}
+
+pre,
+code,
+code span {
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+code {
+  background: $gray-light;
+}
+
+pre > code {
+  font-size: 13*$em;
+  line-height: 24*$em;
+  padding: 30*$em;
+  display: block;
+  color: $default-code-color;
+  overflow-x: auto;
+}
+
+ol,
+ul {
+  font-size: $base-font-size;
+}
+
+p,
+li,
+th,
+td {
+  @include t-crisp;
+  font-size: 18*$em;
+  line-height: 24*$em;
+  margin: 1.2em 0;
+}
+
+p code {
+  font-size: 12.5*$em;
+  padding: 2*$em 6*$em;
+}
+
+pre {
+  margin: 2em 0;
+}
+
+h1,
+h2 {
+  @include t-crisp;
+  font-weight: 300;
+}
+
+h4,
+h5,
+h6 {
+  @include font-size-reset;
+  margin: 1.2em 0;
+}
+
+h2 {
+  font-size: 36*$em;
+  color: $text-faded;
+}
+
+a,
+.more {
+  @include t-link;
+  color: $blue;
+  font-weight: bold;
+  transition: color $transition-properties, opacity $transition-properties;
+
+  &:hover {
+    color: $blue-light;
+  }
+
+  &:active {
+    opacity: .66;
+    color: $blue;
+    transition-duration: 0s;
+  }
+}
+
+blockquote {
+  border-left: $gray-light solid 6*$em;
+  padding-left: 18*$em;
+
+  * {
+    color: $text-faded;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  display: block;
+  border: none;
+  height: 6*$em;
+  background: $gray-light;
+}
+
+blockquote,
+hr {
+  margin: 2.4em 0;
+}
+
+// TABLES
+
+table {
+  width: 100%;
+  //table-layout: fixed;
+  border-collapse: collapse;
+  border: none;
+}
+
+tr {
+
+}
+
+// tr:nth-child(odd) {
+//   background: $white;
+// }
+
+tr:nth-child(even) {
+  //background: $gray-light;
+  background: fade-out(#b8c6d5, 0.87);
+}
+
+th,
+td {
+  @include t-left;
+  padding: $nav-padding;
+
+  sub {
+    vertical-align: baseline;
+    padding-left: 6*$em;
+    opacity: .5;
+    font-size: 75%;
+  }
+}
+
+th {
+  //border-bottom: 6*$em solid $gray-light;
+  border-bottom: 6*$em solid fade-out(#b8c6d5, 0.87);
+}
+
+.tr--featured {
+  td {
+    &,
+    * {
+      color: $blue;
+    }
+
+    sub {
+      opacity: .66;
+    }
+  }
+}
+
+.padded-med {
+  padding: 20*$em;
+  max-width: 980*$em;
+}
+
+.padded-med > h2:first-child + p.t-sm {
+  margin-top: -5*$em;
+}
+
+.scroll-box {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 960px) {
+  .constrained--med,
+  .constrained--narrow {
+    padding: 0;
+  }
+
+  .constrained--narrow {
+    padding-top: $nav-padding * 2 !important;
+    padding-bottom: $nav-padding * 2 !important;
+  }
+
+  .padded-med {
+    & > h2:first-child {
+      margin-top: 0;
+    }
+  }
+
+  table {
+    margin: 0 10*$em;
+  }
+
+  th,
+  td {
+    @include t-left;
+    font-size: 14*$em;
+    padding: $nav-padding * .7;
+  }
+}

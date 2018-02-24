@@ -1,0 +1,9 @@
+.models-table {
+  margin-bottom: 60*$em;
+}
+
+@media screen and (max-width: 960px) {
+  .models-table {
+    margin-bottom: 40*$em;
+  }
+}

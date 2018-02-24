@@ -1,0 +1,14 @@
+//Icon Sprite container
+#icons {
+  @include u-tl;
+  position: absolute;
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: -999;
+}
+
+svg {
+  fill: $black;
+}

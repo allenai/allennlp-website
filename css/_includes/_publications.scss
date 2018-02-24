@@ -1,0 +1,56 @@
+ul.publications {
+  padding: 25*$em 20*$em 25*$em 20*$em !important;
+
+  &,
+  li {
+    @include u-blocklist;
+
+    &,
+    p,
+    span {
+      @include font-size-reset;
+    }
+  }
+
+  li {
+    padding: 32*$em 0;
+    border-bottom: 1*$em solid $gray-med;
+
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.publications__title {
+  display: block;
+  color: $blue;
+  font-size: 21*$em;
+  font-weight: bold;
+  margin-bottom: 6*$em;
+}
+
+.publications__authors {
+  @include t-smooth;
+  font-weight: bold;
+  color: $text-secondary;
+  margin-top: 7*$em;
+}
+
+.publications__year {
+  &:before {
+    content: "•";
+    padding: 0 8*$em;
+  }
+}
+
+.publications__abstract {
+  margin: 7*$em 0 0 0;
+}
+
+@media screen and (max-width: 960px) {
+  ul.publications {
+    padding: 0*$em 20*$em 40*$em 20*$em !important;
+  }
+}

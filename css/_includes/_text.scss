@@ -1,0 +1,97 @@
+@mixin t-crisp {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin t-smooth {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+@mixin t-kerning-default {
+  letter-spacing: normal;
+}
+
+@mixin t-underline {
+  text-decoration: underline;
+}
+
+@mixin t-no-underline {
+  text-decoration: none;
+}
+
+@mixin t-uppercase {
+  text-transform: uppercase;
+}
+
+@mixin t-case-normal {
+  text-transform: none;
+}
+
+@mixin t-bold {
+  font-weight: bold;
+}
+
+@mixin t-thin {
+  font-weight: 100;
+}
+
+@mixin t-caps {
+  font-size: 14*$em;
+  font-weight: bold;
+  letter-spacing: .025em;
+  @include t-uppercase;
+}
+
+@mixin t-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@mixin t-truncate {
+  @include u-nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin t-center {
+  text-align: center;
+}
+.t-center {
+  text-align: center;
+}
+
+@mixin t-left {
+  text-align: left;
+}
+
+@mixin t-right {
+  text-align: right;
+}
+
+@mixin t-white {
+  &,
+  * {
+    color: $white;
+    fill: $white;
+  }
+}
+
+.t-white {
+  &,
+  * {
+    color: $white;
+    fill: $white;
+  }
+}
+
+.t-sm {
+  @include font-size-reset;
+}
+
+.t-white .t-sm {
+  &,
+  * {
+    color: $white-faded
+  }
+}

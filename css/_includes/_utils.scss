@@ -1,0 +1,82 @@
+@mixin u-mp0 {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin u-100 {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin u-w100 {
+  width: 100%;
+}
+
+@mixin u-h100 {
+  height: 100%;
+}
+
+@mixin u-tl {
+  top: 0;
+  left: 0;
+}
+
+@mixin u-pe {
+  content: "";
+}
+
+@mixin u-child100 {
+  position: absolute;
+  @include u-100;
+  @include u-tl;
+}
+
+@mixin u-pe100 {
+  display: block;
+  @include u-child100;
+  @include u-pe;
+}
+
+@mixin u-blocklist {
+  list-style: none;
+  display: block;
+  @include u-mp0;
+}
+
+.u-hidden {
+  display: none;
+}
+
+@mixin u-bg-clip {
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+@mixin u-select-none {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  @include u-disable-touch-callout;
+}
+
+@mixin u-appearance-none {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+@mixin u-disable-touch-callout {
+  -webkit-touch-callout: none;
+}
+
+@mixin u-disable-tap-hilight {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  @include u-select-none;
+}
+
+@mixin u-nowrap {
+  white-space: nowrap;
+}
