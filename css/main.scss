@@ -1,26 +1,29 @@
 ---
 ---
 
-// Vars and Mixins
-@import "vars.scss";
-@import "colors.scss";
-@import "flex.scss";
-@import "functions.scss";
-@import "text.scss";
-@import "utils.scss";
+// Vendor Modules
+@import "vendor/pure-custom-min"; // Pure Resonsive Grid
+@import "vendor/hljs"; // Highlight JS theme
 
-// SCSS Modules
-@import "base.scss";
-@import "banner.scss";
-@import "btn.scss";
-@import "callouts.scss";
-@import "faq.scss";
-@import "footer.scss";
-@import "header.scss";
-@import "hljs.scss";
-@import "icons.scss";
-@import "models-table.scss";
-@import "nav.scss";
-@import "publications.scss";
-@import "tab.scss";
-@import "tutorial.scss";
+// AllenNLP Vars and Mixins
+@import "vars";
+@import "colors";
+@import "flex";
+@import "functions";
+@import "text";
+@import "utils";
+
+// AllenNLP SCSS Modules
+@import "base";
+@import "banner";
+@import "btn";
+@import "callouts";
+@import "faq";
+@import "footer";
+@import "header";
+@import "icons";
+@import "models-table";
+@import "nav";
+@import "publications";
+@import "tab";
+@import "tutorial";

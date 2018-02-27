@@ -3,13 +3,10 @@ $base-font-size: 16px;
 $em: 1 / 16 * 1em;
 $rem: 1 / 16 * 1rem;
 
-$assets-path: "../assets/";
 $max-page-width: 1280*$em;
 $nav-padding: 18*$em;
 
-$transition-duration: .2s;
-$transition-timing-function: ease;
-$transition-properties: $transition-duration $transition-timing-function;
+$transition-properties: .2s ease;
 
 @mixin font-size-reset {
   font-size: 16*$em;

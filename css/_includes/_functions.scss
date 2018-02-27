@@ -4,61 +4,9 @@
   transform: $v;
 }
 
-@mixin fn-transform-origin($v) {
-  -ms-transform-origin: $v;
-  -webkit-transform-origin: $v;
-  transform-origin: $v;
-}
-
-@mixin fn-transition-transform($d:$sec, $e:$eas) {
-  transition: -webkit-transform $d $e;
-  transition: -ms-transform $d $e;
-  transition: transform $d $e;
-}
-
-@mixin fn-transition-transform-opacity($d:$sec, $e:$eas) {
-  transition: opacity $d $e, -webkit-transform $d $e;
-  transition: opacity $d $e, -ms-transform $d $e;
-  transition: opacity $d $e, transform $d $e;
-}
-
-@mixin fn-user-select($v) {
-  -webkit-user-select: $v;
-  -moz-user-select: $v;
-  -ms-user-select: $v;
-  user-select: $v;
-}
-
-@mixin fn-backface-visibility($v) {
-  -webkit-backface-visibility: $v;
-  backface-visibility: $v;
-}
-
-@mixin fn-transition($p:all, $d:$sec, $e:$eas) {
-  transition: $p $d $e;
-}
-
 @mixin fn-filter($v) {
   -webkit-filter: $v;
   filter: $v;
-}
-
-@mixin fn-placeholder-color($v) {
-  ::-webkit-input-placeholder {
-    color: $v;
-  }
-
-  :-moz-placeholder {
-    color: $v;
-  }
-
-  ::-moz-placeholder {
-    color: $v;
-  }
-
-  :-ms-input-placeholder {
-    color: $v;
-  }
 }
 
 @mixin fn-columns($v) {
