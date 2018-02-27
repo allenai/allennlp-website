@@ -1,0 +1,169 @@
+.tab {
+  margin-top: $nav-padding * 2;
+  border: 1*$em solid fade-out($black, 0.92);
+
+  ul.tab__nav {
+    @include u-mp0;
+    @include flex-container;
+    background: fade-out($gray-light, 0.67);
+
+    li.tab__nav__item {
+      @include u-blocklist;
+      @include u-select-none;
+      @include font-size-reset;
+      padding: $nav-padding 20*$em;
+      cursor: pointer;
+      background: fade-out($gray-light, 0.5);
+      transition: background-color .075s ease-in-out;
+      border-right: 2*$em solid $white;
+
+      span {
+        font-weight: bold;
+        font-size: 16*$em;
+        opacity: .45;
+        transition: opacity .075s ease-in-out;
+      }
+
+      .tab__nav__item__glyph {
+        @include fn-transform(rotate(0deg));
+        display: inline-block;
+        width: 11*$em;
+        height: 7*$em;
+        opacity: .3;
+        margin-left: 8*$em;
+        margin-bottom: 1*$em;
+        transition: opacity .075s ease-in-out,
+                    transform .075s ease-in-out,
+                    -webkit-transform .075s ease-in-out;
+
+        svg {
+          display: block;
+          width: 11*$em;
+          height: 7*$em;
+        }
+      }
+
+      &:hover {
+        background: fade-out($gray-light, 0.25);
+
+        span {
+          opacity: .75;
+        }
+
+        .tab__nav__item__glyph {
+          opacity: .66;
+        }
+      }
+
+      &:active {
+        transition-duration: 0s;
+        background: fade-out($gray-light, 0.34);
+
+        span {
+          transition-duration: 0s;
+          opacity: .4;
+        }
+
+        .tab__nav__item__glyph {
+          transition-duration: 0s;
+          opacity: .25;
+        }
+      }
+
+      &.tab__nav__item--selected {
+        background: $gray-light;
+
+        span {
+          opacity: 1;
+        }
+
+        .tab__nav__item__glyph {
+          opacity: .75;
+          @include fn-transform(rotate(180deg));
+        }
+      }
+    }
+  }
+
+  .tab__page-container {
+    height: 0;
+    transition: height .075s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .tab__page {
+    width: 100%;
+    position: absolute;
+    background: $gray-light;
+    opacity: 0;
+    transition: opacity .075s ease-in-out,
+                z-index .075s ease-in-out;
+    z-index: 0;
+
+    &.tab__page--selected {
+      opacity: 1;
+      z-index: 9;
+    }
+
+    .tab__page__content {
+      padding: 20*$em;
+
+      pre {
+        box-shadow: 0 0 40*$em fade-out($black, 0.95);
+        code {
+          background: $white;
+        }
+      }
+
+      p {
+        padding: 20*$em;
+      }
+
+      & > :first-child {
+        margin-top: 0;
+      }
+
+      & > :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.c-bg-gray-light {
+  .tab {
+    ul.tab__nav {
+      background: fade-out($gray-light-overlay, 0.67);
+
+      li.tab__nav__item {
+        background: fade-out($gray-light-overlay, 0.5);
+        border-right: 2*$em solid $gray-light;
+
+        &.tab__nav__item--selected,
+        &:hover {
+          background: $gray-light-overlay;
+        }
+      }
+    }
+
+    .tab__page {
+      background: $gray-light-overlay;
+
+      .tab__page__content {
+        pre {
+          code {
+            background: $gray-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .tab .tab__page .tab__page__content pre {
+    box-shadow: none;
+  }
+}

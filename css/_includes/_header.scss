@@ -1,0 +1,254 @@
+header {
+  @include flex-container-hcentered;
+  @include u-w100;
+  background: black;
+  height: 82*$em;
+  position: relative;
+  z-index: 1;
+}
+
+.header__content {
+  @include flex-container;
+  @include u-100;
+  max-width: $max-page-width + ($nav-padding * 4) - 6*$em;
+
+  // Header Nav
+
+  nav {
+    @include u-h100;
+    margin-left: auto;
+  }
+
+  nav ul {
+    @include u-h100;
+    @include flex-container-align-right;
+    margin-right: $nav-padding;
+  }
+
+  nav li {
+    @include u-h100;
+
+    &.nav__home {
+      display: none;
+    }
+  }
+
+  .nav__link {
+    @include u-h100;
+    @include flex-container-vcentered;
+    padding: 0 $nav-padding;
+    position: relative;
+  }
+
+  .nav__link span {
+    color: fade-out($white, 0.34);
+  }
+
+  .nav__link--selected {
+    .nav__link {
+      background: fade-out($white, 0.87);
+
+      span {
+        color: $white;
+      }
+
+      &:after {
+        @include u-pe;
+        @include u-w100;
+        height: 6*$em;
+        background: $blue;
+        display: block;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+      }
+    }
+  }
+}
+
+.header__content__logo {
+  @include flex-container-vcentered;
+  @include u-mp0;
+  @include font-size-reset;
+  margin-left: $nav-padding * 2;
+}
+
+.header__content__logo a {
+  @include u-mp0;
+  display: block;
+}
+
+header svg {
+  fill: $white;
+  width: 124*$em;
+  height: 22*$em;
+}
+
+body[data-page="home"] header {
+  .header__content__logo {
+    display: none;
+  }
+}
+
+// Mobile
+
+#header__mow-nav-trigger {
+  width: 40*$em;
+  height: 40*$em;
+  position: absolute;
+  right: 11*$em;
+  top: 11*$em;
+  display: none;
+  z-index: 999;
+  cursor: pointer;
+
+  svg {
+    width: 20*$em;
+    height: 18*$em;
+    display: block;
+    margin-top: 10*$em;
+    margin-left: 10*$em;
+    fill: fade-out($white, 0.5);
+  }
+}
+
+@media screen and (min-width: 961px) {
+  body[data-page="home"] header {
+    background: transparent;
+    position: absolute;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  header {
+    @include u-select-none;
+    height: auto;
+
+    #header__mow-nav-trigger {
+      display: block;
+    }
+
+    .header__content {
+      display: block;
+
+      .header__content__logo {
+        width: 100% !important;
+        margin-left: 0;
+        box-sizing: border-box;
+        height: 22*$em;
+        padding: 30*$em 30*$em 30*$em 20*$em !important;
+        background: $black;
+        position: relative;
+        z-index: 99;
+      }
+
+      nav {
+        display: none;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        z-index: -999;
+        padding-bottom: 2*$em;
+        transition: opacity $transition-properties,
+                    z-index 0s linear,
+                    position 0s linear;
+
+        ul,
+        ul li,
+        ul li a.nav__link {
+          @include u-mp0;
+          display: block;
+          width: auto;
+          height: auto;
+          line-height: inherit;
+        }
+
+        ul li.nav__link--selected {
+          a.nav__link {
+            background: $off-black;
+
+            span {
+              color: $white;
+            }
+
+            &:after {
+              @include u-pe;
+              @include u-h100;
+              width: 4*$em;
+              background: $blue;
+              display: block;
+              top: 0;
+              left: 0;
+              position: absolute;
+            }
+          }
+        }
+
+        ul li a.nav__link {
+          background: $off-black;
+          margin-top: 2*$em;
+          display: block;
+          width: auto;
+          height: auto;
+          line-height: inherit;
+          padding: 14*$em 18*$em;
+        }
+
+        ul li:first-child a.nav__link {
+          margin-top: 0;
+        }
+
+        &.nav--mow-active {
+          display: block;
+          z-index: 9999;
+          position: static;
+        }
+      }
+    }
+  }
+}
+
+/* Post-launch edits */
+
+.nav__badge {
+  margin-top: 2px;
+  display: block;
+  width: 78px;
+  height: 78px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__badge__bg {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 25px rgba(0,0,0,.4);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav__badge__logo {
+  width: 34px;
+  height: 27px;
+  background: url("../assets/ai2-logo.svg") center center no-repeat;
+  background-size: 100%;
+  display: block;
+  margin: 0.43em 0 0 -0.1em;
+}
+
+.nav__badge__label,
+footer .nav__badge {
+  display: none;
+}
+
+@media screen and (max-width:1030px) {
+  .header__content .nav__link {
+    padding: 0 .85em;
+  }
+}

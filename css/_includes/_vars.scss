@@ -1,0 +1,13 @@
+// Global Vars
+$base-font-size: 16px;
+$em: 1 / 16 * 1em;
+$rem: 1 / 16 * 1rem;
+
+$max-page-width: 1280*$em;
+$nav-padding: 18*$em;
+
+$transition-properties: .2s ease;
+
+@mixin font-size-reset {
+  font-size: 16*$em;
+}

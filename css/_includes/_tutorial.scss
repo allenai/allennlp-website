@@ -1,0 +1,119 @@
+.tutorial.constrained {
+  padding: $nav-padding * 4 $nav-padding * 2;
+}
+
+.tutorial__nav {
+  nav,
+  ul,
+  li,
+  a {
+    @include u-blocklist;
+    @include font-size-reset;
+  }
+
+  nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10*$em;
+  }
+
+  ul {
+    margin-right: 36*$em;
+    margin-left: -16*$em;
+    margin-top: -2*$em;
+
+    li {
+      a {
+        padding: 10*$em 20*$em;
+        color: fade-out($text, 0.52);
+        position: relative;
+        transition: color $transition-properties;
+
+        &:before {
+          @include u-pe100;
+          width: 4*$em;
+          height: 30*$em;
+          background: #349fe4;
+          top: 10*$em;
+          opacity: 0;
+          transition: opacity $transition-properties;
+        }
+
+        &:hover {
+          color: $text;
+        }
+
+        &:active {
+          color: fade-out($text, 0.62);
+          transition-duration: 0s;
+        }
+      }
+
+      &.tutorial__nav--selected {
+        a,
+        &:hover,
+        &:active {
+          color: $text;
+
+          &:before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tutorial__content {
+  & > *:first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tutorial__content li p {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 960px) {
+  .tutorial.constrained {
+    padding: $nav-padding;
+
+    table {
+      margin: 0;
+    }
+  }
+
+  .tutorial__nav nav ul {
+    margin-right: $nav-padding;
+
+    li.tutorial__nav--selected a:before {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tutorial__nav {
+    ul {
+      margin-left: $nav-padding / 4;
+      margin-right: $nav-padding / 4;
+      margin: 0 $nav-padding / 4 $nav-padding * 2 $nav-padding / 4;
+      li {
+        a {
+          padding: 6*$em 0;
+          border-bottom: 1*$em solid #ccc;
+        }
+      }
+    }
+  }
+}
+
+/* Post-launch edits */
+
+a.separator {
+  pointer-events: none;
+  cursor: default;
+}

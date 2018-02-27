@@ -1,0 +1,93 @@
+@mixin flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex-direction($v) {
+  -webkit-flex-direction: $v;
+  -ms-flex-direction: $v;
+  flex-direction: $v;
+  // row (default): same as text direction
+  // row-reverse: opposite to text direction
+  // column: same as row but top to bottom
+  // column-reverse: same as row-reverse top to bottom
+}
+
+@mixin flex-align-items($v) { // Vertical alignment of single line of items
+  -webkit-align-items: $v;
+  -ms-flex-align: $v;
+  align-items: $v;
+  // stretch	(default): Items are stretched to fit the container
+  // center: Items are positioned at the center of the container
+  // flex-start: Items are positioned at the beginning of the container
+  // flex-end: Items are positioned at the end of the container
+  // baseline: Items are positioned at the baseline of the container
+}
+
+@mixin flex-justify-content($v) { // Horizontal alignment of children
+  -webkit-justify-content: $v;
+  -ms-justify-content: $v;
+  justify-content: $v;
+  // flex-start (default): items are packed toward the start line
+  // flex-end: items are packed toward to end line
+  // center: items are centered along the line
+  // space-between: items are evenly distributed in the line; first item is on the start line, last item on the end line
+  // space-around: items are evenly distributed in the line with equal space around them
+}
+
+@mixin flex-align-content($v) { // Vertical alignment of multiple lines of items
+  -webkit-align-content: $v;
+  align-content: $v;
+  // flex-start: lines packed to the start of the container
+  // flex-end: lines packed to the end of the container
+  // center: lines packed to the center of the container
+  // space-between: lines evenly distributed; the first line is at the start of the container while the last one is at the end
+  // space-around: lines evenly distributed with equal space between them
+  // stretch (default): lines stretch to take up the remaining space
+}
+
+@mixin flex-grow($v) { // defines the ability for a flex item to grow if necessary, size proportion relative to an item's siblings
+  -webkit-flex-grow: $v;
+  flex-grow: $v;
+  // number
+}
+
+// Prefab Flex classes
+
+@mixin flex-container-row {
+  @include flex-container;
+  @include flex-direction(row);
+}
+
+@mixin flex-container-column {
+  @include flex-container;
+  @include flex-direction(column);
+}
+
+@mixin flex-container-align-left {
+  @include flex-container-row;
+  @include flex-justify-content(flex-start);
+}
+
+@mixin flex-container-align-right {
+  @include flex-container-row;
+  @include flex-justify-content(flex-end);
+}
+
+@mixin flex-container-hcentered {
+  @include flex-container;
+  @include flex-justify-content(center); // Horizontally centered
+}
+
+@mixin flex-container-vcentered {
+  @include flex-container;
+  @include flex-align-items(center); // Vertical centered
+}
+
+@mixin flex-container-centered {
+  @include flex-container;
+  @include flex-align-items(center); // Vertical centered
+  @include flex-justify-content(center); // Horizontally centered
+}

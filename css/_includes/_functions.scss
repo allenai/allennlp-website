@@ -1,0 +1,16 @@
+@mixin fn-transform($v) {
+  -webkit-transform: $v;
+  -ms-transform: $v;
+  transform: $v;
+}
+
+@mixin fn-filter($v) {
+  -webkit-filter: $v;
+  filter: $v;
+}
+
+@mixin fn-columns($v) {
+  -webkit-columns: $v;
+  -moz-columns: $v;
+  columns: $v;
+}

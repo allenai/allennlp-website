@@ -1,0 +1,28 @@
+// General
+$white: #ffffff;
+$white-faded: fade-out($white, 0.34);
+$black: #000000;
+$off-black: #111212;
+$slate: #162328;
+$banner-hero: #1c292f;
+//$blue: #60a6d7;
+$blue: #2085bc;
+$blue-light: #40affd;
+$blue-med: #309add;
+$gray-light: #f6f8fa;
+$gray-med: #e0e0e0;
+$muted-gray-blue: #213744;
+$gray-light-overlay: #edf1f5;
+
+$text: #232323;
+$text-secondary: #8c9296;
+$text-faded: fade-out($text, 0.25);
+$default-code-color: #333333;
+
+.c-bg-slate {
+  background: $slate;
+}
+
+.c-bg-gray-light {
+  background: $gray-light;
+}

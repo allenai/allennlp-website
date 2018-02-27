@@ -1,0 +1,140 @@
+footer {
+  @include t-white;
+  background: $black;
+}
+
+.footer__content {
+  max-width: 1000*$em;
+  padding: 84*$em 36*$em;
+  margin: auto;
+
+  .footer__content__logo {
+    display: inline-block;
+    opacity: .5;
+    margin: 3*$em 0 28*$em 0;
+
+    &:hover {
+      opacity: .7;
+    }
+
+    &:active {
+      opacity: .3;
+    }
+
+    svg {
+      width: 258*$em;
+      height: 44*$em;
+    }
+  }
+
+  p {
+    @include u-mp0;
+    @include font-size-reset;
+    cursor: default;
+    line-height: inherit;
+
+    span {
+      @include t-smooth;
+      font-size: 12*$em;
+      color: fade-out($white, 0.58);
+
+      a {
+        color: fade-out($white, 0.5);
+
+        &:hover {
+          color: fade-out($white, 0.34);
+        }
+      }
+    }
+  }
+
+  p.footer__content__copyright {
+    span {
+      color: fade-out($white, 0.7);
+    }
+  }
+
+  // Footer nav
+
+  .footer__content__nav {
+    @include flex-container-row;
+
+    nav a {
+      line-height: 28*$em;
+      vertical-align: top;
+    }
+
+    .nav__link {
+      display: block;
+      @include u-h100;
+    }
+  }
+
+  .footer__content__nav__main-nav {
+    @include fn-columns(2);
+    @include flex-grow(1);
+  }
+
+  .footer__content__nav__secondary-nav {
+
+    .nav__link span {
+      @include t-crisp;
+      font-size: 14*$em;
+    }
+  }
+
+  .nav__link span {
+    color: fade-out($white, 0.4);
+  }
+}
+
+// Responsive
+
+// sm	@media screen and (min-width: 35.5em)	≥ 568px	.pure-u-sm-*
+// md	@media screen and (min-width: 48em)	≥ 768px	.pure-u-md-*
+// lg	@media screen and (min-width: 64em)	≥ 1024px	.pure-u-lg-*
+// xl	@media screen and (min-width: 80em)	≥ 1280px	.pure-u-xl-*
+//
+
+@media screen and (max-width: 960px) {
+  .footer__content {
+    .footer__content__nav__main-nav {
+      @include fn-columns(auto);
+      @include flex-grow(0);
+      padding-left: 60*$em;
+    }
+
+    .footer__content__nav__secondary-nav {
+      padding-left: 40*$em;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer__content {
+    @include t-center;
+    padding: 40*$em 20*$em;
+
+    p {
+      line-height: 30*$em;
+      span {
+        @include font-size-reset;
+      }
+    }
+
+    .footer__content__nav {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .footer__content {
+    p {
+      line-height: 30*$em;
+      span {
+        font-size: 12*$em;
+      }
+    }
+  }
+}

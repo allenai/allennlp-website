@@ -18,6 +18,11 @@ url: "http://www.allennlp.org" # the base hostname & protocol for your site, e.g
 
 # Build settings
 markdown: kramdown
+
+sass:
+  sass_dir: css/_includes
+  style: expanded
+
 plugins:
   - jekyll-feed
 

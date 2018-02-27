@@ -1,0 +1,65 @@
+@mixin t-crisp {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin t-smooth {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+@mixin t-no-underline {
+  text-decoration: none;
+}
+
+@mixin t-uppercase {
+  text-transform: uppercase;
+}
+
+@mixin t-thin {
+  font-weight: 100;
+}
+
+@mixin t-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@mixin t-center {
+  text-align: center;
+}
+
+.t-center {
+  text-align: center;
+}
+
+@mixin t-left {
+  text-align: left;
+}
+
+@mixin t-white {
+  &,
+  * {
+    color: $white;
+    fill: $white;
+  }
+}
+
+.t-white {
+  &,
+  * {
+    color: $white;
+    fill: $white;
+  }
+}
+
+.t-sm {
+  @include font-size-reset;
+}
+
+.t-white .t-sm {
+  &,
+  * {
+    color: $white-faded
+  }
+}
