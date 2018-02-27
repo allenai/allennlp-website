@@ -21,7 +21,7 @@ markdown: kramdown
 
 sass:
   sass_dir: css/_includes
-  style: compressed
+  style: expanded
 
 plugins:
   - jekyll-feed
