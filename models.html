@@ -219,7 +219,7 @@ python -m allennlp.run predict \
             <h2>Textual Entailment</h2>
             <p class="t-sm">
               Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one.
-              The AllenNLP TE model is a re-implementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that is relatively simple and achieves near state-of-the-art performance on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a>.
+              The AllenNLP TE model is a re-implementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that was state-of-the-art on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a> in late 2016.
               The AllenNLP TE model achieves an accuracy of 86.4% on the SNLI 1.0 test dataset, a 2% improvement on most publicly available implementations and similar to the original paper.
               Rather than pre-trained Glove vectors, this model uses <a href="https://arxiv.org/abs/1802.05365">ELMo embeddings</a>, which are completely character based and account for the 2% improvement.
             </p>
