@@ -104,7 +104,7 @@ python -m allennlp.run predict \
               Semantic Role Labeling (SRL) models recover the latent predicate argument structure of a sentence.
               SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc.
               The AllenNLP SRL model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Deep-Semantic-Role-Labeling-What-Works-and-What-s-He-Lee/a3ccff7ad63c2805078b34b8514fa9eab80d38e9" target="_blank">a deep BiLSTM model (He et al, 2017)</a>.
-              The AllenNLP SRL model closely matches the published model, achieving a F1 of 78.9% on <a href="http://cemantix.org/data/ontonotes.html" target="_blank">English Ontonotes 5.0 dataset using the CONLL 2011/12 shared task format</a>.
+              The implemented model closely matches the published model, achieving a F1 of 78.9% on <a href="http://cemantix.org/data/ontonotes.html" target="_blank">English Ontonotes 5.0 dataset using the CONLL 2011/12 shared task format</a>.
               These results were state of the art in 2017.
             </p>
             <div class="tab">
@@ -220,7 +220,7 @@ python -m allennlp.run predict \
             <p class="t-sm">
               Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one.
               The AllenNLP TE model is a re-implementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that was state-of-the-art on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a> in late 2016.
-              The AllenNLP TE model achieves an accuracy of 86.4% on the SNLI 1.0 test dataset, a 2% improvement on most publicly available implementations and similar to the original paper.
+              The AllenNLP TE model achieves an accuracy of 86.4% on the SNLI 1.0 test dataset, a 2% improvement on most publicly available implementations and a similar score as the original paper.
               Rather than pre-trained Glove vectors, this model uses <a href="https://arxiv.org/abs/1802.05365">ELMo embeddings</a>, which are completely character based and account for the 2% improvement.
             </p>
             <div class="tab">
