@@ -277,7 +277,7 @@ python -m allennlp.run predict \
               This model is the "baseline" model described in <a href = "https://www.semanticscholar.org/paper/Semi-supervised-sequence-tagging-with-bidirectiona-Peters-Ammar/73e59cb556351961d1bdd4ab68cbbefc5662a9fc">Peters, Ammar, Bhagavatula, and Power 2017</a>.
               It uses a Gated Recurrent Unit (GRU) character encoder as well as a GRU phrase encoder, and it starts with pretrained <a href = "https://nlp.stanford.edu/projects/glove/">GloVe vectors</a> for its token embeddings.
               It was trained on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset.
-              The trained model gets 89% F1-score on the CoNLL 2003 NER task.
+              The trained model gets 92.5% F1-score on the CoNLL 2003 NER task.
               (This is also the model constructed in our <a href = "https://github.com/allenai/allennlp/blob/master/tutorials/getting_started/creating_a_model.md">Creating a Model</a> tutorial.)
             </p>
             <div class="tab">
@@ -308,7 +308,7 @@ python -m allennlp.run predict \
                 <div data-tab="prediction" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' > examples.jsonl
 python -m allennlp.run predict \
-    https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2018.02.12.tar.gz \
+    https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2018.04.26.tar.gz \
     examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
