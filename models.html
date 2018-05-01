@@ -274,8 +274,7 @@ python -m allennlp.run predict \
             <h2>Named Entity Recognition</h2>
             <p class="t-sm">
               The named entity recognition model identifies named entities (people, locations, organizations, and miscellaneous) in the input text.
-              This model is the NER model described in <a href = "https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a>.
-              It uses a Gated Recurrent Unit (GRU) character encoder as well as a GRU phrase encoder, and it starts with pretrained <a href = "https://nlp.stanford.edu/projects/glove/">GloVe vectors</a> for its token embeddings.  ELMo character embeddings provide a significant boost.
+              This model is the NER model described in <a href = "https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a>, with ELMo embeddings.
               It was trained on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset.
               The trained model gets 92.5% F1-score on the CoNLL 2003 NER task.
             </p>
