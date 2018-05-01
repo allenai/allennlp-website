@@ -274,9 +274,8 @@ python -m allennlp.run predict \
             <h2>Named Entity Recognition</h2>
             <p class="t-sm">
               The named entity recognition model identifies named entities (people, locations, organizations, and miscellaneous) in the input text.
-              This model is the NER model described in <a href = "https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a>, with ELMo embeddings.
-              It was trained on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset.
-              The trained model gets 92.5% F1-score on the CoNLL 2003 NER task.
+              This model is a reimplementation of the state-of-the-art NER model described in <a href = "https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a>, and uses a biLSTM with CRF layer and ELMo embeddings.
+              It was trained on the <a href = "https://www.clips.uantwerpen.be/conll2003/ner/">CoNLL-2003</a> NER dataset, and has test set F1 of 92.5 for a single run, compared to the reported 92.22 +/- 0.10 F1 across five seeds in the reference paper.
             </p>
             <div class="tab">
               <ul class="tab__nav">
