@@ -49,7 +49,7 @@
       <div class="banner">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2>Machine Comprehension</h2>
+            <h2 id="machine-comprehension">Machine Comprehension</h2>
             <p class="t-sm">Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02" target="_blank">BiDAF (Seo et al, 2017)</a>, or Bi-Directional Attention Flow, a widely used MC baseline that achieved state-of-the-art accuracies on <a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank">the SQuAD dataset</a> in 2017. The AllenNLP BIDAF model achieves an EM score of 68.3 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7, while also training at a 10x speedup (4 hours on a p2.xlarge).</p>
             <div class="tab">
               <ul class="tab__nav">
@@ -101,7 +101,7 @@ python -m allennlp.run predict \
       <div class="banner c-bg-gray-light">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2>Semantic Role Labeling</h2>
+            <h2 href="semantic-role-labeling">Semantic Role Labeling</h2>
             <p class="t-sm">
               Semantic Role Labeling (SRL) models recover the latent predicate argument structure of a sentence.
               SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc.
@@ -159,7 +159,7 @@ python -m allennlp.run predict \
       <div class="banner c-bg-gray-light">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2>Coreference Resolution</h2>
+            <h2 href="coreference-resolution">Coreference Resolution</h2>
             <p class="t-sm">
               Coreference resolution is the task of finding all expressions that refer to the same entity in a text.
               It is an important step for many higher level NLP tasks that involve natural language understanding, such as document summarization, question answering and information extraction.
@@ -218,7 +218,7 @@ python -m allennlp.run predict \
       <div class="banner">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2>Textual Entailment</h2>
+            <h2 id="textual-entailment">Textual Entailment</h2>
             <p class="t-sm">
               Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one.
               The AllenNLP TE model is a re-implementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that was state-of-the-art on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a> in late 2016.
@@ -273,7 +273,7 @@ python -m allennlp.run predict \
       <div class="banner c-bg-gray-light">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2>Named Entity Recognition</h2>
+            <h2 id="named-entity-recognition">Named Entity Recognition</h2>
             <p class="t-sm">
               The named entity recognition model identifies named entities (people, locations, organizations, and miscellaneous) in the input text.
               This model is a reimplementation of the state-of-the-art NER model described in <a href = "https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a>, and uses a biLSTM with CRF layer and ELMo embeddings.
@@ -331,7 +331,7 @@ python -m allennlp.run predict \
       <div class="banner c-bg-gray-light">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2>Constituency Parsing</h2>
+            <h2 id="constituency-parsing">Constituency Parsing</h2>
             <p class="t-sm">
               A constituency parse tree breaks a text into sub-phrases, or constituents.
               Non-terminals in the tree are types of phrases, the terminals are the words in the sentence.
