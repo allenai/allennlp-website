@@ -25,7 +25,7 @@
             <p class="t-sm">
               AllenNLP wants more near state-of-the-art NLP models and is looking for contributions.
               Not only will your model be listed here an be easily accessible to other users of AllenNLP, but we'll even help build a visualization and host a demo.
-              
+
               To contribute a model:
               <ul>
                 <li>Put your code in a GitHub repo with instructions for running it</li>
@@ -78,10 +78,10 @@
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
                   <div class="tab__page__content">
-                    <pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > examples.jsonl
+                    <pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > ml-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz \
-    examples.jsonl</code></pre></div>
+    ml-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">python -m allennlp.run evaluate \
@@ -135,10 +135,10 @@ python -m allennlp.run predict \
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > examples.jsonl
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > srl-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.02.27.tar.gz \
-    examples.jsonl</code></pre></div>
+    srl-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content">
@@ -194,10 +194,10 @@ python -m allennlp.run predict \
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"document": "The woman reading a newspaper sat on the bench with her dog."}' > examples.jsonl
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"document": "The woman reading a newspaper sat on the bench with her dog."}' > coref-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz \
-    examples.jsonl</code></pre></div>
+    coref-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content">
@@ -251,10 +251,10 @@ python -m allennlp.run predict \
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > examples.jsonl
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > te-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
-    examples.jsonl</code></pre></div>
+    te-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">python -m allennlp.run evaluate \
@@ -305,10 +305,10 @@ python -m allennlp.run predict \
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' > examples.jsonl
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' > ner-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2018.04.26.tar.gz \
-    examples.jsonl</code></pre></div>
+    ner-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content">
@@ -364,10 +364,10 @@ python -m allennlp.run predict \
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > examples.jsonl
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > cparse-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/elmo-constituency-parser-2018.03.14.tar.gz \
-    examples.jsonl</code></pre></div>
+    cparse-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content">
