@@ -78,10 +78,10 @@
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
                   <div class="tab__page__content">
-                    <pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > ml-examples.jsonl
+                    <pre><code class="no-highlight">echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > mc-examples.jsonl
 python -m allennlp.run predict \
     https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz \
-    ml-examples.jsonl</code></pre></div>
+    mc-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">python -m allennlp.run evaluate \
