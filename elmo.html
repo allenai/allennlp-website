@@ -83,7 +83,7 @@ They can be easily added to existing models and significantly improve the state 
       <td>93.6</td>
       <td>2 x 2048</td>
       <td>512/1024</td>
-      <td>84.7</td>
+      <td>84.63</td>
       <td>93.85</td>
     </tr>
     <tr>
@@ -97,6 +97,8 @@ They can be easily added to existing models and significantly improve the state 
       <td>94.01</td>
     </tr>
 </table>
+<p>The baseline models described are from the original ELMo paper for SRL and from <a href="http://arxiv.org/abs/1805.06556">Extending a Parser to Distant Domains Using a Few Dozen Partially Annotated Examples (Joshi et al, 2018)</a> for the Constituency Parser. We do not include GloVe vectors in these models to provide a direct comparison between ELMo representations - in some cases, this results in a small drop in performance (0.5 F1 for the Constituency Parser, > 0.1 for the SRL model).</p>
+<p>The ELMo 5.5b model was trained on a dataset constructed from the common crawl TODO(mattp): flesh this out.</p>
 
 
     <h1>Code releases and AllenNLP integration</h1>
