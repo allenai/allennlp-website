@@ -106,8 +106,8 @@ allennlp predict \
               Semantic Role Labeling (SRL) models recover the latent predicate argument structure of a sentence.
               SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc.
               The AllenNLP SRL model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Deep-Semantic-Role-Labeling-What-Works-and-What-s-He-Lee/a3ccff7ad63c2805078b34b8514fa9eab80d38e9" target="_blank">a deep BiLSTM model (He et al, 2017)</a>.
-              The implemented model closely matches the published model, achieving a F1 of 78.9% on <a href="http://cemantix.org/data/ontonotes.html" target="_blank">English Ontonotes 5.0 dataset using the CONLL 2011/12 shared task format</a>.
-              These results were state of the art in 2017.
+              The implemented model closely matches the published model but replaces GloVe embeddings with ELMo representations, achieving an F1 of 84.9% on <a href="http://cemantix.org/data/ontonotes.html" target="_blank">English Ontonotes 5.0 dataset using the CONLL 2011/12 shared task format</a>.
+              These results are currently state of the art for this task.
             </p>
             <div class="tab">
               <ul class="tab__nav">
@@ -137,7 +137,7 @@ allennlp predict \
                 <div data-tab="prediction" class="tab__page">
                   <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > srl-examples.jsonl
 allennlp predict \
-    https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.02.27.tar.gz \
+    https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.05.25.tar.gz \
     srl-examples.jsonl</code></pre></div>
                 </div>
                 <div data-tab="evaluation" class="tab__page">
