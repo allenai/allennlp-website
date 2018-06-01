@@ -51,8 +51,8 @@ They can be easily added to existing models and significantly improve the state 
       <td><b>Link(Weights/Options File)</b></td>
       <td style="border-right: 2px solid black;">&nbsp;</td>
       <td><b># Parameters (Millions)</b></td>
-      <td><b>LSTM Hidden Size/ELMo Representation Size</b></td>
-      <td><b>Highway Layers (number x size)></td>
+      <td><b>LSTM Hidden Size/Output size</b></td>
+      <td><b># Highway Layers></td>
       <td><b>SRL F1</b></td>
       <td><b>Constituency Parsing F1</b></td>
     </tr>
@@ -61,8 +61,8 @@ They can be easily added to existing models and significantly improve the state 
       <td><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x1024_128_2048cnn_1xhighway/elmo_2x1024_128_2048cnn_1xhighway_weights.hdf5>weights<a/></td>
       <td style="border-right: 2px solid black;"><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x1024_128_2048cnn_1xhighway/elmo_2x1024_128_2048cnn_1xhighway_options.json>options<a/></td>
       <td>13.6</td>
-      <td>128/256</td>
-      <td>2 x 1024</td>
+      <td>1024/128</td>
+      <td>1</td>
       <td>83.62</td>
       <td>93.12</td>
     </tr>
@@ -71,8 +71,8 @@ They can be easily added to existing models and significantly improve the state 
       <td><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x2048_256_2048cnn_1xhighway/elmo_2x2048_256_2048cnn_1xhighway_weights.hdf5>weights<a/></td>
       <td style="border-right: 2px solid black;"><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x2048_256_2048cnn_1xhighway/elmo_2x2048_256_2048cnn_1xhighway_options.json>options<a/></td>
       <td>28.0</td>
-      <td>256/512</td>
-      <td>2 x 2048</td>
+      <td>2048/256</td>
+      <td>1</td>
       <td>84.04</td>
       <td>93.60</td>
     </tr>
@@ -81,8 +81,8 @@ They can be easily added to existing models and significantly improve the state 
       <td><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5>weights<a/></td>
       <td style="border-right: 2px solid black;"><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_options.json>options<a/></td>
       <td>93.6</td>
-      <td>2 x 2048</td>
-      <td>512/1024</td>
+      <td>4096/512</td>
+      <td>2</td>
       <td>84.63</td>
       <td>93.85</td>
     </tr>
@@ -91,20 +91,22 @@ They can be easily added to existing models and significantly improve the state 
       <td><a href=https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway_5.5B/elmo_2x4096_512_2048cnn_2xhighway_5.5B_weights.hdf5>weights<a/></td>
       <td style="border-right: 2px solid black;"><a href= https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway_5.5B/elmo_2x4096_512_2048cnn_2xhighway_5.5B_options.json>options<a/></td>
       <td>93.6</td>
-      <td>2 x 2048</td>
-      <td>512/1024</td>
+      <td>4096/512</td>
+      <td>2</td>
       <td>84.93</td>
       <td>94.01</td>
     </tr>
 </table>
 <p>The baseline models described are from the original ELMo paper for SRL and from <a href="http://arxiv.org/abs/1805.06556">Extending a Parser to Distant Domains Using a Few Dozen Partially Annotated Examples (Joshi et al, 2018)</a> for the Constituency Parser. We do not include GloVe vectors in these models to provide a direct comparison between ELMo representations - in some cases, this results in a small drop in performance (0.5 F1 for the Constituency Parser, > 0.1 for the SRL model).</p>
-<p>The ELMo 5.5b model was trained on a dataset constructed from the common crawl TODO(mattp): flesh this out.</p>
-
+<p>All models except for the 5.5B model were trained on the <a href="http://www.statmt.org/lm-benchmark/">1 Billion Word Benchmark</a>, approximately 800M tokens of news crawl data from WMT 2011.
+The ELMo 5.5B model was trained on a dataset of 5.5B tokens consisting of Wikipedia (1.9B) and all of the monolingual news crawl data from WMT 2008-2012 (3.6B).
+In tasks where we have made a direct comparison, the 5.5B model has slightly higher performance then the original ELMo model, so we recommend it as a default model.
+</p>
 
     <h1>Code releases and AllenNLP integration</h1>
     <p>There are reference implementations of the pre-trained bidirectional language model available in both PyTorch and TensorFlow.  The PyTorch verison is fully integrated into AllenNLP, with a <a href="https://github.com/allenai/allennlp/blob/master/tutorials/how_to/elmo.md">detailed tutorial available.</a>  The TensorFlow version is also available in <a href="https://github.com/allenai/bilm-tf">bilm-tf.</a>
     <h1>Training models</h1>
-    <p>You can retrain ELMo models using the code in https://github.com/allenai/bilm-tf.
+    <p>You can retrain ELMo models using the tensorflow code in <a href=https://github.com/allenai/bilm-tf>bilm-tf</a>.
     <h1>More information</h1>
     <p>See our paper <a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a> for more information about the algorithm and a detailed analysis.
     <p><i>Citation:</i>
