@@ -26,3 +26,13 @@ $default-code-color: #333333;
 .c-bg-gray-light {
   background: $gray-light;
 }
+
+.c-bg--alternate.c-bg-white.c-bg-gray-light {
+  .banner:not(.banner--interior-hero):not(footer):nth-child(odd) {
+    background: #fff;
+  }
+
+  .banner:not(.banner--interior-hero):not(footer):nth-child(even) {
+    background: $gray-light;
+  }
+}
