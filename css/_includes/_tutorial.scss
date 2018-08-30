@@ -1,5 +1,6 @@
 .tutorial.constrained {
   padding: $nav-padding * 4 $nav-padding * 2;
+  padding-top: 0;
 }
 
 .tutorial__nav {
@@ -12,9 +13,20 @@
   }
 
   nav {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10*$em;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 84*$em;
+    margin-top: 84*$em;
+  }
+
+  h4 {
+    font-size: 24*$em;
+    font-weight: 200;
+    margin: 24*$em 0 10*$em 2*$em;
+  }
+
+  ul + h4 {
+    // margin-top: 24*$em;
   }
 
   ul {
@@ -71,6 +83,14 @@
   }
   max-width: 100%;
   overflow-x: auto;
+
+  .banner {
+    .constrained,
+    .padded-med {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 .tutorial__content li p {

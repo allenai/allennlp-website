@@ -114,3 +114,13 @@ for (let i = 0; i < tabNavItems.length; i++) {
     }
   });
 }
+
+// Smooth Scroll anchor links
+const anchorLinks = document.querySelectorAll("a[href^='#']");
+for (let i = 0; i < anchorLinks.length; i++) {
+  anchorLinks[i].addEventListener("click", function(e) {
+    e.preventDefault();
+    const element = this.getAttribute("href");
+    document.querySelector(element).scrollIntoView({behavior: "smooth", block: "start"});
+  });
+}

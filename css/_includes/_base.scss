@@ -16,6 +16,11 @@ body {
   padding: 20*$em $nav-padding 60*$em $nav-padding;
 }
 
+.constrained--intro-section {
+  padding-top: 50*$em;
+  padding-bottom: 36*$em;
+}
+
 .constrained--sm {
   max-width: 800*$em;
   padding: 20*$em 0 60*$em 0;
