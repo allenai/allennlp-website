@@ -136,8 +136,11 @@
 }
 
 .banner--hr {
-  border-top: 1px solid $gray-med;
-  // max-width: 980*$em;
+  border-top: 6px solid $gray-light;
+}
+
+.banner--intro-section {
+  margin-top: 10*$em !important;
 }
 
 @media screen and (max-width: 960px) {

@@ -15,7 +15,7 @@
   nav {
     position: -webkit-sticky;
     position: sticky;
-    top: 84*$em;
+    top: 74*$em;
     margin-top: 84*$em;
   }
 
@@ -95,6 +95,14 @@
 
 .tutorial__content li p {
   font-size: 1em;
+}
+
+@media screen and (max-width: 1023px) {
+  .tutorial--hidden-mobile-sidenav {
+    .tutorial__nav {
+      display: none;
+    }
+  }
 }
 
 @media screen and (max-width: 960px) {
