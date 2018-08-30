@@ -77,7 +77,8 @@ td {
   margin: 1.2em 0;
 }
 
-p code {
+p code,
+li > code {
   font-size: 12.5*$em;
   padding: 2*$em 6*$em;
 }
@@ -197,6 +198,25 @@ th {
     sub {
       opacity: .66;
     }
+  }
+}
+
+table.compact {
+  tr {
+    background: transparent;
+  }
+
+  th,
+  td {
+    padding: 10*$em 0;
+  }
+
+  td {
+    border-top: 1px solid $gray-med;
+  }
+
+  tr:first-child td {
+    border-top: none;
   }
 }
 

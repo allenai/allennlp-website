@@ -10,6 +10,11 @@
   <body data-page="models">
     <div id="page-content">
       {% include header.html %}
+      <div class="banner banner--notification c-bg-blue-med-light">
+        <div class="constrained constrained--sm">
+          <div class="banner--notification__content"><span>We're looking for user-submitted models!</span> &nbsp;<a href="#how-to-contribute">Learn more</a></div>
+        </div>
+      </div>
       <div class="banner banner--interior-hero">
         <div class="constrained constrained--sm">
           <div class="banner--interior-hero__content">
@@ -28,10 +33,10 @@
         </div>
       </div>
       <!-- Machine Comprehension -->
-      <div class="banner">
+      <div id="machine-comprehension" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2 id="machine-comprehension">Machine Comprehension</h2>
+            <h2>Machine Comprehension</h2>
             <p class="t-sm">Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of <a href="https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02" target="_blank">BiDAF (Seo et al, 2017)</a>, or Bi-Directional Attention Flow, a widely used MC baseline that achieved state-of-the-art accuracies on <a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank">the SQuAD dataset</a> in 2017. The AllenNLP BIDAF model achieves an EM score of 68.3 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7, while also training at a 10x speedup (4 hours on a p2.xlarge).</p>
             <div class="tab">
               <ul class="tab__nav">
@@ -56,6 +61,11 @@
                     </svg>
                   </div>
                 </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/machine-comprehension" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
@@ -79,11 +89,72 @@ allennlp predict \
           </div>
         </div>
       </div>
-      <!-- Semantic Role Labeling -->
-      <div class="banner">
+      <!-- Textual Entailment -->
+      <div id="textual-entailment" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2 href="semantic-role-labeling">Semantic Role Labeling</h2>
+            <h2>Textual Entailment</h2>
+            <p class="t-sm">
+              Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one.
+              The AllenNLP TE model is a re-implementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that was state-of-the-art on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a> in late 2016.
+              The AllenNLP TE model achieves an accuracy of 86.4% on the SNLI 1.0 test dataset, a 2% improvement on most publicly available implementations and a similar score as the original paper.
+              Rather than pre-trained Glove vectors, this model uses <a href="https://arxiv.org/abs/1802.05365">ELMo embeddings</a>, which are completely character based and account for the 2% improvement.
+            </p>
+            <div class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaluation</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="training" class="tab__nav__item"><span>Training</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/textual-entailment" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="tab__page-container">
+                <div data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > te-examples.jsonl
+allennlp predict \
+    https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
+    te-examples.jsonl</code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">allennlp evaluate \
+    https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
+    --evaluation-data-file https://s3-us-west-2.amazonaws.com/allennlp/datasets/snli/snli_1.0_test.jsonl</code></pre></div>
+                </div>
+                <div data-tab="training" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">allennlp train training_config/decomposable_attention.json -s output_path</code></pre></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Semantic Role Labeling -->
+      <div id="semantic-role-labeling" class="banner banner--hr">
+        <div class="constrained constrained--med">
+          <div class="padded-med">
+            <h2>Semantic Role Labeling</h2>
             <p class="t-sm">
               Semantic Role Labeling (SRL) models recover the latent predicate argument structure of a sentence.
               SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc.
@@ -114,6 +185,11 @@ allennlp predict \
                     </svg>
                   </div>
                 </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/semantic-role-labeling" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
@@ -138,10 +214,10 @@ allennlp predict \
         </div>
       </div>
       <!-- Coreference Resolution -->
-      <div class="banner">
+      <div id="coreference-resolution" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2 href="coreference-resolution">Coreference Resolution</h2>
+            <h2>Coreference Resolution</h2>
             <p class="t-sm">
               Coreference resolution is the task of finding all expressions that refer to the same entity in a text.
               It is an important step for many higher level NLP tasks that involve natural language understanding, such as document summarization, question answering and information extraction.
@@ -173,6 +249,11 @@ allennlp predict \
                     </svg>
                   </div>
                 </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/coreference-resolution" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
@@ -196,66 +277,12 @@ allennlp predict \
           </div>
         </div>
       </div>
-      <!-- Textual Entailment -->
-      <div class="banner">
-        <div class="constrained constrained--med">
-          <div class="padded-med">
-            <h2 id="textual-entailment">Textual Entailment</h2>
-            <p class="t-sm">
-              Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one.
-              The AllenNLP TE model is a re-implementation of <a href="https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27" target="_blank">the decomposable attention model (Parikh et al, 2017)</a>, a widely used TE baseline that was state-of-the-art on<a href="https://nlp.stanford.edu/projects/snli/" target="_blank">the SNLI dataset</a> in late 2016.
-              The AllenNLP TE model achieves an accuracy of 86.4% on the SNLI 1.0 test dataset, a 2% improvement on most publicly available implementations and a similar score as the original paper.
-              Rather than pre-trained Glove vectors, this model uses <a href="https://arxiv.org/abs/1802.05365">ELMo embeddings</a>, which are completely character based and account for the 2% improvement.
-            </p>
-            <div class="tab">
-              <ul class="tab__nav">
-                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
-                  <div class="tab__nav__item__glyph">
-                    <svg>
-                      <use xlink:href="#icon__disclosure"></use>
-                    </svg>
-                  </div>
-                </li>
-                <li data-tab="evaluation" class="tab__nav__item"><span>Evaluation</span>
-                  <div class="tab__nav__item__glyph">
-                    <svg>
-                      <use xlink:href="#icon__disclosure"></use>
-                    </svg>
-                  </div>
-                </li>
-                <li data-tab="training" class="tab__nav__item"><span>Training</span>
-                  <div class="tab__nav__item__glyph">
-                    <svg>
-                      <use xlink:href="#icon__disclosure"></use>
-                    </svg>
-                  </div>
-                </li>
-              </ul>
-              <div class="tab__page-container">
-                <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > te-examples.jsonl
-allennlp predict \
-    https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
-    te-examples.jsonl</code></pre></div>
-                </div>
-                <div data-tab="evaluation" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">allennlp evaluate \
-    https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
-    --evaluation-data-file https://s3-us-west-2.amazonaws.com/allennlp/datasets/snli/snli_1.0_test.jsonl</code></pre></div>
-                </div>
-                <div data-tab="training" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">allennlp train training_config/decomposable_attention.json -s output_path</code></pre></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- Named Entity Recognition -->
-      <div class="banner">
+      <div id="named-entity-recognition" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2 id="named-entity-recognition">Named Entity Recognition</h2>
+            <h2>Named Entity Recognition</h2>
             <p class="t-sm">
               The named entity recognition model identifies named entities (people, locations, organizations, and miscellaneous) in the input text.
               This model is a reimplementation of the state-of-the-art NER model described in <a href = "https://arxiv.org/abs/1802.05365">Deep contextualized word representations</a>, and uses a biLSTM with CRF layer and ELMo embeddings.
@@ -284,6 +311,11 @@ allennlp predict \
                     </svg>
                   </div>
                 </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/named-entity-recognition" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
@@ -310,10 +342,10 @@ allennlp predict \
 
 
       <!-- Constituency Parsing-->
-      <div class="banner">
+      <div id="constituency-parsing" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2 id="constituency-parsing">Constituency Parsing</h2>
+            <h2>Constituency Parsing</h2>
             <p class="t-sm">
               A constituency parse tree breaks a text into sub-phrases, or constituents.
               Non-terminals in the tree are types of phrases, the terminals are the words in the sentence.
@@ -343,6 +375,11 @@ allennlp predict \
                     </svg>
                   </div>
                 </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/constituency-parsing" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
               </ul>
               <div class="tab__page-container">
                 <div data-tab="prediction" class="tab__page">
@@ -367,14 +404,14 @@ allennlp predict \
         </div>
       </div>
 
-      <div class="banner">
+      <div id="user-gallery" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
-            <h2 id="constituency-parsing">User Gallery</h2>
-            <table>
+            <h2>User Gallery</h2>
+            <table class="compact">
               <tr>
                 <td>
-                  <strong>Deep enhanced representation for implicit discourse relation recognition‏</strong> <span>(COLING 2018)</span>
+                  <strong>Deep enhanced representation for implicit discourse relation recognition‏</strong>&nbsp; <span>(COLING 2018)</span>
                   <ul class="toolbar">
                     <li class="toolbar__item">
                       <a href="https://www.semanticscholar.org/paper/Deep-Enhanced-Representation-for-Implicit-Discourse-Bai-Zhao/12b9a02cee0eb12e6052672ef7d6010848b6d6a3" target="_blank" title="View on Semantic Scholar">
@@ -391,7 +428,7 @@ allennlp predict \
               </tr>
               <tr>
                 <td>
-                  <strong>Ontology alignment in the biomedical domain using entity definitions and context‏‏</strong> <span>(BioNLP 2018)</span>
+                  <strong>Ontology alignment in the biomedical domain using entity definitions and context‏‏</strong>&nbsp; <span>(BioNLP 2018)</span>
                   <ul class="toolbar">
                     <li class="toolbar__item">
                       <a href="https://www.semanticscholar.org/paper/Ontology-Alignment-in-the-Biomedical-Domain-Using-Wang-Bhagavatula/595e44f69542267f6589a6a01e9b97bd928c20c5" target="_blank" title="View on Semantic Scholar">
@@ -408,7 +445,7 @@ allennlp predict \
               </tr>
               <tr>
                 <td>
-                  <strong>SciTail: A textual entailment dataset from science question answering‏‏</strong> <span>(AAAI 2018)</span>
+                  <strong>SciTail: A textual entailment dataset from science question answering‏‏</strong>&nbsp; <span>(AAAI 2018)</span>
                   <ul class="toolbar">
                     <li class="toolbar__item">
                       <a href="https://www.semanticscholar.org/paper/SciTaiL%3A-A-Textual-Entailment-Dataset-from-Science-Khot-Sabharwal/3ce2e40571fe1f4ac4016426c0606df6824bf619" target="_blank" title="View on Semantic Scholar">
@@ -425,7 +462,7 @@ allennlp predict \
               </tr>
               <tr>
                 <td>
-                  <strong>Bilateral Multi-Perspective Matching for Natural Language Sentences</strong> <span>(IJCAI 2017)</span>
+                  <strong>Bilateral Multi-Perspective Matching for Natural Language Sentences</strong>&nbsp; <span>(IJCAI 2017)</span>
                   <ul class="toolbar">
                     <li class="toolbar__item">
                       <a href="https://www.semanticscholar.org/paper/Bilateral-Multi-Perspective-Matching-for-Natural-Wang-Hamza/b9d220520a5da7d302107aacfe875b8e2977fdbe" target="_blank" title="View on Semantic Scholar">
@@ -445,20 +482,20 @@ allennlp predict \
         </div>
       </div>
 
-      <div class="banner">
+      <div id="how-to-contribute" class="banner banner--hr">
         <div class="constrained constrained--med">
           <div class="padded-med">
             <h2>How to Contribute</h2>
             <p>
               AllenNLP wants more near state-of-the-art NLP models and is looking for contributions.
-              Not only will your model be listed here an be easily accessible to other users of AllenNLP, but we'll even help build a visualization and host a demo.
+              Not only will your model be listed here and be easily accessible to other users of AllenNLP, but we'll even help build a visualization and host a demo.
 
               To contribute a model:
-              <ul>
+              <ol>
                 <li>Put your code in a GitHub repo with instructions for running it</li>
                 <li>Host the trained <code>model.tar.gz</code> file somewhere accessible by HTTP</li>
                 <li><a href = "https://github.com/allenai/allennlp/issues">Open an issue</a> with the above links</a></li>
-              </ul>
+              </ol>
             </p>
           </div>
         </div>

@@ -8,6 +8,7 @@ $banner-hero: #1c292f;
 //$blue: #60a6d7;
 $blue: #2085bc;
 $blue-light: #40affd;
+$blue-med-light: #3597d4;
 $blue-med: #309add;
 $gray-light: #f6f8fa;
 $gray-med: #e0e0e0;
@@ -21,6 +22,10 @@ $default-code-color: #333333;
 
 .c-bg-slate {
   background: $slate;
+}
+
+.c-bg-blue-med-light {
+  background: $blue-med-light;
 }
 
 .c-bg-gray-light {
