@@ -65,6 +65,30 @@ pre > code {
 ol,
 ul {
   font-size: $base-font-size;
+
+  &.formatted {
+    padding-left: 0;
+
+    li {
+      padding-left: 32*$em;
+    }
+  }
+}
+
+ol.formatted {
+  li {
+    counter-increment: list;
+    list-style-type: none;
+    position: relative;
+
+    &:before {
+      opacity: .5;
+      content: counter(list) ".";
+      left: 0;
+      position: absolute;
+      text-align: right;
+    }
+  }
 }
 
 p,
@@ -208,7 +232,7 @@ table.compact {
 
   th,
   td {
-    padding: 10*$em 0;
+    padding: 20*$em 0;
   }
 
   td {
@@ -217,6 +241,11 @@ table.compact {
 
   tr:first-child td {
     border-top: none;
+    padding-top: 0;
+  }
+
+  tr:last-child td {
+    padding-bottom: 0;
   }
 }
 

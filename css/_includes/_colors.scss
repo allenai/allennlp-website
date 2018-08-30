@@ -20,6 +20,10 @@ $text-secondary: #8c9296;
 $text-faded: fade-out($text, 0.25);
 $default-code-color: #333333;
 
+.c-text-secondary {
+  color: $text-secondary;
+}
+
 .c-bg-slate {
   background: $slate;
 }

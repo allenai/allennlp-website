@@ -7,24 +7,40 @@
 
 .toolbar__item {
   display: block;
-  margin: 0;
+  margin: 0 16*$em 0 0;
   padding: 0;
 
   a {
     display: block;
     padding: 10px 6px;
     padding-bottom: 0;
+    transition: opacity .2s ease;
 
-    svg {
-      width: 35px;
-      height: 35px;
-      transition: fill .2s ease,
-                  opacity .2s ease;
-      fill: $blue;
+    .toolbar__item__label {
+      font-size: 12*$em;
+      vertical-align: middle;
+      transition: color .2s ease;
+      color: fade-out($text, 0.66);
     }
 
-    &:hover svg {
-      fill: $blue-light;
+    svg {
+      width: 32px;
+      height: 32px;
+      transition: fill .2s ease;
+      fill: fade-out($text, 0.60);
+      vertical-align: middle;
+    }
+
+    &:hover {
+      opacity: 1;
+
+      svg {
+        fill: $blue-light;
+      }
+
+      .toolbar__item__label {
+        color: $blue-light;
+      }
     }
 
     &:active {
