@@ -7,7 +7,8 @@
     @include flex-container;
     background: fade-out($gray-light, 0.67);
 
-    li.tab__nav__item {
+    li.tab__nav__item,
+    li.tab__nav__link {
       @include u-blocklist;
       @include u-select-none;
       @include font-size-reset;
@@ -132,12 +133,15 @@
   }
 }
 
-.c-bg-gray-light {
+
+.c-bg--alternate.c-bg-white.c-bg-gray-light .banner:not(.banner--interior-hero):not(footer):nth-child(even),
+.banner.c-bg-gray-light {
   .tab {
     ul.tab__nav {
       background: fade-out($gray-light-overlay, 0.67);
 
-      li.tab__nav__item {
+      li.tab__nav__item,
+      li.tab__nav__link {
         background: fade-out($gray-light-overlay, 0.5);
         border-right: 2*$em solid $gray-light;
 

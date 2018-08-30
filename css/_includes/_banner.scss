@@ -119,6 +119,30 @@
   }
 }
 
+.banner--notification {
+  @include flex-container-centered;
+  @include t-center;
+  @include t-white;
+  @include t-crisp;
+
+  .constrained {
+    padding: 30*$em;
+  }
+
+  a:hover {
+    color: $white;
+    text-decoration: underline;
+  }
+}
+
+.banner--hr {
+  border-top: 6px solid $gray-light;
+}
+
+.banner--intro-section {
+  margin-top: 10*$em !important;
+}
+
 @media screen and (max-width: 960px) {
   .banner--hero {
     .banner--hero__content {

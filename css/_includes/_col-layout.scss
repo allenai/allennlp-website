@@ -1,8 +1,9 @@
-.tutorial.constrained {
+.col-layout.constrained {
   padding: $nav-padding * 4 $nav-padding * 2;
+  padding-top: 0;
 }
 
-.tutorial__nav {
+.col-layout__nav {
   nav,
   ul,
   li,
@@ -12,9 +13,20 @@
   }
 
   nav {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10*$em;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 74*$em;
+    margin-top: 84*$em;
+  }
+
+  h4 {
+    font-size: 24*$em;
+    font-weight: 200;
+    margin: 24*$em 0 10*$em 2*$em;
+  }
+
+  ul + h4 {
+    // margin-top: 24*$em;
   }
 
   ul {
@@ -49,7 +61,7 @@
         }
       }
 
-      &.tutorial__nav--selected {
+      &.col-layout__nav--selected {
         a,
         &:hover,
         &:active {
@@ -64,21 +76,37 @@
   }
 }
 
-.tutorial__content {
+.col-layout__content {
   & > *:first-child {
     margin-top: 0;
     padding-top: 0;
   }
   max-width: 100%;
   overflow-x: auto;
+
+  .banner {
+    .constrained,
+    .padded-med {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
-.tutorial__content li p {
+.col-layout__content li p {
   font-size: 1em;
 }
 
+@media screen and (max-width: 1023px) {
+  .col-layout--hidden-mobile-sidenav {
+    .col-layout__nav {
+      display: none;
+    }
+  }
+}
+
 @media screen and (max-width: 960px) {
-  .tutorial.constrained {
+  .col-layout.constrained {
     padding: $nav-padding;
 
     table {
@@ -86,17 +114,17 @@
     }
   }
 
-  .tutorial__nav nav ul {
+  .col-layout__nav nav ul {
     margin-right: $nav-padding;
 
-    li.tutorial__nav--selected a:before {
+    li.col-layout__nav--selected a:before {
       display: none;
     }
   }
 }
 
 @media screen and (max-width: 768px) {
-  .tutorial__nav {
+  .col-layout__nav {
     ul {
       margin-left: $nav-padding / 4;
       margin-right: $nav-padding / 4;
