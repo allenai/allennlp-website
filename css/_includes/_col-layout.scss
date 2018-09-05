@@ -103,6 +103,11 @@
       display: none;
     }
   }
+
+  .col-layout__nav nav {
+    margin-top: 0;
+    margin-bottom: 40*$em;
+  }
 }
 
 @media screen and (max-width: 960px) {

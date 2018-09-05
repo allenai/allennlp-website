@@ -3,7 +3,7 @@
 
 // Vendor Modules
 @import "vendor/pure-custom-min"; // Pure Resonsive Grid
-@import "vendor/hljs"; // Highlight JS theme
+@import "vendor/rouge--pygments--autumn";
 
 // AllenNLP Vars and Mixins
 @import "vars";
@@ -27,3 +27,4 @@
 @import "publications";
 @import "tab";
 @import "toolbar";
+@import "tutorial";
