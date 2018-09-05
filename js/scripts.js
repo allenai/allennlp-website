@@ -3,9 +3,6 @@ function isTouchDevice() {
   return 'ontouchstart' in document.documentElement;
 }
 
-// Initialize Syntax Highlighting
-hljs.initHighlightingOnLoad();
-
 // Add Selected class to nav link that matches page ID
 let pageId;
 
