@@ -36,6 +36,16 @@
       &.code {
         width: 66.67%;
         background: $gray-light;
+
+        &:hover {
+          box-shadow: 0 0 80px rgba(0,0,0,.1);
+          z-index: 9;
+          background: #fff;
+
+          * {
+            background: #fff;
+          }
+        }
       }
 
       pre {
@@ -46,23 +56,12 @@
     }
 
     tr + tr td {
-      // &.desc,
-      // code {
-      //   padding-top: 0;
-      // }
-      padding-top: 20*$em;
-      position: relative;
-
-      &:before {
-        content: "";
-        height: 20*$em;
-        width: 100%;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: #fff;
+      &.desc,
+      code {
+        padding-top: 0;
       }
+
+      position: relative;
     }
   }
 }
