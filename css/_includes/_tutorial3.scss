@@ -1,0 +1,69 @@
+.tutorials {
+  .col-layout__content {
+    padding-top: 76*$em;
+  }
+
+  figure {
+    margin: 0;
+    padding: 0;
+    @include t-crisp;
+  }
+
+  .annotated-code {
+    background: $gray-light;
+    // background: #fbfcfd;
+    padding: 15*$em;
+    margin: 40*$em 0;
+    position: relative;
+    cursor: text;
+
+    .code {
+      position: relative;
+      padding: 10px 15px;
+      max-width: 716px;
+      background: $gray-light;
+
+      pre,
+      code {
+        margin: 0;
+        white-space: pre-wrap;
+        background: transparent !important;
+      }
+
+      code {
+        padding: 0;
+      }
+
+      &:hover {
+        background: #fff;
+        z-index: 8;
+        box-shadow: 0 0 80px rgba(0,0,0,.1);
+      }
+    }
+
+    .desc {
+      position: absolute;
+      padding: 20px;
+      margin-left: -20px;
+      z-index: -9;
+      opacity: 0;
+      background: #fff;
+      border: 1px solid black;
+      max-width: 50%;
+      right: 0;
+    }
+
+    .code:hover + .desc {
+      z-index: 9;
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .tutorials {
+    .col-layout__content {
+      padding-top: 0;
+    }
+  }
+}

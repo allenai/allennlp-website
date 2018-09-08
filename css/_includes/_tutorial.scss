@@ -9,59 +9,145 @@
     @include t-crisp;
   }
 
-  table.annotated-code {
+  .annotated-code {
+    background: $gray-light;
+    padding-left: 0;
     margin: 40*$em 0;
+    position: relative;
 
-    tr {
-      background: transparent !important;
-    }
+    table {
+      margin: 0;
 
-    td,
-    th {
-      padding: 0;
-      vertical-align: top;
-      font-size: 16*$em;
-    }
-
-    td {
-      &.desc {
-        padding: 20*$em;
-        color: $text-secondary;
-
-        code {
-          font-size: 13px;
-        }
+      tr {
+        background: transparent !important;
       }
 
-      &.code {
-        width: 66.67%;
-        background: $gray-light;
-
-        &:hover {
-          box-shadow: 0 0 80px rgba(0,0,0,.1);
-          z-index: 9;
-          background: #fff;
-
-          * {
-            background: #fff;
-          }
-        }
-      }
-
-      pre {
-        margin: 0;
+      td,
+      th {
+        padding: 0;
+        vertical-align: top;
         font-size: 16*$em;
-        white-space: pre-wrap;
+        margin: 15*$em;
+      }
+
+      tr:first-child td {
+        padding-top: 15*$em;
+
+        &.desc:after {
+          content: "Hover over a code block to reveal annotation.";
+        }
+      }
+
+      tr:last-child td {
+        padding-bottom: 55*$em;
       }
     }
 
-    tr + tr td {
-      &.desc,
+    .code {
+      padding: 0 15px;
+      max-width: 756px;
+      background: $gray-light;
+      width: 746px;
+
+      pre,
       code {
-        padding-top: 0;
+        margin: 0;
+        white-space: pre-wrap;
+        background: transparent !important;
       }
 
+      code {
+        padding: 0;
+      }
+
+      .highlight {
+        padding: 10px 15px;
+        position: relative;
+        z-index: 10;
+
+        &:before {
+          position: absolute;
+          display: block;
+          z-index: -1;
+          content: "";
+          box-shadow: 0 0 80px rgba(0,0,0,.1);
+          background: #fff;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          transition: opacity .2s ease;
+        }
+      }
+    }
+
+    .desc {
       position: relative;
+      background: #f9fafc;
+      border-left: 1px solid rgba(0,0,0,.05);
+      box-sizing: border-box;
+      user-select: none;
+
+      p,
+      &:after {
+        position: absolute;
+        opacity: 0;
+        margin: 0;
+        padding: 0 20px 15px 20px;
+        width: 100%;
+        font-size: 16px;
+        color: $text-secondary;
+        box-sizing: border-box;
+        z-index: -9;
+        background: #f9fafc;
+        transition: opacity .2s ease,
+                    z-index .2s ease;
+
+      }
+
+      p:before {
+        position: absolute;
+        content: "";
+        z-index: 9;
+        display: block;
+        background: #f9fafc;
+        width: 11px;
+        height: 11px;
+        margin: 14px 0 0 -27px;
+        border: 1.5px solid rgba(0,0,0,.05);
+        border-top-width: 0;
+        border-right-width: 0;
+        transform: rotate(45deg);
+      }
+
+      p code, code code {
+        font-size: 13px !important;
+        background: #eceef1;
+      }
+
+      &:after {
+        opacity: .5;
+        z-index: 9;
+      }
+    }
+
+    tr:hover {
+      .code .highlight:before {
+        opacity: 1;
+      }
+
+      .desc p {
+        opacity: 1;
+        z-index: 9;
+      }
+    }
+
+    &:hover {
+      tr:first-child td.desc:after {
+        opacity: 0;
+        z-index: -9;
+      }
     }
   }
 }

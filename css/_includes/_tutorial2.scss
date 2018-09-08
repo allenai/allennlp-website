@@ -1,0 +1,75 @@
+.tutorials {
+  .col-layout__content {
+    padding-top: 76*$em;
+  }
+
+  figure {
+    margin: 0;
+    padding: 0;
+    @include t-crisp;
+  }
+
+  table.annotated-code {
+    margin: 40*$em 0;
+
+    tr {
+      background: transparent !important;
+    }
+
+    td,
+    th {
+      padding: 0;
+      vertical-align: top;
+      font-size: 16*$em;
+    }
+
+    td {
+      &.desc {
+        padding: 20*$em;
+        color: $text-secondary;
+
+        code {
+          font-size: 13px;
+        }
+      }
+
+      &.code {
+        width: 66.67%;
+        background: $gray-light;
+
+        &:hover {
+          box-shadow: 0 0 80px rgba(0,0,0,.1);
+          z-index: 9;
+          background: #fff;
+
+          * {
+            background: #fff;
+          }
+        }
+      }
+
+      pre {
+        margin: 0;
+        font-size: 16*$em;
+        white-space: pre-wrap;
+      }
+    }
+
+    tr + tr td {
+      &.desc,
+      code {
+        padding-top: 0;
+      }
+
+      position: relative;
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .tutorials {
+    .col-layout__content {
+      padding-top: 0;
+    }
+  }
+}
