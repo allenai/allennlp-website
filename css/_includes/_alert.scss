@@ -1,0 +1,21 @@
+.alert {
+  border: 1px solid;
+  padding: 20*$em 25*$em;
+  margin: 30*$em 0;
+
+  &.alert--info {
+    border-color: lighten($blue-light, 15);
+    background: lighten($blue-light, 34);
+
+    &,
+    strong {
+      color: $blue;
+    }
+
+    a {
+      color: $blue-med-light;
+      text-decoration: underline;
+      font-weight: normal;
+    }
+  }
+}

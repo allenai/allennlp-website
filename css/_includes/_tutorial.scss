@@ -1,19 +1,104 @@
 .tutorials {
-  .col-layout__content {
-    padding-top: 76*$em;
+  .tutorials__content {
+    padding: 40*$em 30*$em 62*$em 30*$em;
+
+    // & > *:not(.annotated-code) {
+    //   margin-left: 150px;
+    //   margin-right: 150px;
+    // }
   }
 
   figure {
     margin: 0;
     padding: 0;
     @include t-crisp;
+
+    pre,
+    code {
+      white-space: pre-wrap;
+    }
   }
 
   .annotated-code {
     background: $gray-light;
-    padding-left: 0;
-    margin: 40*$em 0;
+    margin: 60*$em -30px;
     position: relative;
+    display: flex;
+
+    .annotated-code__pane {
+      &.annotated-code__pane--code-container {
+        padding: 15px;
+        background: $gray-light;
+        flex: 0 0 715px;
+
+        .annotated-code__code-block {
+          .highlight {
+            padding: 10px 15px;
+            position: relative;
+            z-index: 10;
+            margin: 0;
+
+            pre,
+            code {
+              margin: 0;
+              background: transparent !important;
+              font-size: 12.5px;
+            }
+
+            code {
+              padding: 0;
+            }
+
+            // &:before {
+            //   position: absolute;
+            //   display: block;
+            //   z-index: -1;
+            //   content: "";
+            //   box-shadow: 0 0 80px rgba(0,0,0,.1);
+            //   background: #fff;
+            //   opacity: 0;
+            //   width: 100%;
+            //   height: 100%;
+            //   top: 0;
+            //   left: 0;
+            //   // transition: opacity .2s ease;
+            // }
+          }
+        }
+      }
+
+      &.annotated-code__pane--annotations-container {
+        overflow: hidden !important;
+        flex: 1;
+        background: #f9fafc;
+        border-left: 1px solid rgba(0,0,0,.05);
+        padding: 15px;
+        position: relative;
+
+        ul.annotated-code__annotations {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-sizing: border-box;
+
+          li {
+            display: block;
+            padding: 15px;
+            margin: 0;
+            font-size: 16px;
+            color: $text-secondary;
+
+            code, code code {
+              font-size: 13px !important;
+              background: #eceef1;
+            }
+          }
+        }
+      }
+    }
 
     table {
       margin: 0;
@@ -52,7 +137,6 @@
       pre,
       code {
         margin: 0;
-        white-space: pre-wrap;
         background: transparent !important;
       }
 
