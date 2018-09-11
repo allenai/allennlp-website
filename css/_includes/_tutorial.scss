@@ -1,11 +1,6 @@
 .tutorials {
   .tutorials__content {
     padding: 40*$em 30*$em 62*$em 30*$em;
-
-    // & > *:not(.annotated-code) {
-    //   margin-left: 150px;
-    //   margin-right: 150px;
-    // }
   }
 
   figure {
@@ -24,14 +19,17 @@
     margin: 60*$em -30px;
     position: relative;
     display: flex;
+    overflow: hidden;
 
     .annotated-code__pane {
       &.annotated-code__pane--code-container {
-        padding: 15px;
+        padding: 15px 0 45px 15px;
         background: $gray-light;
         flex: 0 0 715px;
 
         .annotated-code__code-block {
+          cursor: text;
+
           .highlight {
             padding: 10px 15px;
             position: relative;
@@ -48,37 +46,21 @@
             code {
               padding: 0;
             }
-
-            // &:before {
-            //   position: absolute;
-            //   display: block;
-            //   z-index: -1;
-            //   content: "";
-            //   box-shadow: 0 0 80px rgba(0,0,0,.1);
-            //   background: #fff;
-            //   opacity: 0;
-            //   width: 100%;
-            //   height: 100%;
-            //   top: 0;
-            //   left: 0;
-            //   // transition: opacity .2s ease;
-            // }
           }
         }
       }
 
       &.annotated-code__pane--annotations-container {
-        overflow: hidden !important;
+        margin-left: 15px;
         flex: 1;
         background: #f9fafc;
         border-left: 1px solid rgba(0,0,0,.05);
-        padding: 15px;
         position: relative;
 
         ul.annotated-code__annotations {
           list-style: none;
           margin: 0;
-          padding: 0;
+          padding: 15px;
           position: absolute;
           top: 0;
           left: 0;
@@ -90,6 +72,9 @@
             margin: 0;
             font-size: 16px;
             color: $text-secondary;
+            position: relative;
+            cursor: default;
+            z-index: 10;
 
             code, code code {
               font-size: 13px !important;
@@ -98,139 +83,29 @@
           }
         }
       }
-    }
 
-    table {
-      margin: 0;
-
-      tr {
-        background: transparent !important;
-      }
-
-      td,
-      th {
-        padding: 0;
-        vertical-align: top;
-        font-size: 16*$em;
-        margin: 15*$em;
-      }
-
-      tr:first-child td {
-        padding-top: 15*$em;
-
-        &.desc:after {
-          content: "Hover over a code block to reveal annotation.";
-        }
-      }
-
-      tr:last-child td {
-        padding-bottom: 55*$em;
-      }
-    }
-
-    .code {
-      padding: 0 15px;
-      max-width: 756px;
-      background: $gray-light;
-      width: 746px;
-
-      pre,
-      code {
-        margin: 0;
-        background: transparent !important;
-      }
-
-      code {
-        padding: 0;
-      }
-
-      .highlight {
-        padding: 10px 15px;
-        position: relative;
-        z-index: 10;
-
+      &.annotated-code__pane--code-container .annotated-code__code-block .highlight,
+      &.annotated-code__pane--annotations-container ul.annotated-code__annotations li {
         &:before {
           position: absolute;
           display: block;
           z-index: -1;
           content: "";
-          box-shadow: 0 0 80px rgba(0,0,0,.1);
+          box-shadow: 0 0 60px rgba(0,0,0,.08);
           background: #fff;
           opacity: 0;
           width: 100%;
           height: 100%;
           top: 0;
           left: 0;
-          // transition: opacity .2s ease;
+          transition: opacity .1s ease;
         }
-      }
-    }
 
-    .desc {
-      position: relative;
-      background: #f9fafc;
-      border-left: 1px solid rgba(0,0,0,.05);
-      box-sizing: border-box;
-      user-select: none;
-
-      p,
-      &:after {
-        position: absolute;
-        opacity: 0;
-        margin: 0;
-        padding: 0 20px 15px 20px;
-        width: 100%;
-        font-size: 16px;
-        color: $text-secondary;
-        box-sizing: border-box;
-        z-index: -9;
-        background: #f9fafc;
-        // transition: opacity .2s ease,
-        //             z-index .2s ease;
-
-      }
-
-      p:before {
-        position: absolute;
-        content: "";
-        z-index: 9;
-        display: block;
-        background: #f9fafc;
-        width: 11px;
-        height: 11px;
-        margin: 14px 0 0 -27px;
-        border: 1.5px solid rgba(0,0,0,.05);
-        border-top-width: 0;
-        border-right-width: 0;
-        transform: rotate(45deg);
-      }
-
-      p code, code code {
-        font-size: 13px !important;
-        background: #eceef1;
-      }
-
-      &:after {
-        opacity: .5;
-        z-index: 9;
-      }
-    }
-
-    tr:hover {
-      .code .highlight:before {
-        opacity: 1;
-      }
-
-      .desc p {
-        opacity: 1;
-        z-index: 9;
-      }
-    }
-
-    &:hover {
-      tr:first-child td.desc:after {
-        opacity: 0;
-        z-index: -9;
+        &:hover {
+          &:before {
+            opacity: 1;
+          }
+        }
       }
     }
   }
