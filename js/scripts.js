@@ -124,17 +124,20 @@ for (let i = 0; i < anchorLinks.length; i++) {
 
 // Tutorial scrolling UX
 const annotatedCode = document.getElementById("annotated-code");
+
 if (annotatedCode) {
   const annotationContainer = document.getElementById("annotated-code__annotations");
   const topFade = document.getElementById("annotated-code__top-fade");
   const bottomFade = document.getElementById("annotated-code__bottom-fade");
   const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
-  const annotations = document.querySelectorAll("#annotated-code__annotations li");
+  const annotations = document.querySelectorAll("#annotated-code__annotations li.annotation");
 
+  // onScroll mechanics
   window.addEventListener("scroll", function(e) {
     const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
     const containerTopOffset = annotatedCode.offsetTop;
     const containerBottomOffset = containerTopOffset + annotatedCode.offsetHeight;
+
     if (scrollTop >= containerTopOffset) {
       topFade.style.top = `${scrollTop - containerTopOffset}px`;
     } else {
@@ -144,30 +147,26 @@ if (annotatedCode) {
     if (scrollTop <= containerBottomOffset) {
       bottomFade.style.top = `${scrollTop - containerTopOffset + window.innerHeight - 120}px`;
     }
+
     if (scrollTop >= (containerBottomOffset - window.innerHeight)) {
-      console.log("scrollTop: " + (scrollTop));
-      console.log("bottomFade top: " + (containerBottomOffset - window.innerHeight));
       bottomFade.style.top = `${annotatedCode.offsetHeight - 120}px`;
     }
   });
 
   function focusBlock(id) {
-
-    console.log(id);
     const focusedCodeBlock = document.getElementById(`c${id}`);
     const focusedAnnotation = document.getElementById(`a${id}`);
 
-    for (let i = 0; i < annotations.length; i++) {
-      if (annotations[i].classList.contains("focused")) {
-        annotations[i].classList.remove("focused");
+    // Remove focus class on any code block or annotation element that has it
+    function resetFocus(array) {
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].classList.contains("focused")) {
+          array[i].classList.remove("focused");
+        }
       }
     }
-
-    for (let i = 0; i < codeBlocks.length; i++) {
-      if (codeBlocks[i].classList.contains("focused")) {
-        codeBlocks[i].classList.remove("focused");
-      }
-    }
+    resetFocus(codeBlocks);
+    resetFocus(annotations);
 
     focusedCodeBlock.classList.add("focused");
     focusedAnnotation.classList.add("focused");
@@ -183,27 +182,19 @@ if (annotatedCode) {
     bottomFade.style.transform = `translateY(${offset}px)`;
   }
 
-  for (let i = 0; i < codeBlocks.length; i++) {
-    const thisId = codeBlocks[i].id;
-    codeBlocks[i].addEventListener("mouseover", function(e) {
-      focusBlock(thisId.replace("c",""));
-    });
-    // codeBlocks[i].addEventListener("mousemove", function(e) {
-    //   // this.classList.add("focused");
-    //   console.log("moved");
-    //   // console.log(this.getAttribute("data-id"));
-    // });
-    // codeBlocks[i].addEventListener("mouseout", function(e) {
-    //   // this.classList.remove("focused");
-    // });
-  }
-
-  for (let i = 0; i < annotations.length; i++) {
-    const thisId = annotations[i].id;
-    if (thisId !== "annotated-code__top-fade" && thisId !== "annotated-code__bottom-fade") {
-      annotations[i].addEventListener("mouseover", function(e) {
-        focusBlock(thisId.replace("a",""));
+  function buildEvents(array) {
+    for (let i = 0; i < array.length; i++) {
+      const thisId = array[i].id;
+      array[i].addEventListener("mousemove", function(e) {
+        // Abstract ID for code/annotation pair
+        focusBlock(thisId.replace(/c|a/g,""));
       });
     }
   }
+
+  buildEvents(codeBlocks);
+  buildEvents(annotations);
+
+  // Focus first code block/annotation pair by default
+  focusBlock(document.querySelector(".annotated-code__code-block:first-child").id.replace(/c|a/g,""));
 }
