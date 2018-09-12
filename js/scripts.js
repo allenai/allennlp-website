@@ -127,6 +127,15 @@ const annotatedCode = document.getElementById("annotated-code");
 
 if (annotatedCode) {
   const annotationContainer = document.getElementById("annotated-code__annotations");
+
+  // Dynamically create top/bottom fade effects for annotation scrolling
+  let topFadeNode = document.createElement("li");
+  let bottomFadeNode = document.createElement("li");
+  topFadeNode.setAttribute("id", "annotated-code__top-fade");
+  bottomFadeNode.setAttribute("id", "annotated-code__bottom-fade");
+  annotationContainer.insertBefore(topFadeNode, annotationContainer.childNodes[0]);
+  annotationContainer.appendChild(bottomFadeNode);
+
   const topFade = document.getElementById("annotated-code__top-fade");
   const bottomFade = document.getElementById("annotated-code__bottom-fade");
   const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
@@ -180,17 +189,17 @@ if (annotatedCode) {
     const containerBottomOffset = containerTopOffset + annotatedCode.offsetHeight;
 
     if (scrollTop >= containerTopOffset) {
-      topFade.style.top = `${scrollOffset}px`;
+      topFade.style.top = `${scrollOffset - 120}px`;
     } else {
       topFade.style.top = "";
     }
 
     if (scrollTop <= containerBottomOffset) {
-      bottomFade.style.top = `${scrollOffset + window.innerHeight - 120}px`;
+      bottomFade.style.top = `${scrollOffset + window.innerHeight}px`;
     }
 
     if (scrollTop >= (containerBottomOffset - window.innerHeight)) {
-      bottomFade.style.top = `${annotatedCode.offsetHeight - 120}px`;
+      bottomFade.style.top = `${annotatedCode.offsetHeight}px`;
     }
 
     for (let i = 0; i < codeBlocks.length; i++) {

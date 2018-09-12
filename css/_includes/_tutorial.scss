@@ -59,8 +59,19 @@
         margin-left: 15px;
         flex: 1;
         background: #f9fafc;
-        border-left: 1px solid rgba(0,0,0,.05);
         position: relative;
+
+        // Left column border
+        &:after {
+          position: absolute;
+          content: "";
+          width: 1px;
+          height: 100%;
+          top: 0;
+          left: 0;
+          display: block;
+          background: rgba(0,0,0,.05)
+        }
 
         ul#annotated-code__annotations {
           list-style: none;
@@ -75,24 +86,34 @@
 
           li#annotated-code__top-fade,
           li#annotated-code__bottom-fade {
-            content: "";
             display: block;
             position: absolute;
             left: 0;
-            top: 0;
+            top: -120px;
             margin: 0;
             transform: translateY(0px);
             transition: transform .5s cubic-bezier(0.000, 0.475, 0.010, 1.035);
-            background: linear-gradient(to bottom, rgba(249,250,252,1) 0%,rgba(249,250,252,0) 100%);
             width: 100%;
             height: 120px;
             z-index: 2;
             backface-visibility: hidden;
+
+            &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              // box-shadow: 0 0 180px 100px rgba(249,250,252,1);
+              box-shadow: 0 0 180px 100px rgba(249,250,252,1);
+            }
+
           }
 
           li#annotated-code__bottom-fade {
-            top: 0;
-            background: linear-gradient(to top, rgba(249,250,252,1) 0%,rgba(249,250,252,0) 100%);
+            top: 120px;
           }
 
           li.annotation {
