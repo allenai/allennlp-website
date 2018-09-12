@@ -122,28 +122,6 @@ for (let i = 0; i < anchorLinks.length; i++) {
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Tutorial scrolling UX
 const annotatedCode = document.getElementById("annotated-code");
 
@@ -155,6 +133,10 @@ if (annotatedCode) {
   const annotations = document.querySelectorAll("#annotated-code__annotations li.annotation");
 
   // Default distance from top of screen for determining which code block is auto-focused during scroll
+  let scrollTop = 0;
+  let containerTopOffset = 0;
+  let scrollOffset = 0;
+
   let focusThreshold = 300;
 
   function focusBlock(id) {
@@ -184,31 +166,18 @@ if (annotatedCode) {
     // Compensate for transform offset on sticky bottom/top fade-out elements
     topFade.style.transform = `translateY(${offset}px)`;
     bottomFade.style.transform = `translateY(${offset}px)`;
+  }
 
-    // const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    // const containerTopOffset = annotatedCode.offsetTop;
-    // const containerBottomOffset = containerTopOffset + annotatedCode.offsetHeight;
-    // const scrollOffset = scrollTop - containerTopOffset;
-
-    // scrollOffset > (thisOffset - focusThreshold);
-    //
-    // }
-
-    // console.clear();
-    // console.log(`scrollTop:          ${scrollTop}`);
-    // console.log(`codeOffset:         ${codeOffset}`);
-    // console.log(`containerTopOffset: ${containerTopOffset}`);
-    // console.log(`scrollOffset:       ${scrollOffset}`);
-    // console.log(`codeOffset - scrollOffset:  ${codeOffset - scrollOffset}`);
-    // console.log("--------------------------");
+  function updateOffsets() {
+    scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    containerTopOffset = annotatedCode.offsetTop;
+    scrollOffset = scrollTop - containerTopOffset;
   }
 
   // onScroll mechanics
   window.addEventListener("scroll", function() {
-    const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    const containerTopOffset = annotatedCode.offsetTop;
+    updateOffsets();
     const containerBottomOffset = containerTopOffset + annotatedCode.offsetHeight;
-    const scrollOffset = scrollTop - containerTopOffset;
 
     if (scrollTop >= containerTopOffset) {
       topFade.style.top = `${scrollOffset}px`;
@@ -224,17 +193,10 @@ if (annotatedCode) {
       bottomFade.style.top = `${annotatedCode.offsetHeight - 120}px`;
     }
 
-    // console.clear();
     for (let i = 0; i < codeBlocks.length; i++) {
       const thisId = codeBlocks[i].id;
       const thisCodeBlock = document.getElementById(thisId);
       const thisOffset = thisCodeBlock.offsetTop;
-
-      // console.log("scrollOffset:   " + scrollOffset);
-      // console.log("focusThreshold: " + focusThreshold);
-      // console.log("thisId:         " + thisId);
-      // console.log("thisOffset:     " + thisOffset);
-      // console.log("--------------------------");
 
       if ( ((scrollOffset) > (thisOffset - focusThreshold)) && ((scrollOffset) < (thisOffset + thisCodeBlock.offsetHeight - focusThreshold)) ) {
         focusBlock(thisId.replace("c",""));
@@ -248,16 +210,8 @@ if (annotatedCode) {
     for (let i = 0; i < array.length; i++) {
       const thisId = array[i].id;
       array[i].addEventListener("mousemove", function() {
-        const thisCodeId = `c${thisId.replace(/c|a/g,"")}`;
-        // focusThreshold = document.getElementById(thisCodeId).offsetTop;
-
-
-        const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-        const containerTopOffset = annotatedCode.offsetTop;
-        const scrollOffset = scrollTop - containerTopOffset;
-        focusThreshold = document.getElementById(thisCodeId).offsetTop - scrollOffset;
-
-        // Abstract ID for code/annotation pair
+        updateOffsets();
+        focusThreshold = document.getElementById(`c${thisId.replace(/c|a/g,"")}`).offsetTop - scrollOffset;
         focusBlock(thisId.replace(/c|a/g,""));
       });
     }
