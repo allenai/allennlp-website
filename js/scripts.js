@@ -128,6 +128,8 @@ if (annotatedCode) {
   const annotationContainer = document.getElementById("annotated-code__annotations");
   const topFade = document.getElementById("annotated-code__top-fade");
   const bottomFade = document.getElementById("annotated-code__bottom-fade");
+  const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
+  const annotations = document.querySelectorAll("#annotated-code__annotations li");
 
   window.addEventListener("scroll", function(e) {
     const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
@@ -149,10 +151,11 @@ if (annotatedCode) {
     }
   });
 
-  function focusBlock(codeBlockId) {
-    const annotationId = codeBlockId.replace("c","a");
-    const focusedAnnotation = document.getElementById(annotationId);
-    const annotations = document.querySelectorAll("#annotated-code__annotations li");
+  function focusBlock(id) {
+
+    console.log(id);
+    const focusedCodeBlock = document.getElementById(`c${id}`);
+    const focusedAnnotation = document.getElementById(`a${id}`);
 
     for (let i = 0; i < annotations.length; i++) {
       if (annotations[i].classList.contains("focused")) {
@@ -160,36 +163,47 @@ if (annotatedCode) {
       }
     }
 
+    for (let i = 0; i < codeBlocks.length; i++) {
+      if (codeBlocks[i].classList.contains("focused")) {
+        codeBlocks[i].classList.remove("focused");
+      }
+    }
+
+    focusedCodeBlock.classList.add("focused");
     focusedAnnotation.classList.add("focused");
 
-    const codeOffset = document.getElementById(codeBlockId).offsetTop;
-    const annotationOffset = document.getElementById(annotationId).offsetTop;
+    const codeOffset = focusedCodeBlock.offsetTop;
+    const annotationOffset = focusedAnnotation.offsetTop;
     const offset = annotationOffset - codeOffset;
 
+    // Move annotation list to align focused annotation with focused code block
+    annotationContainer.style.transform = `translateY(-${offset}px)`;
+    // Compensate for transform offset on sticky fade
     topFade.style.transform = `translateY(${offset}px)`;
     bottomFade.style.transform = `translateY(${offset}px)`;
-    annotationContainer.style.transform = `translateY(-${offset}px)`;
   }
-
-  // Array of all code blocks
-  const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
 
   for (let i = 0; i < codeBlocks.length; i++) {
     const thisId = codeBlocks[i].id;
     codeBlocks[i].addEventListener("mouseover", function(e) {
-      for (let i = 0; i < codeBlocks.length; i++) {
-        codeBlocks[i].classList.remove("focused");
-      }
-      this.classList.add("focused");
-      focusBlock(thisId);
+      focusBlock(thisId.replace("c",""));
     });
     // codeBlocks[i].addEventListener("mousemove", function(e) {
     //   // this.classList.add("focused");
     //   console.log("moved");
     //   // console.log(this.getAttribute("data-id"));
     // });
-    codeBlocks[i].addEventListener("mouseout", function(e) {
-      // this.classList.remove("focused");
-    });
+    // codeBlocks[i].addEventListener("mouseout", function(e) {
+    //   // this.classList.remove("focused");
+    // });
+  }
+
+  for (let i = 0; i < annotations.length; i++) {
+    const thisId = annotations[i].id;
+    if (thisId !== "annotated-code__top-fade" && thisId !== "annotated-code__bottom-fade") {
+      annotations[i].addEventListener("mouseover", function(e) {
+        focusBlock(thisId.replace("a",""));
+      });
+    }
   }
 }
