@@ -376,6 +376,7 @@ print([model.vocab.get_token_from_index(i, 'labels') for i in tag_ids])
   <!-- Annotations -->
   <div class="annotated-code__pane annotated-code__pane--annotations-container">
     <ul id="annotated-code__annotations">
+      <li id="annotated-code__top-fade"></li>
       <li id="a0">In AllenNLP we use type annotations for just about everything.</li>
 
       <li id="a1">AllenNLP is built on top of PyTorch, so we use its code freely.</li>
@@ -428,7 +429,7 @@ print([model.vocab.get_token_from_index(i, 'labels') for i in tag_ids])
 
       <li id="a25">AllenNLP is designed to operate on batched inputs, but different input sequences have different lengths. Behind the scenes AllenNLP is padding the shorter inputs so that the batch has uniform shape, which means our computations need to use a mask to exclude the padding. Here we just use the utility function <code>get_text_field_mask</code>, which returns a tensor of 0s and 1s corresponding to the padded and unpadded locations.</li>
 
-      <li id="a26">We start by passing the <code>sentence</code> tensor (each sentence a sequence of token ids) to the <code>word_embeddings<code> module, which converts each sentence into a sequence of embedded tensors.</li>
+      <li id="a26">We start by passing the <code>sentence</code> tensor (each sentence a sequence of token ids) to the <code>word_embeddings</code> module, which converts each sentence into a sequence of embedded tensors.</li>
 
       <li id="a27">We next pass the embedded tensors (and the mask) to the LSTM, which produces a sequence of encoded outputs.</li>
 
@@ -469,6 +470,7 @@ print([model.vocab.get_token_from_index(i, 'labels') for i in tag_ids])
       <li id="a45">To get the actual "predictions" we can just take the <code>argmax</code>.</li>
 
       <li id="a46">And then use our vocabulary to find the predicted tags.</li>
+      <li id="annotated-code__bottom-fade"></li>
     </ul>
   </div><!-- END Annotations -->
 </div><!-- END Annotated Code -->

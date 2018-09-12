@@ -123,30 +123,38 @@ for (let i = 0; i < anchorLinks.length; i++) {
 }
 
 // Tutorial scrolling UX
-
-// Annotation List container that moves according to which code block is focused
-const annotationContainer = document.getElementById("annotated-code__annotations");
-// Array of all code blocks
-const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
-
-function focusBlock(id) {
-  // console.log(id);
-  const annotationId = `a${id}`;
+function focusBlock(codeBlockId) {
+  // Annotation List container that moves according to which code block is focused
+  const annotationContainer = document.getElementById("annotated-code__annotations");
+  const annotationId = codeBlockId.replace("c","a");
   const focusedAnnotation = document.getElementById(annotationId);
-
   const annotations = document.querySelectorAll("#annotated-code__annotations li");
+
   for (let i = 0; i < annotations.length; i++) {
-    annotations[i].classList.remove("focused");
+    if (annotations[i].classList.contains("focused")) {
+      annotations[i].classList.remove("focused");
+    }
   }
 
   focusedAnnotation.classList.add("focused");
-  const offset = 200;
+
+  const codeOffset = document.getElementById(codeBlockId).offsetTop;
+  const annotationOffset = document.getElementById(annotationId).offsetTop;
+  const offset = annotationOffset - codeOffset;
+
+  document.getElementById("annotated-code__top-fade").style.transform = `translateY(${offset}px)`;
   annotationContainer.style.transform = `translateY(-${offset}px)`;
 }
 
+// Array of all code blocks
+const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
+
 for (let i = 0; i < codeBlocks.length; i++) {
-  const thisId = codeBlocks[i].id.replace("c","");
+  const thisId = codeBlocks[i].id;
   codeBlocks[i].addEventListener("mouseover", function(e) {
+    for (let i = 0; i < codeBlocks.length; i++) {
+      codeBlocks[i].classList.remove("focused");
+    }
     this.classList.add("focused");
     focusBlock(thisId);
   });
@@ -156,6 +164,6 @@ for (let i = 0; i < codeBlocks.length; i++) {
   //   // console.log(this.getAttribute("data-id"));
   // });
   codeBlocks[i].addEventListener("mouseout", function(e) {
-    this.classList.remove("focused");
+    // this.classList.remove("focused");
   });
 }
