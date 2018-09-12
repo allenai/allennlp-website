@@ -132,26 +132,8 @@ if (annotatedCode) {
   const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
   const annotations = document.querySelectorAll("#annotated-code__annotations li.annotation");
 
-  // onScroll mechanics
-  window.addEventListener("scroll", function(e) {
-    const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    const containerTopOffset = annotatedCode.offsetTop;
-    const containerBottomOffset = containerTopOffset + annotatedCode.offsetHeight;
-
-    if (scrollTop >= containerTopOffset) {
-      topFade.style.top = `${scrollTop - containerTopOffset}px`;
-    } else {
-      topFade.style.top = "";
-    }
-
-    if (scrollTop <= containerBottomOffset) {
-      bottomFade.style.top = `${scrollTop - containerTopOffset + window.innerHeight - 120}px`;
-    }
-
-    if (scrollTop >= (containerBottomOffset - window.innerHeight)) {
-      bottomFade.style.top = `${annotatedCode.offsetHeight - 120}px`;
-    }
-  });
+  // Default distance from top of screen for determining which code block is auto-focused during scroll
+  let focusThreshold = 200;
 
   function focusBlock(id) {
     const focusedCodeBlock = document.getElementById(`c${id}`);
@@ -177,15 +159,58 @@ if (annotatedCode) {
 
     // Move annotation list to align focused annotation with focused code block
     annotationContainer.style.transform = `translateY(-${offset}px)`;
-    // Compensate for transform offset on sticky fade
+    // Compensate for transform offset on sticky bottom/top fade-out elements
     topFade.style.transform = `translateY(${offset}px)`;
     bottomFade.style.transform = `translateY(${offset}px)`;
   }
 
+  // onScroll mechanics
+  window.addEventListener("scroll", function() {
+    const scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    const containerTopOffset = annotatedCode.offsetTop;
+    const containerBottomOffset = containerTopOffset + annotatedCode.offsetHeight;
+    const scrollOffset = scrollTop - containerTopOffset;
+
+    if (scrollTop >= containerTopOffset) {
+      topFade.style.top = `${scrollOffset}px`;
+    } else {
+      topFade.style.top = "";
+    }
+
+    if (scrollTop <= containerBottomOffset) {
+      bottomFade.style.top = `${scrollOffset + window.innerHeight - 120}px`;
+    }
+
+    if (scrollTop >= (containerBottomOffset - window.innerHeight)) {
+      bottomFade.style.top = `${annotatedCode.offsetHeight - 120}px`;
+    }
+
+    console.clear();
+    for (let i = 0; i < codeBlocks.length; i++) {
+      const thisId = codeBlocks[i].id;
+      const thisCodeBlock = document.getElementById(thisId);
+      const thisOffset = thisCodeBlock.offsetTop;
+
+      console.log("scrollOffset:   " + scrollOffset);
+      console.log("focusThreshold: " + focusThreshold);
+      console.log("thisId:         " + thisId);
+      console.log("thisOffset:     " + thisOffset);
+      console.log("--------------------------")
+
+      if ( ((scrollOffset) > (thisOffset - focusThreshold)) && ((scrollOffset) < (thisOffset + thisCodeBlock.offsetHeight - focusThreshold)) ) {
+        focusBlock(thisId.replace("c",""));
+        break;
+      }
+    }
+  });
+
+  // Iterate through element list and add mouse events that call focusBlock
   function buildEvents(array) {
     for (let i = 0; i < array.length; i++) {
       const thisId = array[i].id;
-      array[i].addEventListener("mousemove", function(e) {
+      array[i].addEventListener("mousemove", function() {
+        const thisCodeId = `c${thisId.replace(/c|a/g,"")}`;
+        focusThreshold = document.getElementById(thisCodeId).offsetTop;
         // Abstract ID for code/annotation pair
         focusBlock(thisId.replace(/c|a/g,""));
       });
@@ -196,5 +221,5 @@ if (annotatedCode) {
   buildEvents(annotations);
 
   // Focus first code block/annotation pair by default
-  focusBlock(document.querySelector(".annotated-code__code-block:first-child").id.replace(/c|a/g,""));
+  focusBlock(document.querySelector(".annotated-code__code-block:first-child").id.replace(/c|a/g,""), true);
 }
