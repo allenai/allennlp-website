@@ -121,3 +121,41 @@ for (let i = 0; i < anchorLinks.length; i++) {
     document.querySelector(element).scrollIntoView({behavior: "smooth", block: "start"});
   });
 }
+
+// Tutorial scrolling UX
+
+// Annotation List container that moves according to which code block is focused
+const annotationContainer = document.getElementById("annotated-code__annotations");
+// Array of all code blocks
+const codeBlocks = document.querySelectorAll(".annotated-code__code-block");
+
+function focusBlock(id) {
+  // console.log(id);
+  const annotationId = `a${id}`;
+  const focusedAnnotation = document.getElementById(annotationId);
+
+  const annotations = document.querySelectorAll("#annotated-code__annotations li");
+  for (let i = 0; i < annotations.length; i++) {
+    annotations[i].classList.remove("focused");
+  }
+
+  focusedAnnotation.classList.add("focused");
+  const offset = 200;
+  annotationContainer.style.transform = `translateY(-${offset}px)`;
+}
+
+for (let i = 0; i < codeBlocks.length; i++) {
+  const thisId = codeBlocks[i].id.replace("c","");
+  codeBlocks[i].addEventListener("mouseover", function(e) {
+    this.classList.add("focused");
+    focusBlock(thisId);
+  });
+  // codeBlocks[i].addEventListener("mousemove", function(e) {
+  //   // this.classList.add("focused");
+  //   console.log("moved");
+  //   // console.log(this.getAttribute("data-id"));
+  // });
+  codeBlocks[i].addEventListener("mouseout", function(e) {
+    this.classList.remove("focused");
+  });
+}
