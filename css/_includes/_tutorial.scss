@@ -20,6 +20,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
+    -webkit-text-size-adjust: none;
 
     & + .alert {
       margin-left: -30px;
@@ -185,8 +186,68 @@
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1100px) {
   .tutorials {
+    #annotated-code {
+      display: block;
+      overflow: auto;
+      margin-top: 50px;
+      margin-bottom: 0;
 
+      &:before {
+        content: "Note that this tutorial is best viewed on a desktop browser.";
+        display: block;
+        padding: 30px;
+        background: rgba(0,0,0,.05);
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        position: relative;
+        z-index: 99;
+        color: $text;
+        opacity: 1;
+      }
+
+      & + .alert {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .annotated-code__pane {
+        &.annotated-code__pane--code-container {
+          padding: 15px;
+          flex: none;
+        }
+
+        &.annotated-code__pane--annotations-container {
+          display: none;
+        }
+
+        &.annotated-code__pane--code-container .annotated-code__code-block .highlight:before,
+        &.annotated-code__pane--code-container .annotated-code__code-block.focused .highlight:before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .tutorials {
+    .tutorials__content {
+      padding: 0 20*$em 30*$em 20*$em;
+    }
+
+    #annotated-code {
+      margin: 40px -20px;
+
+      &:before {
+        padding: 20px;
+      }
+
+      .annotated-code__pane {
+        &.annotated-code__pane--code-container {
+          padding: 5px;
+        }
+      }
+    }
   }
 }
