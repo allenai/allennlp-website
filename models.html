@@ -57,6 +57,15 @@
                 <li data-col-layout-id="constituency-parsing">
                   <a href="#constituency-parsing">Constituency Parsing</a>
                 </li>
+
+                <li data-col-layout-id="dependency-parsing">
+                  <a href="#dependency-parsing">Dependency Parsing</a>
+                </li>
+
+                <li data-col-layout-id="open-information-extraction">
+                  <a href="#open-information-extraction">Open Information Extraction</a>
+                </li>
+
               </ul>
 
               <h4>Contributing</h4>
@@ -460,6 +469,143 @@ allennlp predict \
               </div>
             </div>
 
+      <!-- Dependency Parsing-->
+      <div class="banner banner--hr">
+        <div class="constrained constrained--med">
+          <div class="padded-med">
+            <h2 id="dependency-parsing">Dependency Parsing</h2>
+            <p class="t-sm">
+              A dependency parser analyzes the grammatical structure of a sentence, establishing relationships between "head" words and words which modify those heads.
+              This demo is an implementation of a neural model for dependency parsing using biaffine classifiers on top of a bidirectional LSTM based on Deep Biaffine Attention for Neural Dependency Parsing (Dozat, 2017).
+              The parser is trained on the PTB 3.0 dataset using Stanford dependencies, achieving 95.57% and 94.44% unlabeled and labeled attachement score using gold POS tags.
+              For predicted POS tags, the model achieves 94.81% UAS and 92.86% LAS respectively.
+            </p>
+            <div class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaluation</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="training" class="tab__nav__item"><span>Training</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/dependency-parsing" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
+
+              </ul>
+              <div class="tab__page-container">
+                <div data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > dparse-examples.jsonl
+allennlp predict \
+    https://s3-us-west-2.amazonaws.com/allennlp/models/biaffine-dependency-parser-ptb-2018.08.23.tar.gz \
+    dparse-examples.jsonl</code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The dependency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data <a href="https://catalog.ldc.upenn.edu/ldc99t42" target="_blank">from the LDC website</a>.</p>
+                  </div>
+                </div>
+                <div data-tab="training" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The dependency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data <a href="https://catalog.ldc.upenn.edu/ldc99t42" target="_blank">from the LDC website</a>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Open Information Extraction-->
+      <div class="banner banner--hr">
+        <div class="constrained constrained--med">
+          <div class="padded-med">
+            <h2 id="open-information-extraction">Open Information Extraction</h2>
+            <p class="t-sm">
+                  Given an input sentence, Open Information Extraction (Open IE) extracts a list of
+  propositions, each composed of a single predicate and an arbitrary number of arguments.
+    These often simplify syntactically complex sentences, and make their predicate-argument structure easily accessible for various downstream tasks.
+    This model is a reimplementation of
+    </span>
+    <a href="https://www.semanticscholar.org/paper/Supervised-Open-Information-Extraction-Stanovsky-Michael/c82921a426fd8090564f459b0bd90cdb1e7a9e2d" target="_blank" rel="noopener noreferrer">a deep BiLSTM sequence prediction model (Stanovsky et al., 2018)</a>.
+  </span>
+
+            </p>
+            <div class="tab">
+              <ul class="tab__nav">
+                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="evaluation" class="tab__nav__item"><span>Evaluation</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li data-tab="training" class="tab__nav__item"><span>Training</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+                <li class="tab__nav__link">
+                  <a href="http://demo.allennlp.org/open-information-extraction" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
+
+              </ul>
+              <div class="tab__page-container">
+                <div data-tab="prediction" class="tab__page">
+                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "John decided to run for office next month."}' > oie-examples.jsonl
+allennlp predict https://s3-us-west-2.amazonaws.com/allennlp/models/openie-model.2018-08-20.tar.gz \
+                        oie-examples.jsonl \
+                        --predictor=open-information-extraction
+                  </code></pre></div>
+                </div>
+                <div data-tab="evaluation" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The Open Information extractor was evaluated on the <a href="https://github.com/gabrielStanovsky/oie-benchmark" target="_blank">OIE2016 corpus</a>.</p>
+                  </div>
+                </div>
+                <div data-tab="training" class="tab__page">
+                  <div class="tab__page__content">
+                    <p class="t-sm">The Open Information extractor was evaluated on the <a href="https://github.com/gabrielStanovsky/oie-benchmark" target="_blank">OIE2016 corpus</a>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
             <div id="user-gallery" class="banner banner--hr">
               <div class="constrained constrained--med">
                 <div class="padded-med">
@@ -546,7 +692,10 @@ allennlp predict \
               </div>
             </div>
 
-            <div id="how-to-contribute" class="banner banner--hr">
+
+
+
+                  <div id="how-to-contribute" class="banner banner--hr">
               <div class="constrained constrained--med">
                 <div class="padded-med">
                   <h2>How to Contribute</h2>
@@ -569,64 +718,6 @@ allennlp predict \
         </div>
       </div>
 
-
-      <!-- Dependency Parsing-->
-      <div class="banner c-bg-gray-light">
-        <div class="constrained constrained--med">
-          <div class="padded-med">
-            <h2 id="dependency-parsing">Dependency Parsing</h2>
-            <p class="t-sm">
-              A dependency parser analyzes the grammatical structure of a sentence, establishing relationships between "head" words and words which modify those heads.
-              This demo is an implementation of a neural model for dependency parsing using biaffine classifiers on top of a bidirectional LSTM based on Deep Biaffine Attention for Neural Dependency Parsing (Dozat, 2017).
-              The parser is trained on the PTB 3.0 dataset using Stanford dependencies, achieving 95.57% and 94.44% unlabeled and labeled attachement score using gold POS tags.
-              For predicted POS tags, the model achieves 94.81% UAS and 92.86% LAS respectively.
-            </p>
-            <div class="tab">
-              <ul class="tab__nav">
-                <li data-tab="prediction" class="tab__nav__item"><span>Prediction</span>
-                  <div class="tab__nav__item__glyph">
-                    <svg>
-                      <use xlink:href="#icon__disclosure"></use>
-                    </svg>
-                  </div>
-                </li>
-                <li data-tab="evaluation" class="tab__nav__item"><span>Evaluation</span>
-                  <div class="tab__nav__item__glyph">
-                    <svg>
-                      <use xlink:href="#icon__disclosure"></use>
-                    </svg>
-                  </div>
-                </li>
-                <li data-tab="training" class="tab__nav__item"><span>Training</span>
-                  <div class="tab__nav__item__glyph">
-                    <svg>
-                      <use xlink:href="#icon__disclosure"></use>
-                    </svg>
-                  </div>
-                </li>
-              </ul>
-              <div class="tab__page-container">
-                <div data-tab="prediction" class="tab__page">
-                  <div class="tab__page__content"><pre><code class="no-highlight">echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > dparse-examples.jsonl
-allennlp predict \
-    https://s3-us-west-2.amazonaws.com/allennlp/models/biaffine-dependency-parser-ptb-2018.08.23.tar.gz \
-    dparse-examples.jsonl</code></pre></div>
-                </div>
-                <div data-tab="evaluation" class="tab__page">
-                  <div class="tab__page__content">
-                    <p class="t-sm">The dependency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data <a href="https://catalog.ldc.upenn.edu/ldc99t42" target="_blank">from the LDC website</a>.</p>
-                  </div>
-                </div>
-                <div data-tab="training" class="tab__page">
-                  <div class="tab__page__content">
-                    <p class="t-sm">The dependency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data <a href="https://catalog.ldc.upenn.edu/ldc99t42" target="_blank">from the LDC website</a>.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {% include footer.html %}
     </div>
