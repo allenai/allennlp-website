@@ -546,6 +546,7 @@ allennlp predict \
     This model is a reimplementation of
     </span>
     <a href="https://www.semanticscholar.org/paper/Supervised-Open-Information-Extraction-Stanovsky-Michael/c82921a426fd8090564f459b0bd90cdb1e7a9e2d" target="_blank" rel="noopener noreferrer">a deep BiLSTM sequence prediction model (Stanovsky et al., 2018)</a>.
+    It was trained on the OIE2016 corpus, with additional training data from the <a href="https://github.com/uwnlp/qamr" target="_blank">QAMR project</a> (see paper for more details), achieving 62% F1-score (61% precision, 64% recall), and 48% AUC.
   </span>
 
             </p>
@@ -588,12 +589,16 @@ allennlp predict https://s3-us-west-2.amazonaws.com/allennlp/models/openie-model
                 </div>
                 <div data-tab="evaluation" class="tab__page">
                   <div class="tab__page__content">
-                    <p class="t-sm">The Open Information extractor was evaluated on the <a href="https://github.com/gabrielStanovsky/oie-benchmark" target="_blank">OIE2016 corpus</a>.</p>
+                    <p class="t-sm">The Open Information extractor was evaluated on the
+                      OIE2016 corpus.
+                      Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can get the data on the <a href="https://github.com/gabrielStanovsky/oie-benchmark" target="_blank">corpus homepage</a>. </p>
                   </div>
                 </div>
                 <div data-tab="training" class="tab__page">
                   <div class="tab__page__content">
-                    <p class="t-sm">The Open Information extractor was evaluated on the <a href="https://github.com/gabrielStanovsky/oie-benchmark" target="_blank">OIE2016 corpus</a>.</p>
+                    <p class="t-sm">The Open Information extractor was trained on the
+                      OIE2016 corpus.
+                      Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can get the data on the <a href="https://github.com/gabrielStanovsky/oie-benchmark" target="_blank">corpus homepage</a>. </p>
                   </div>
                 </div>
               </div>
