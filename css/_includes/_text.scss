@@ -57,6 +57,10 @@
   @include font-size-reset;
 }
 
+.t-base-font-size {
+  font-size: 16px !important;
+}
+
 .t-white .t-sm {
   &,
   * {
