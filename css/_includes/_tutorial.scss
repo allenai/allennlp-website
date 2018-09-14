@@ -1,0 +1,253 @@
+.tutorials {
+  .tutorials__content {
+    padding: 40*$em 30*$em 62*$em 30*$em;
+  }
+
+  figure {
+    margin: 0;
+    padding: 0;
+    @include t-crisp;
+
+    pre,
+    code {
+      white-space: pre-wrap;
+    }
+  }
+
+  #annotated-code {
+    background: $gray-light;
+    margin: 60*$em -30px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    -webkit-text-size-adjust: none;
+
+    & + .alert {
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+
+    .annotated-code__pane {
+      &.annotated-code__pane--code-container {
+        padding: 15px 0 215px 15px;
+        background: $gray-light;
+        flex: 0 0 715px;
+
+        .annotated-code__code-block {
+          cursor: text;
+
+          .highlight {
+            padding: 10px 15px;
+            position: relative;
+            z-index: 2;
+            margin: 0;
+
+            pre,
+            code {
+              margin: 0;
+              background: transparent !important;
+              font-size: 12.5px;
+            }
+
+            code {
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      &.annotated-code__pane--annotations-container {
+        margin-left: 15px;
+        flex: 1;
+        background: #f9fafc;
+        position: relative;
+
+        // Left column border
+        &:after {
+          position: absolute;
+          content: "";
+          width: 1px;
+          height: 100%;
+          top: 0;
+          left: 0;
+          display: block;
+          background: rgba(0,0,0,.05)
+        }
+
+        ul#annotated-code__annotations {
+          list-style: none;
+          margin: 0;
+          padding: 15px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-sizing: border-box;
+          transform: translateY(0px);
+          transition: transform .5s cubic-bezier(0.000, 0.475, 0.010, 1.035);
+
+          li#annotated-code__top-fade,
+          li#annotated-code__bottom-fade {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: -120px;
+            margin: 0;
+            transform: translateY(0px);
+            transition: transform .5s cubic-bezier(0.000, 0.475, 0.010, 1.035);
+            width: 100%;
+            height: 120px;
+            z-index: 2;
+            backface-visibility: hidden;
+
+            &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              // box-shadow: 0 0 180px 100px rgba(249,250,252,1);
+              box-shadow: 0 0 180px 100px rgba(249,250,252,1);
+            }
+
+          }
+
+          li#annotated-code__bottom-fade {
+            top: 120px;
+          }
+
+          li.annotation {
+            display: block;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 16px;
+            color: lighten($text, 22);
+            position: relative;
+            cursor: text;
+            opacity: .5;
+            z-index: 1;
+            transition: opacity .1s ease,
+                        z-index .1s ease;
+
+            code, code code {
+              font-size: 13px !important;
+              background: #eceef1;
+            }
+
+            &:after {
+              content: "";
+              display: block;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 8px 8px 8px 0;
+              border-color: transparent $white transparent transparent;
+              top: 12px;
+              left: -8px;
+              opacity: 0;
+              transition: opacity .1s ease;
+              position: absolute;
+              z-index: 1;
+            }
+
+            &.focused {
+              opacity: 1;
+              z-index: 9 !important;
+            }
+          }
+        }
+      }
+
+      &.annotated-code__pane--code-container .annotated-code__code-block .highlight,
+      &.annotated-code__pane--annotations-container ul#annotated-code__annotations li {
+        &:before {
+          position: absolute;
+          display: block;
+          z-index: -1;
+          content: "";
+          box-shadow: 0 0 60px rgba(0,0,0,.08);
+          background: $white;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          transition: opacity .1s ease;
+        }
+      }
+
+      &.annotated-code__pane--code-container .annotated-code__code-block.focused .highlight:before,
+      &.annotated-code__pane--annotations-container ul#annotated-code__annotations li.focused:before,
+      &.annotated-code__pane--annotations-container ul#annotated-code__annotations li.focused:after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .tutorials {
+    #annotated-code {
+      display: block;
+      overflow: auto;
+      margin-top: 50px;
+      margin-bottom: 0;
+
+      &:before {
+        content: "Note that this tutorial is best viewed on a desktop browser.";
+        display: block;
+        padding: 30px;
+        background: rgba(0,0,0,.05);
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        position: relative;
+        z-index: 99;
+        color: $text;
+        opacity: 1;
+      }
+
+      & + .alert {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .annotated-code__pane {
+        &.annotated-code__pane--code-container {
+          padding: 15px;
+          flex: none;
+        }
+
+        &.annotated-code__pane--annotations-container {
+          display: none;
+        }
+
+        &.annotated-code__pane--code-container .annotated-code__code-block .highlight:before,
+        &.annotated-code__pane--code-container .annotated-code__code-block.focused .highlight:before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .tutorials {
+    .tutorials__content {
+      padding: 0 20*$em 30*$em 20*$em;
+    }
+
+    #annotated-code {
+      margin: 40px -20px;
+
+      &:before {
+        padding: 20px;
+      }
+
+      .annotated-code__pane {
+        &.annotated-code__pane--code-container {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
