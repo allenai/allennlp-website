@@ -1,0 +1,50 @@
+{% for model in site.data.models %}
+  <div id="{{ model.title | slugify }}" class="banner banner--hr js-dynamic-section" data-group="Our Models" data-label="{{ model.title }}">
+    <div class="constrained constrained--med">
+      <div class="padded-med">
+        <h2>{{ model.title }}</h2>
+        <div class="t-sm">
+          {{ model.description | markdownify }}
+        </div>
+        {% if model.codeTabs or model.demoUrl %}
+          <div class="tab">
+            <ul class="tab__nav">
+              {% for tab in model.codeTabs %}
+                <li data-tab="{{ tab.label | slugify }}" class="tab__nav__item">
+                  <span>{{ tab.label }}</span>
+                  <div class="tab__nav__item__glyph">
+                    <svg>
+                      <use xlink:href="#icon__disclosure"></use>
+                    </svg>
+                  </div>
+                </li>
+              {% endfor %}
+              {% if model.demoUrl %}
+                <li class="tab__nav__link">
+                  <a href="{{ model.demoUrl }}" target="_blank">
+                    <span>View Demo</span>
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+            <div class="tab__page-container">
+              {% for tab in model.codeTabs %}
+                <div data-tab="{{ tab.label | slugify }}" class="tab__page">
+                  <div class="tab__page__content">
+                    {% if tab.code %}
+                      <pre><code>{{ tab.code }}</code></pre>
+                    {% elsif tab.text %}
+                      <div class="t-sm">
+                        {{ tab.text | markdownify }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}

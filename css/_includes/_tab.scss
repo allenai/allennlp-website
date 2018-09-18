@@ -129,6 +129,10 @@
       & > :last-child {
         margin-bottom: 0;
       }
+
+      & > .t-sm > p {
+        margin: 0;
+      }
     }
   }
 }

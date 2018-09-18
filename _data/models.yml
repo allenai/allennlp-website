@@ -1,0 +1,203 @@
+- title: "Machine Comprehension"
+  description: >
+    Machine Comprehension (MC) models answer natural language questions by selecting an answer span within an evidence text. The AllenNLP MC model is a reimplementation of [BiDAF (Seo et al, 2017)](https://www.semanticscholar.org/paper/Bidirectional-Attention-Flow-for-Machine-Comprehen-Seo-Kembhavi/007ab5528b3bd310a80d553cccad4b78dc496b02), or Bi-Directional Attention Flow, a widely used MC baseline that achieved state-of-the-art accuracies on the [SQuAD dataset](https://rajpurkar.github.io/SQuAD-explorer/) in 2017. The AllenNLP BIDAF model achieves an EM score of 68.3 on the SQuAD dev set, just slightly ahead of the original BIDAF system's score of 67.7, while also training at a 10x speedup (4 hours on a p2.xlarge).
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"passage": "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is capable of launching a payload into space more than once. This contrasts with expendable launch systems, where each launch vehicle is launched once and then discarded. No completely reusable orbital launch system has ever been created. Two partially reusable launch systems were developed, the Space Shuttle and Falcon 9. The Space Shuttle was partially reusable: the orbiter (which included the Space Shuttle main engines and the Orbital Maneuvering System engines), and the two solid rocket boosters were reused after several months of refitting work for each launch. The external tank was discarded after each flight.", "question": "How many partially reusable launch systems were developed?"}' > mc-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz \
+          mc-examples.jsonl
+
+  - label: "Evaluation"
+    code: >
+      allennlp evaluate \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz \
+          https://s3-us-west-2.amazonaws.com/allennlp/datasets/squad/squad-dev-v1.1.json
+
+  - label: "Training"
+    code: >
+      allennlp train training_config/bidaf.json -s output_path
+
+  demoUrl: "http://demo.allennlp.org/machine-comprehension"
+
+###############################################################################
+
+- title: "Textual Entailment"
+  description: >
+    Textual Entailment (TE) models take a pair of sentences and predict whether the facts in the first necessarily imply the facts in the second one. The AllenNLP TE model is a re-implementation of the [decomposable attention model (Parikh et al, 2017)](https://www.semanticscholar.org/paper/A-Decomposable-Attention-Model-for-Natural-Languag-Parikh-T%C3%A4ckstr%C3%B6m/07a9478e87a8304fc3267fa16e83e9f3bbd98b27), a widely used TE baseline that was state-of-the-art on the [SNLI dataset](https://nlp.stanford.edu/projects/snli/) in late 2016. The AllenNLP TE model achieves an accuracy of 86.4% on the SNLI 1.0 test dataset, a 2% improvement on most publicly available implementations and a similar score as the original paper. Rather than pre-trained Glove vectors, this model uses [ELMo embeddings](https://arxiv.org/abs/1802.05365), which are completely character based and account for the 2% improvement.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > te-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
+          te-examples.jsonl
+
+  - label: "Evaluation"
+    code: >
+      allennlp evaluate \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
+          https://s3-us-west-2.amazonaws.com/allennlp/datasets/snli/snli_1.0_test.jsonl
+
+  - label: "Training"
+    code: >
+      allennlp train training_config/decomposable_attention.json -s output_path
+
+  demoUrl: "http://demo.allennlp.org/textual-entailment"
+
+###############################################################################
+
+- title: "Semantic Role Labeling"
+  description: >
+    Semantic Role Labeling (SRL) models recover the latent predicate argument structure of a sentence. SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of [a deep BiLSTM model (He et al, 2017)](https://www.semanticscholar.org/paper/Deep-Semantic-Role-Labeling-What-Works-and-What-s-He-Lee/a3ccff7ad63c2805078b34b8514fa9eab80d38e9). The implemented model closely matches the published model but replaces GloVe embeddings with ELMo representations, achieving an F1 of 84.9% on [English Ontonotes 5.0 dataset using the CONLL 2011/12 shared task format](http://cemantix.org/data/ontonotes.html). These results are currently state of the art for this task.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > srl-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.05.25.tar.gz \
+          srl-examples.jsonl
+
+  - label: "Evaluation"
+    text: >
+      The SRL model was evaluated on the CoNLL 2012 dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can put together evaluation data yourself by following the CoNLL 2012 [instructions for working with the data](http://conll.cemantix.org/2012/data.html).
+
+  - label: "Training"
+    text: >
+      The SRL model was evaluated on the CoNLL 2012 dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can put together evaluation data yourself by following the CoNLL 2012 [instructions for working with the data](http://conll.cemantix.org/2012/data.html). Once you have compiled the dataset, you can use the configuration file `training_config/semantic_role_labeler.json` to train.
+
+  demoUrl: "http://demo.allennlp.org/semantic-role-labeling"
+
+###############################################################################
+
+- title: "Coreference Resolution"
+  description: >
+    Coreference resolution is the task of finding all expressions that refer to the same entity in a text. It is an important step for many higher level NLP tasks that involve natural language understanding, such as document summarization, question answering and information extraction. Our implementation is based on [End-to-End Coreference Resolution (Lee et al, 2017)](https://www.semanticscholar.org/paper/End-to-end-Neural-Coreference-Resolution-Lee-He/3f2114893dc44eacac951f148fbff142ca200e83)—a neural model which considers all possible spans in the document as potential mentions and learns distributions over possible anteceedents for each span. This approach achieved state-of-the-art results on the [Ontonotes 5.0](http://cemantix.org/data/ontonotes.html) dataset in early 2017. The AllenNLP implementation achives 63.0% F1 on the CoNLL test set. Please note that this model does not include speaker features (impractical for general use), variational dropout (currently difficult to implement in Pytorch) or data augmentation and considers 100 anteceedents rather than 250 due to memory constraints.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"document": "The woman reading a newspaper sat on the bench with her dog."}' > coref-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz \
+          coref-examples.jsonl
+
+  - label: "Evaluation"
+    text: >
+      The Coreference model was evaluated on the CoNLL 2012 dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. To compile the data in the right format for evaluating the Coreference model, please see `scripts/compile_coref_data.sh`. This script requires the Ontonotes 5.0 dataset, available [on the LDC website](https://catalog.ldc.upenn.edu/ldc2013t19).
+
+  - label: "Training"
+    text: >
+      The Coreference model was evaluated on the CoNLL 2012 dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. To compile the data in the right format for evaluating the Coreference model, please see `scripts/compile_coref_data.sh`. This script requires the Ontonotes 5.0 dataset, available [on the LDC website](https://catalog.ldc.upenn.edu/ldc2013t19).
+
+  demoUrl: "http://demo.allennlp.org/coreference-resolution"
+
+###############################################################################
+
+- title: "Named Entity Recognition"
+  description: >
+    The named entity recognition model identifies named entities (people, locations, organizations, and miscellaneous) in the input text. This model is a reimplementation of the state-of-the-art NER model described in [Deep contextualized word representations](https://arxiv.org/abs/1802.05365), and uses a biLSTM with CRF layer and ELMo embeddings. It was trained on the [CoNLL-2003](https://www.clips.uantwerpen.be/conll2003/ner/) NER dataset, and has test set F1 of 92.5 for a single run, compared to the reported 92.22 +/- 0.10 F1 across five seeds in the reference paper.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' > ner-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2018.04.26.tar.gz \
+          ner-examples.jsonl
+
+  - label: "Evaluation"
+    text: >
+      The NER model was evaluated on the [CoNLL-2003](https://www.clips.uantwerpen.be/conll2003/ner/) NER dataset. Unfortunately we cannot release this data due to licensing restrictions.
+
+  - label: "Training"
+    text: >
+      The NER model was trained on the [CoNLL-2003](https://www.clips.uantwerpen.be/conll2003/ner/) NER dataset. Unfortunately we cannot release this data due to licensing restrictions.
+
+  demoUrl: "http://demo.allennlp.org/named-entity-recognition"
+
+###############################################################################
+
+- title: "Constituency Parsing"
+  description: >
+    A constituency parse tree breaks a text into sub-phrases, or constituents. Non-terminals in the tree are types of phrases, the terminals are the words in the sentence. The AllenNLP constituency parser model is an implementation of a minimal neural model for constituency parsing based on an independent scoring of labels and spans from [Minimal Span Based Constituency Parser (Stern et al, 2017)](https://www.semanticscholar.org/paper/A-Minimal-Span-Based-Neural-Constituency-Parser-Stern-Andreas/593e4e749bd2dbcaf8dc25298d830b41d435e435). This model uses [ELMo embeddings](https://arxiv.org/abs/1802.05365), which are completely character based and improves single model performance from 92.6 F1 to 94.11 F1 on the Penn Tree bank, a 20% relative error reduction.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > cparse-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/elmo-constituency-parser-2018.03.14.tar.gz \
+          cparse-examples.jsonl
+
+  - label: "Evaluation"
+    text: >
+      The constituency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data [from the LDC website](https://catalog.ldc.upenn.edu/ldc99t42).
+
+  - label: "Training"
+    text: >
+      The constituency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data [from the LDC website](https://catalog.ldc.upenn.edu/ldc99t42).
+
+  demoUrl: "http://demo.allennlp.org/constituency-parsing"
+
+###############################################################################
+
+- title: "Dependency Parsing"
+  description: >
+    A dependency parser analyzes the grammatical structure of a sentence, establishing relationships between "head" words and words which modify those heads. This demo is an implementation of a neural model for dependency parsing using biaffine classifiers on top of a bidirectional LSTM based on Deep Biaffine Attention for Neural Dependency Parsing (Dozat, 2017). The parser is trained on the PTB 3.0 dataset using Stanford dependencies, achieving 95.57% and 94.44% unlabeled and labeled attachement score using gold POS tags. For predicted POS tags, the model achieves 94.81% UAS and 92.86% LAS respectively.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > dparse-examples.jsonl
+
+      allennlp predict \
+          https://s3-us-west-2.amazonaws.com/allennlp/models/biaffine-dependency-parser-ptb-2018.08.23.tar.gz \
+          dparse-examples.jsonl
+
+  - label: "Evaluation"
+    text: >
+      The dependency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data [from the LDC website](https://catalog.ldc.upenn.edu/ldc99t42).
+
+  - label: "Training"
+    text: >
+      The dependency parser was evaluated on the Penn Tree Bank dataset. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can download the PTB data [from the LDC website](https://catalog.ldc.upenn.edu/ldc99t42).
+
+  demoUrl: "http://demo.allennlp.org/dependency-parsing"
+
+###############################################################################
+
+- title: "Open Information Extraction"
+  description: >
+    Given an input sentence, Open Information Extraction (Open IE) extracts a list of propositions, each composed of a single predicate and an arbitrary number of arguments. These often simplify syntactically complex sentences, and make their predicate-argument structure easily accessible for various downstream tasks. This model is a reimplementation of [a deep BiLSTM sequence prediction model (Stanovsky et al., 2018)](https://www.semanticscholar.org/paper/Supervised-Open-Information-Extraction-Stanovsky-Michael/c82921a426fd8090564f459b0bd90cdb1e7a9e2d). It was trained on the OIE2016 corpus, with additional training data from the [QAMR project](https://github.com/uwnlp/qamr) (see paper for more details), achieving 62% F1-score (61% precision, 64% recall), and 48% AUC.
+
+  codeTabs:
+  - label: "Prediction"
+    code: >
+      echo '{"sentence": "John decided to run for office next month."}' > oie-examples.jsonl
+
+      allennlp predict https://s3-us-west-2.amazonaws.com/allennlp/models/openie-model.2018-08-20.tar.gz \
+          oie-examples.jsonl \
+          --predictor=open-information-extraction
+
+  - label: "Evaluation"
+    text: >
+      The Open Information extractor was evaluated on the OIE2016 corpus. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can get the data on the [corpus homepage](https://github.com/gabrielStanovsky/oie-benchmark).
+
+  - label: "Training"
+    text: >
+      The Open Information extractor was trained on the OIE2016 corpus. Unfortunately we cannot release this data due to licensing restrictions by the LDC. You can get the data on the [corpus homepage](https://github.com/gabrielStanovsky/oie-benchmark).
+
+  demoUrl: "http://demo.allennlp.org/open-information-extraction"
+
+###############################################################################
