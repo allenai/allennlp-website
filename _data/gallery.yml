@@ -1,0 +1,37 @@
+- title:    "Deep enhanced representation for implicit discourse relation recognition‏"
+  authors:  "Hongxiao Bai, Hai Zhao"
+  venue:    "COLING 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Deep-Enhanced-Representation-for-Implicit-Discourse-Bai-Zhao/12b9a02cee0eb12e6052672ef7d6010848b6d6a3"
+  - code:   "https://github.com/diccooo/Deep_Enhanced_Repr_for_IDRR"
+
+###############################################################################
+
+- title:    "Ontology alignment in the biomedical domain using entity definitions and context"
+  authors:  "Lucy Lu Wang, Chandra Bhagavatula, Mark Neumann, Kyle Lo, Chris Wilhelm, Waleed Ammar"
+  venue:    "BioNLP 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Ontology-Alignment-in-the-Biomedical-Domain-Using-Wang-Bhagavatula/595e44f69542267f6589a6a01e9b97bd928c20c5"
+  - code:   "https://www.github.com/allenai/ontoemma/"
+
+###############################################################################
+
+- title:    "SciTail: A textual entailment dataset from science question answering"
+  authors:  "Tushar Khot and Ashish Sabharwal and Peter Clark"
+  venue:    "AAAI 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/SciTaiL%3A-A-Textual-Entailment-Dataset-from-Science-Khot-Sabharwal/3ce2e40571fe1f4ac4016426c0606df6824bf619"
+  - code:   "https://github.com/allenai/scitail"
+
+###############################################################################
+
+- title:    "Bilateral Multi-Perspective Matching for Natural Language Sentences"
+  authors:  "Zhiguo Wang, Wael Hamza, Radu Florian"
+  venue:    "IJCAI 2018"
+  contributors: >
+    [HandsomeZebra](https://github.com/handsomezebra){:target="_blank"}
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Bilateral-Multi-Perspective-Matching-for-Natural-Wang-Hamza/b9d220520a5da7d302107aacfe875b8e2977fdbe"
+  - code:   "https://github.com/allenai/allennlp/pull/1594"
+
+###############################################################################

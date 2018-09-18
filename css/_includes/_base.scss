@@ -259,7 +259,8 @@ table.compact {
   max-width: 980*$em;
 }
 
-.padded-med > h2:first-child + p.t-sm {
+.padded-med > h2:first-child + p.t-sm,
+.padded-med > h2:first-child + div.t-sm {
   margin-top: -5*$em;
 }
 

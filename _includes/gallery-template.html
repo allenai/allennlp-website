@@ -1,0 +1,51 @@
+<div id="user-gallery" class="banner banner--hr js-dynamic-section">
+  <div class="constrained constrained--med">
+    <div class="padded-med">
+      <h2>User Gallery</h2>
+      <table class="compact">
+        {% for model in site.data.gallery %}
+          <tr>
+            <td>
+              {% if model.title %}
+                <strong>{{ model.title }}‏</strong>
+              {% endif %}
+              {% if model.authors or model.venue %}
+                <div class="t-base-font-size">
+                  {% if model.authors %}
+                    {{ model.authors }}
+                  {% endif %}
+                  {% if model.venue %}
+                    <span class="c-text-secondary"> ({{ model.venue }})</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {% if model.contributors %}
+              <div class="t-base-font-size"><span class="c-text-secondary">Contributed by</span> <strong class="t-markdownify">{{ model.contributors | markdownify }}</strong></div>
+              {% endif %}
+              {% if model.links %}
+                <ul class="toolbar">
+                  {% for link in model.links %}
+                    <li class="toolbar__item">
+                      {% if link.paper %}
+                        <a href="{{ link.paper }}" target="_blank" title="View {% if link.paper contains 'semanticscholar.org' %}on Semantic Scholar{% else %}Paper{% endif %}">
+                          <svg><use xlink:href="#icon__{% if link.paper contains 'semanticscholar.org' %}s2{% else %}pdf{% endif %}"></use></svg>
+                          <span class="toolbar__item__label">View Paper</span>
+                        </a>
+                      {% endif %}
+                      {% if link.code %}
+                        <a href="{{ link.code }}" target="_blank" title="View {% if link.code contains 'github.com' %}on GitHub{% else %}Code{% endif %}">
+                          <svg><use xlink:href="#icon__{% if link.code contains 'github.com' %}github{% else %}website{% endif %}"></use></svg>
+                          <span class="toolbar__item__label">View Code</span>
+                        </a>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
