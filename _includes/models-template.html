@@ -1,5 +1,5 @@
 {% for model in site.data.models %}
-  <div id="{{ model.title | slugify }}" class="banner banner--hr js-dynamic-section">
+  <div id="{{ model.title | slugify }}" class="banner banner--hr js-dynamic-section" data-section="Our Models" data-label="{{ model.title }}">
     <div class="constrained constrained--med">
       <div class="padded-med">
         <h2>{{ model.title }}</h2>
