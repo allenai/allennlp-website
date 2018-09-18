@@ -114,6 +114,42 @@ for (let i = 0; i < tabNavItems.length; i++) {
   });
 }
 
+// Auto-generate Side-Nav Section Navigation
+if (document.getElementById("auto-nav")) {
+  const sections = document.querySelectorAll("#auto-nav .col-layout__content .js-dynamic-section");
+  const sectionNav = document.querySelector("#auto-nav .col-layout__nav nav");
+  let html = sectionNav.innerHTML;
+  let group = "";
+  for (let i = 0; i < sections.length; i++) {
+    const thisGroup = sections[i].getAttribute("data-group");
+    if (thisGroup !== group) {
+      if (i === 0) {
+        html += `<a href="#top" title="Scroll to top of page"><h4>${thisGroup}</h4></a><ul>`;
+      } else {
+        html += `</ul><h4>${thisGroup}</h4><ul>`;
+      }
+    }
+    group = thisGroup;
+    html += '<li><a class="js-dynamic-link" href="#' + sections[i].id + '">' + sections[i].getAttribute("data-label") + '</a></li>';
+  }
+  sectionNav.innerHTML = `${html}</ul>`;
+
+  // Select nav link that corresponds to visible section
+  let scrollPosition = window.scrollY;
+  window.addEventListener('scroll', function() {
+    scrollPosition = window.scrollY;
+    const dynamicLinks = document.querySelectorAll("#auto-nav .col-layout__nav nav ul li a.js-dynamic-link");
+    for (let i = 0; i < dynamicLinks.length; i++) {
+      dynamicLinks[i].parentNode.classList.remove("col-layout__nav--selected");
+      const section = document.querySelector(dynamicLinks[i].getAttribute("href"));
+      const sectionTop = section.offsetTop;
+      if ((scrollPosition > (sectionTop - 10)) && (scrollPosition < sectionTop + section.offsetHeight - 10)) {
+        dynamicLinks[i].parentNode.classList.add("col-layout__nav--selected");
+      }
+    }
+  });
+}
+
 // Smooth Scroll anchor links
 const anchorLinks = document.querySelectorAll("a[href^='#']");
 for (let i = 0; i < anchorLinks.length; i++) {
