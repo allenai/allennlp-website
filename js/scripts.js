@@ -144,7 +144,7 @@ if (document.getElementById("auto-nav")) {
       const section = document.querySelector(dynamicLinks[i].getAttribute("href"));
       const sectionTop = section.offsetTop;
       // Offset (in pixels) from top of section that should trigger corresponding side-nav selection:
-      const selectionOffset = 80;
+      const selectionOffset = 250;
       if ((scrollPosition > (sectionTop - selectionOffset)) && (scrollPosition < sectionTop + section.offsetHeight - selectionOffset)) {
         dynamicLinks[i].parentNode.classList.add("col-layout__nav--selected");
       }
