@@ -143,7 +143,9 @@ if (document.getElementById("auto-nav")) {
       dynamicLinks[i].parentNode.classList.remove("col-layout__nav--selected");
       const section = document.querySelector(dynamicLinks[i].getAttribute("href"));
       const sectionTop = section.offsetTop;
-      if ((scrollPosition > (sectionTop - 10)) && (scrollPosition < sectionTop + section.offsetHeight - 10)) {
+      // Offset (in pixels) from top of section that should trigger corresponding side-nav selection:
+      const selectionOffset = 80;
+      if ((scrollPosition > (sectionTop - selectionOffset)) && (scrollPosition < sectionTop + section.offsetHeight - selectionOffset)) {
         dynamicLinks[i].parentNode.classList.add("col-layout__nav--selected");
       }
     }
