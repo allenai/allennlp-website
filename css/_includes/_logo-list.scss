@@ -3,26 +3,21 @@
   margin-bottom: 14px;
   display: grid;
   grid-template-columns: auto auto 176px auto auto;
-  // margin-left: 10px;
-  // margin-right: 10px;
   grid-template-rows: 114px 114px 114px;
 
   .logo-list__logo {
     display: flex;
-    // outline: 1px solid rgba(0,0,0,.2);
     justify-content: center;
     align-items: center;
 
     span {
       display: block;
-      // background: rgba(0,0,0,.1) url(../assets/logo-list.png) 0 0 no-repeat;
       background: transparent url(../assets/logo-list.png) 0 0 no-repeat;
       background-size: 185px;
     }
 
     &.logo-list__logo--ai2 {
       span {
-        // background: rgba(0,0,0,.1) url(../assets/ai2-logo-full.png) 0 0 no-repeat;
         background: transparent url(../assets/ai2-logo-full.png) 0 0 no-repeat;
         background-size: 194px;
         width: 194px;
