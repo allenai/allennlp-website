@@ -1,0 +1,170 @@
+.logo-list {
+  margin-top: 40px;
+  margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: auto auto 176px auto auto;
+
+  .logo-list__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 114px;
+
+    span {
+      display: block;
+      background: transparent url(../assets/logo-list.png) 0 0 no-repeat;
+      background-size: 185px;
+    }
+
+    &.logo-list__logo--ai2 {
+      span {
+        background: transparent url(../assets/ai2-logo-full.png) 0 0 no-repeat;
+        background-size: 194px;
+        width: 194px;
+        height: 38px;
+      }
+    }
+
+    &.logo-list__logo--fair {
+      span {
+        width: 170px;
+        height: 22px;
+      }
+    }
+
+    &.logo-list__logo--airbnb {
+      span {
+        width: 131px;
+        height: 45px;
+        background-position: 0 -22px;
+      }
+    }
+
+    &.logo-list__logo--alexa {
+      span {
+        width: 170px;
+        height: 32px;
+        background-position: 0 -67px;
+      }
+    }
+
+    &.logo-list__logo--uw {
+      span {
+        width: 176px;
+        height: 37px;
+        background-position: 0 -99px;
+      }
+    }
+
+    &.logo-list__logo--usc {
+      span {
+        width: 181px;
+        height: 44px;
+        background-position: 0 -136px;
+      }
+    }
+
+    &.logo-list__logo--stony-brook {
+      span {
+        width: 153px;
+        height: 58px;
+        background-position: 0 -180px;
+        margin-top: -2px;
+      }
+    }
+
+    &.logo-list__logo--cmu {
+      span {
+        width: 111px;
+        height: 74px;
+        background-position: 0 -238px;
+      }
+    }
+
+    &.logo-list__logo--uci {
+      span {
+        width: 182px;
+        height: 33px;
+        background-position: 0 -312px;
+      }
+    }
+
+    &.logo-list__logo--cambridge {
+      span {
+        width: 164px;
+        height: 39px;
+        background-position: 0 -345px;
+      }
+    }
+
+    &.logo-list__logo--edinburgh {
+      span {
+        width: 185px;
+        height: 49px;
+        background-position: 0 -384px;
+      }
+    }
+
+    &.logo-list__logo--penn {
+      span {
+        width: 145px;
+        height: 51px;
+        background-position: 0 -433px;
+      }
+    }
+
+    &.logo-list__logo--nyu {
+      span {
+        width: 127px;
+        height: 48px;
+        margin-top: -4px;
+        background-position: 0 -484px;
+      }
+    }
+
+    &.logo-list__logo--sheffield {
+      span {
+        width: 135px;
+        height: 62px;
+        background-position: 0 -532px;
+      }
+    }
+
+    &.logo-list__logo--harvard {
+      span {
+        width: 169px;
+        height: 47px;
+        background-position: 0 -594px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .logo-list {
+    grid-template-columns: auto auto auto;
+
+    .logo-list__logo {
+      height: 100px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo-list {
+    margin-top: 30px;
+    margin-bottom: 0;
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .logo-list {
+    margin-top: 20px;
+    display: block;
+
+    .logo-list__logo {
+      height: 80px;
+    }
+  }
+}
