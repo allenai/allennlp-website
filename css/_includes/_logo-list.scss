@@ -3,12 +3,12 @@
   margin-bottom: 14px;
   display: grid;
   grid-template-columns: auto auto 176px auto auto;
-  grid-template-rows: 114px 114px 114px;
 
   .logo-list__logo {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 114px;
 
     span {
       display: block;
@@ -143,7 +143,10 @@
 @media screen and (max-width: 1024px) {
   .logo-list {
     grid-template-columns: auto auto auto;
-    grid-template-rows: 100px 100px 100px 100px 100px;
+
+    .logo-list__logo {
+      height: 100px;
+    }
   }
 }
 
@@ -152,7 +155,6 @@
     margin-top: 30px;
     margin-bottom: 0;
     grid-template-columns: auto auto;
-    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px;
   }
 }
 
