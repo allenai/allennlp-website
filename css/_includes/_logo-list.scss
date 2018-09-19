@@ -139,3 +139,30 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .logo-list {
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo-list {
+    margin-top: 30px;
+    margin-bottom: 0;
+    grid-template-columns: auto auto;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .logo-list {
+    margin-top: 20px;
+    display: block;
+
+    .logo-list__logo {
+      height: 80px;
+    }
+  }
+}
