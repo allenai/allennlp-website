@@ -1,0 +1,33 @@
+{% comment %}
+
+    SUPPORTED LANGUAGES
+
+{% endcomment %}
+{% assign formattedLang = include.language | downcase %}
+{% if formattedLang == "bash" %}
+  {% highlight bash %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "python" %}
+  {% highlight python %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "c" %}
+  {% highlight c %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "perl" %}
+  {% highlight perl %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "cuda" %}
+  {% highlight cuda %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "html" %}
+  {% highlight html %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "javascript" %}
+  {% highlight javascript %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "css" %}
+  {% highlight css %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "scss" %}
+  {% highlight scss %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "sql" %}
+  {% highlight sql %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "java" %}
+  {% highlight java %}{{ include.code }}{% endhighlight %}
+{% elsif formattedLang == "json" %}
+  {% highlight json %}{{ include.code }}{% endhighlight %}
+{% else %}
+  <pre><code>{{ include.code }}</code></pre>
+{% endif %}

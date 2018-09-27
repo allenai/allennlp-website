@@ -113,8 +113,31 @@
 
       pre {
         box-shadow: 0 0 40*$em fade-out($black, 0.95);
+        margin: 0;
+
         code {
           background: $white;
+        }
+      }
+
+      figure.highlight {
+        margin: 0;
+      }
+
+      h4 {
+        opacity: .66;
+        margin-bottom: 15px;
+
+        span {
+          opacity: .75;
+          font-size: 14px;
+          font-weight: normal;
+          padding-left: 4px;
+          text-transform: capitalize;
+        }
+
+        &:not(:first-child) {
+          margin-top: 30px;
         }
       }
 
