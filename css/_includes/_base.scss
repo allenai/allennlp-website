@@ -112,8 +112,13 @@ li > code {
   padding: 2*$em 6*$em;
 }
 
-pre {
+pre,
+figure.highlight {
   margin: 2em 0;
+}
+
+figure.highlight > pre {
+  margin: 0;
 }
 
 h1,

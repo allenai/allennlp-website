@@ -31,12 +31,20 @@
               {% for tab in model.codeTabs %}
                 <div data-tab="{{ tab.label | slugify }}" class="tab__page">
                   <div class="tab__page__content">
-                    {% if tab.code %}
-                      <pre><code>{{ tab.code }}</code></pre>
-                    {% elsif tab.text %}
+                    {% if tab.text %}
                       <div class="t-sm">
                         {{ tab.text | markdownify }}
                       </div>
+                    {% endif %}
+                    {% if tab.codeBlocks %}
+                      {% for codeBlock in tab.codeBlocks %}
+                        {% if codeBlock.heading %}
+                          <h4>{{ codeBlock.heading }}{% if codeBlock.language %} <span>( {{ codeBlock.language }} )</span>{% endif %}</h4>
+                        {% endif %}
+                        {% if codeBlock.code %}
+                          {% include highlight.html language=codeBlock.language code=codeBlock.code %}
+                        {% endif %}
+                      {% endfor %}
                     {% endif %}
                   </div>
                 </div>
