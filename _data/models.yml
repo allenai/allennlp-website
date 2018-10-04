@@ -299,3 +299,44 @@
   demoUrl: "http://demo.allennlp.org/open-information-extraction"
 
 ###############################################################################
+
+- title: "Event2Mind"
+  description: |
+    The Event2Mind dataset proposes a commonsense inference task between events and mental states. In particular, it takes events as lightly preprocessed text and produces likely intents and reactions for participants of the event. This model is a reimplementation of [the original Event2Mind neural inference model (Rashkin et al, 2018)](https://www.semanticscholar.org/paper/b89f8a9b2192a8f2018eead6b135ed30a1f2144d) and was trained on [the Event2Mind corpus](https://github.com/uwnlp/event2mind/tree/9855e83c53083b62395cc7e1af6ee9411515a14e/docs/data). It achieved unigram recall of 36% for Person X's intent, 41% for Person X's reaction and 65% for others' reactions.
+
+  codeTabs:
+  - label: "Prediction"
+    codeBlocks:
+    - language: "Bash"
+      heading: "On the command line"
+      code: |
+        echo '{"source": "PersonX drops a hint"}' > event2mind-example.jsonl
+        allennlp predict  \
+            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz  \
+            event2mind-example.jsonl
+
+    - language: "Python"
+      heading: "As a library"
+      code: |
+        from allennlp.predictors.predictor import Predictor
+        predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz")
+        predictor.predict(
+          source="PersonX drops a hint"
+        )
+
+  - label: "Evaluation"
+    codeBlocks:
+    - language: "Bash"
+      code: |
+        allennlp evaluate \
+            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz  \
+            https://raw.githubusercontent.com/uwnlp/event2mind/9855e83c53083b62395cc7e1af6ee9411515a14e/docs/data/test.csv
+
+  - label: "Training"
+    codeBlocks:
+    - language: "Bash"
+      code: |
+        allennlp train training_config/event2mind.json --serialization-dir output_path
+  demoUrl: "http://demo.allennlp.org/event2mind"
+
+###############################################################################
