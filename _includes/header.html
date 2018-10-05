@@ -1,11 +1,31 @@
-<header>
+<header class="header">
   <div id="header__mow-nav-trigger" class="js-mow-nav-trigger">
     <svg>
       <use xlink:href="#icon__menu"></use>
     </svg>
   </div>
   <div class="header__content">
-    <h1 class="header__content__logo"><a href="/"><svg><use xlink:href="#icon__allennlp-logo"></use></svg><span class="u-hidden">AllenNLP</span></a></h1>
-    {% include nav-main.html %}
+    <div class="header__logos">
+      <a href="https://allenai.org/">
+        <img class="header__ai2-logo" src="/assets/ai2-logo-header.png">
+      </a>
+      <img class="header__chevron" src="/assets/chevron.svg">
+      <a href="/">
+        <img class="header__allennlp-logo" src="/assets/allennlp-logo-color.png">
+      </a>
+    </div>
+    {% comment %}{% include nav-main.html %}{% endcomment %}
+    <nav>
+      <ul>
+        <li data-page="home"><a href="/" class="nav__link"><span>Home</span></a></li>
+        <li><a {% include demo-url.html %} class="nav__link"><span>Demo</span></a></li>
+        <li data-page="tutorials"><a href="/tutorials" class="nav__link"><span>Tutorials</span></a></li>
+        <li data-page="models"><a href="/models" class="nav__link"><span>Models</span></a></li>
+        <li data-page="elmo"><a href="/elmo" class="nav__link"><span>Elmo</span></a></li>
+        <li data-page="publications"><a href="/publications" class="nav__link"><span>Publications</span></a></li>
+        <li><a href="https://allenai.github.io/allennlp-docs/" target="_blank" class="nav__link"><span>Documentation</span></a></li>
+        <li><a href="https://github.com/allenai/allennlp" target="_blank" class="nav__link"><span>GitHub</span></a></li>
+      </ul>
+    </nav>
   </div>
 </header>
