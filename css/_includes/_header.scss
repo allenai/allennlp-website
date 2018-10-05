@@ -5,6 +5,7 @@
   box-shadow: 0 1px 0 0 rgba(0,0,0,.12),
               0 0 13px 2px rgba(0,0,0,.05);
   background: $white;
+  padding: 0 26px 0 36px;
 
   .header__content {
     align-items: center;
@@ -24,10 +25,16 @@
       padding: 0px;
       margin: 0px;
 
-      .header__ai2-logo {
+      .header__ai2-logo,
+      .header__ai2-icon {
         height: 55px;
         width: auto;
         margin: 0 -5px 1px 0;
+      }
+
+      .header__ai2-icon {
+        display: none;
+        margin-bottom: 5px;
       }
 
       .header__chevron {
@@ -98,11 +105,126 @@
       }
     }
   }
-}
 
-#header__mow-nav-trigger {
-  display: none;
-  svg {
+  #header__mow-nav-trigger {
+    width: 40*$em;
+    height: 40*$em;
+    position: absolute;
+    right: 11*$em;
+    top: 11*$em;
+    display: none;
+    z-index: 999;
+    cursor: pointer;
 
+    svg {
+      width: 20*$em;
+      height: 18*$em;
+      display: block;
+      margin-top: 10*$em;
+      margin-left: 10*$em;
+      fill: $blue;
+    }
   }
 }
+
+// Drop redundant "Home" link
+@media screen and (max-width: 1140px) {
+  .header {
+    li[data-page="home"] {
+      display: none;
+    }
+  }
+}
+
+// Switch to AI2 Icon
+@media screen and (max-width: 1080px) {
+  .header {
+    .header__content {
+      .header__logos {
+        .header__ai2-logo {
+          display: none;
+        }
+
+        .header__ai2-icon {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Switch to Mobile Menu
+@media screen and (max-width: 960px) {
+  .header {
+    padding: 0 $nav-padding 0 13px;
+
+    @include u-select-none;
+    height: auto;
+
+    #header__mow-nav-trigger {
+      display: block;
+    }
+
+    .header__content {
+      height: 60px;
+
+      .header__logos {
+        .header__ai2-icon {
+          width: 54px;
+          height: 44px;
+          margin-right: 7px;
+        }
+
+        .header__chevron {
+          height: 60px;
+        }
+
+        .header__allennlp-logo {
+          margin-top: 6px;
+          margin-left: -3px;
+        }
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+// <header class="header">
+//   <div id="header__mow-nav-trigger" class="js-mow-nav-trigger">
+//     <svg>
+//       <use xlink:href="#icon__menu"></use>
+//     </svg>
+//   </div>
+//   <div class="header__content">
+//     <div class="header__logos">
+//       <a href="https://allenai.org/">
+//         <img class="header__ai2-logo" src="/assets/ai2-logo-header.png">
+//       </a>
+//       <img class="header__chevron" src="/assets/chevron.svg">
+//       <a href="/">
+//         <img class="header__allennlp-logo" src="/assets/allennlp-logo-color.png">
+//       </a>
+//     </div>
+//     <nav>
+//       <ul>
+//         <li data-page="home"><a href="/" class="nav__link"><span>Home</span></a></li>
+//         <li><a {% include demo-url.html %} class="nav__link"><span>Demo</span></a></li>
+//         <li data-page="tutorials"><a href="/tutorials" class="nav__link"><span>Tutorials</span></a></li>
+//         <li data-page="models"><a href="/models" class="nav__link"><span>Models</span></a></li>
+//         <li data-page="elmo"><a href="/elmo" class="nav__link"><span>Elmo</span></a></li>
+//         <li data-page="publications"><a href="/publications" class="nav__link"><span>Publications</span></a></li>
+//         <li><a href="https://allenai.github.io/allennlp-docs/" target="_blank" class="nav__link"><span>Documentation</span></a></li>
+//         <li><a href="https://github.com/allenai/allennlp" target="_blank" class="nav__link"><span>GitHub</span></a></li>
+//       </ul>
+//     </nav>
+//   </div>
+// </header>
