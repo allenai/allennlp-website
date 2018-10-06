@@ -156,7 +156,7 @@
 // Switch to Mobile Menu
 @media screen and (max-width: 960px) {
   .header {
-    padding: 0 $nav-padding 0 13px;
+    padding: 0;
 
     @include u-select-none;
     height: auto;
@@ -167,8 +167,12 @@
 
     .header__content {
       height: 60px;
+      height: auto;
+      display: block;
 
       .header__logos {
+        padding: 0 0 0 13px;
+
         .header__ai2-icon {
           width: 54px;
           height: 44px;
@@ -187,6 +191,65 @@
 
       nav {
         display: none;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        z-index: -999;
+        padding-bottom: 2*$em;
+        background: $white;
+        transition: opacity $transition-properties,
+                    z-index 0s linear,
+                    position 0s linear;
+
+        &.nav--mow-active {
+          display: block;
+          z-index: 9999;
+          position: static;
+        }
+
+        ul,
+        ul li,
+        ul li a {
+          @include u-mp0;
+          display: block;
+          width: auto;
+          height: auto;
+          line-height: inherit;
+        }
+
+        ul li {
+          border-top: 1px solid rgb(224,224,224);
+        }
+
+        ul li a.nav__link {
+          display: block;
+          width: auto;
+          height: auto;
+          line-height: inherit;
+          padding: 14*$em 18*$em;
+        }
+
+        ul li:first-child a.nav__link {
+          margin-top: 0;
+        }
+
+        ul li.nav__link--selected {
+          a {
+            border-bottom-width: 0;
+
+            &:after {
+              @include u-pe;
+              @include u-h100;
+              width: 4*$em;
+              background: $blue;
+              display: block;
+              top: 0;
+              left: 0;
+              position: absolute;
+            }
+          }
+        }
       }
     }
   }

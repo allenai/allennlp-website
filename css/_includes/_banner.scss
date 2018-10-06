@@ -102,6 +102,14 @@
   max-width: 620*$em;
 }
 
+.banner--interior-hero.banner--short {
+  min-height: 0;
+
+  .constrained.constrained--sm {
+    padding: 10px 20px 30px 0;
+  }
+}
+
 .banner--padded .constrained {
   padding: 76*$em $nav-padding * 2;
 
