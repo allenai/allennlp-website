@@ -71,14 +71,14 @@
             color: $blue;
             text-decoration: none;
             transition: color 150ms linear;
-            font-weight: normal;
+            font-weight: 600;
+            @include t-crisp;
             font-size: 15px;
             line-height: 1.4;
             position: relative;
             height: 100%;
             border-bottom: 3px solid rgba(0, 0, 0, 0);
             padding: 34px 10px 0px;
-            @include t-smooth;
 
             span {
               color: inherit;
@@ -98,7 +98,7 @@
           &.nav__link--selected {
             a {
               border-bottom-color: $blue;
-              font-weight: bold;
+              @include t-smooth;
             }
           }
         }
