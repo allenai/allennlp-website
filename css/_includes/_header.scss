@@ -1,126 +1,163 @@
-header {
-  @include flex-container-hcentered;
-  @include u-w100;
-  background: black;
-  height: 82*$em;
-  position: relative;
-  z-index: 1;
+.header {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  box-shadow: 0 1px 0 0 rgba(0,0,0,.12),
+              0 0 13px 2px rgba(0,0,0,.05);
+  background: $white;
+  padding: 0 26px 0 36px;
+
+  .header__content {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: $max-page-width + ($nav-padding * 4.75);
+    font-size: 15px;
+    height: 88px;
+    margin: 0px auto;
+
+    .header__logos {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+      padding: 0px;
+      margin: 0px;
+
+      .header__ai2-logo,
+      .header__ai2-icon {
+        height: 55px;
+        width: auto;
+        margin: 0 -5px 1px 0;
+      }
+
+      .header__ai2-icon {
+        display: none;
+        margin-bottom: 5px;
+      }
+
+      .header__chevron {
+        height: 88px;
+        width: auto;
+      }
+
+      .header__allennlp-logo {
+        height: 23px;
+        width: 131px;
+        margin: 2px 0 0 -14px;
+      }
+    }
+
+    nav {
+      height: 100%;
+      ul {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+
+          a {
+            box-sizing: border-box;
+            display: block;
+            color: $blue;
+            text-decoration: none;
+            transition: color 150ms linear;
+            font-weight: 600;
+            @include t-crisp;
+            font-size: 15px;
+            line-height: 1.4;
+            position: relative;
+            height: 100%;
+            border-bottom: 3px solid rgba(0, 0, 0, 0);
+            padding: 34px 10px 0px;
+
+            span {
+              color: inherit;
+              margin-bottom: 1px;
+            }
+
+            &:hover {
+              color: #bed2dd;
+            }
+
+            &:active {
+              color: #374168;
+              opacity: 1;
+            }
+          }
+
+          &.nav__link--selected {
+            a {
+              border-bottom-color: $blue;
+              @include t-smooth;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #header__mow-nav-trigger {
+    width: 40*$em;
+    height: 40*$em;
+    position: absolute;
+    right: 11*$em;
+    top: 11*$em;
+    display: none;
+    z-index: 999;
+    cursor: pointer;
+
+    svg {
+      width: 20*$em;
+      height: 18*$em;
+      display: block;
+      margin-top: 10*$em;
+      margin-left: 10*$em;
+      fill: $blue;
+    }
+  }
 }
 
-.header__content {
-  @include flex-container;
-  @include u-100;
-  max-width: $max-page-width + ($nav-padding * 4) - 6*$em;
-
-  // Header Nav
-
-  nav {
-    @include u-h100;
-    margin-left: auto;
-  }
-
-  nav ul {
-    @include u-h100;
-    @include flex-container-align-right;
-    margin-right: $nav-padding;
-  }
-
-  nav li {
-    @include u-h100;
-
-    &.nav__home {
+// Drop redundant "Home" link
+@media screen and (max-width: 1140px) {
+  .header {
+    li[data-page="home"] {
       display: none;
     }
   }
+}
 
-  .nav__link {
-    @include u-h100;
-    @include flex-container-vcentered;
-    padding: 0 $nav-padding;
-    position: relative;
-  }
+// Switch to AI2 Icon
+@media screen and (max-width: 1080px) {
+  .header {
+    .header__content {
+      .header__logos {
+        .header__ai2-logo {
+          display: none;
+        }
 
-  .nav__link span {
-    color: fade-out($white, 0.34);
-  }
-
-  .nav__link--selected {
-    .nav__link {
-      background: fade-out($white, 0.87);
-
-      span {
-        color: $white;
-      }
-
-      &:after {
-        @include u-pe;
-        @include u-w100;
-        height: 6*$em;
-        background: $blue;
-        display: block;
-        bottom: 0;
-        left: 0;
-        position: absolute;
+        .header__ai2-icon {
+          display: block;
+        }
       }
     }
   }
 }
 
-.header__content__logo {
-  @include flex-container-vcentered;
-  @include u-mp0;
-  @include font-size-reset;
-  margin-left: $nav-padding * 2;
-}
-
-.header__content__logo a {
-  @include u-mp0;
-  display: block;
-}
-
-header svg {
-  fill: $white;
-  width: 124*$em;
-  height: 22*$em;
-}
-
-body[data-page="home"] header {
-  .header__content__logo {
-    display: none;
-  }
-}
-
-// Mobile
-
-#header__mow-nav-trigger {
-  width: 40*$em;
-  height: 40*$em;
-  position: absolute;
-  right: 11*$em;
-  top: 11*$em;
-  display: none;
-  z-index: 999;
-  cursor: pointer;
-
-  svg {
-    width: 20*$em;
-    height: 18*$em;
-    display: block;
-    margin-top: 10*$em;
-    margin-left: 10*$em;
-    fill: fade-out($white, 0.5);
-  }
-}
-
-@media screen and (min-width: 961px) {
-  body[data-page="home"] header {
-    background: transparent;
-    position: absolute;
-  }
-}
-
+// Switch to Mobile Menu
 @media screen and (max-width: 960px) {
-  header {
+  .header {
+    padding: 0;
+
     @include u-select-none;
     height: auto;
 
@@ -129,17 +166,27 @@ body[data-page="home"] header {
     }
 
     .header__content {
+      height: 60px;
+      height: auto;
       display: block;
 
-      .header__content__logo {
-        width: 100% !important;
-        margin-left: 0;
-        box-sizing: border-box;
-        height: 22*$em;
-        padding: 30*$em 30*$em 30*$em 20*$em !important;
-        background: $black;
-        position: relative;
-        z-index: 99;
+      .header__logos {
+        padding: 0 0 0 13px;
+
+        .header__ai2-icon {
+          width: 54px;
+          height: 44px;
+          margin-right: 7px;
+        }
+
+        .header__chevron {
+          height: 60px;
+        }
+
+        .header__allennlp-logo {
+          margin-top: 6px;
+          margin-left: -3px;
+        }
       }
 
       nav {
@@ -150,13 +197,20 @@ body[data-page="home"] header {
         position: fixed;
         z-index: -999;
         padding-bottom: 2*$em;
+        background: $white;
         transition: opacity $transition-properties,
                     z-index 0s linear,
                     position 0s linear;
 
+        &.nav--mow-active {
+          display: block;
+          z-index: 9999;
+          position: static;
+        }
+
         ul,
         ul li,
-        ul li a.nav__link {
+        ul li a {
           @include u-mp0;
           display: block;
           width: auto;
@@ -164,13 +218,25 @@ body[data-page="home"] header {
           line-height: inherit;
         }
 
-        ul li.nav__link--selected {
-          a.nav__link {
-            background: $off-black;
+        ul li {
+          border-top: 1px solid rgb(224,224,224);
+        }
 
-            span {
-              color: $white;
-            }
+        ul li a.nav__link {
+          display: block;
+          width: auto;
+          height: auto;
+          line-height: inherit;
+          padding: 14*$em 18*$em;
+        }
+
+        ul li:first-child a.nav__link {
+          margin-top: 0;
+        }
+
+        ul li.nav__link--selected {
+          a {
+            border-bottom-width: 0;
 
             &:after {
               @include u-pe;
@@ -184,71 +250,44 @@ body[data-page="home"] header {
             }
           }
         }
-
-        ul li a.nav__link {
-          background: $off-black;
-          margin-top: 2*$em;
-          display: block;
-          width: auto;
-          height: auto;
-          line-height: inherit;
-          padding: 14*$em 18*$em;
-        }
-
-        ul li:first-child a.nav__link {
-          margin-top: 0;
-        }
-
-        &.nav--mow-active {
-          display: block;
-          z-index: 9999;
-          position: static;
-        }
       }
     }
   }
 }
 
-/* Post-launch edits */
 
-.nav__badge {
-  margin-top: 2px;
-  display: block;
-  width: 78px;
-  height: 78px;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
 
-.nav__badge__bg {
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border-radius: 100%;
-  box-shadow: 0 0 25px rgba(0,0,0,.4);
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
 
-.nav__badge__logo {
-  width: 34px;
-  height: 27px;
-  background: url("../assets/ai2-logo.svg") center center no-repeat;
-  background-size: 100%;
-  display: block;
-  margin: 0.43em 0 0 -0.1em;
-}
 
-.nav__badge__label,
-footer .nav__badge {
-  display: none;
-}
 
-@media screen and (max-width:1030px) {
-  .header__content .nav__link {
-    padding: 0 .85em;
-  }
-}
+
+// <header class="header">
+//   <div id="header__mow-nav-trigger" class="js-mow-nav-trigger">
+//     <svg>
+//       <use xlink:href="#icon__menu"></use>
+//     </svg>
+//   </div>
+//   <div class="header__content">
+//     <div class="header__logos">
+//       <a href="https://allenai.org/">
+//         <img class="header__ai2-logo" src="/assets/ai2-logo-header.png">
+//       </a>
+//       <img class="header__chevron" src="/assets/chevron.svg">
+//       <a href="/">
+//         <img class="header__allennlp-logo" src="/assets/allennlp-logo-color.png">
+//       </a>
+//     </div>
+//     <nav>
+//       <ul>
+//         <li data-page="home"><a href="/" class="nav__link"><span>Home</span></a></li>
+//         <li><a {% include demo-url.html %} class="nav__link"><span>Demo</span></a></li>
+//         <li data-page="tutorials"><a href="/tutorials" class="nav__link"><span>Tutorials</span></a></li>
+//         <li data-page="models"><a href="/models" class="nav__link"><span>Models</span></a></li>
+//         <li data-page="elmo"><a href="/elmo" class="nav__link"><span>Elmo</span></a></li>
+//         <li data-page="publications"><a href="/publications" class="nav__link"><span>Publications</span></a></li>
+//         <li><a href="https://allenai.github.io/allennlp-docs/" target="_blank" class="nav__link"><span>Documentation</span></a></li>
+//         <li><a href="https://github.com/allenai/allennlp" target="_blank" class="nav__link"><span>GitHub</span></a></li>
+//       </ul>
+//     </nav>
+//   </div>
+// </header>
