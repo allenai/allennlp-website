@@ -35,3 +35,12 @@
   - code:   "https://github.com/allenai/allennlp/pull/1594"
 
 ###############################################################################
+
+- title:    "Question Answering in Context"
+  authors:  "Eunsol Choi, He He, Mohit Iyyer, Mark Yatskar, Wen-tau Yih, Yejin Choi, Percy Liang, Luke Zettlemoyer"
+  venue:    "EMNLP 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/QuAC-%3A-Question-Answering-in-Context-Choi-He/901abeeb03a0652fff6f41e1018d80dcf76a82bb"
+  - code:   "https://github.com/allenai/allennlp/blob/master/allennlp/models/reading_comprehension/dialog_qa.py"
+
+###############################################################################
