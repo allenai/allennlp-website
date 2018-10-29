@@ -7,6 +7,15 @@
 
 ###############################################################################
 
+- title:    "Tracking State Changes in Procedural Text: A Challenge Dataset and Models for Process Paragraph Comprehension"
+  authors:  "Bhavana Dalvi Mishra, Lifu Huang, Niket Tandon, Wen-tau Yih, Peter Clark"
+  venue:    "NAACL 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Tracking-State-Changes-in-Procedural-Text%3A-A-and-Mishra-Huang/0f392f404e9611ef055615b953ba9c26bc53a2b1"
+  - code:   "https://github.com/allenai/propara"
+
+###############################################################################
+
 - title:    "Deep enhanced representation for implicit discourse relation recognition‏"
   authors:  "Hongxiao Bai, Hai Zhao"
   venue:    "COLING 2018"
