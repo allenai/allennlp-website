@@ -102,6 +102,27 @@ They can be easily added to existing models and significantly improve the state 
 The ELMo 5.5B model was trained on a dataset of 5.5B tokens consisting of Wikipedia (1.9B) and all of the monolingual news crawl data from WMT 2008-2012 (3.6B).
 In tasks where we have made a direct comparison, the 5.5B model has slightly higher performance then the original ELMo model, so we recommend it as a default model.
 </p>
+    <h1>Contributed ELMo Models</h1>
+    ELMo models have been contributed for other languages.  We maintain a list of contributed models
+    here but are unable to respond to quality issues ourselves.
+    <table>
+      <tr style="border-bottom: 2px solid black;">
+        <td style="border-right: 1px solid black;"><b>Model</b></td>
+        <td><b>Link(Weights/Options File)</b></td>
+        <td style="border-right: 2px solid black;">&nbsp;</td>
+        <td><b>Contributor</td>
+      </tr>
+      <tr>
+        <td style="border-right: 1px solid black;">Portuguese</td>
+        <td><a href="https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/contributed/pt/elmo_pt_weights.hdf5">weights<a/></td>
+        <td style="border-right: 2px solid black;"><a href="https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/contributed/pt/elmo_pt_options.json">options<a/></td>
+        <td>Federal University of Goiás (UFG). Pedro Vitor Quinta de Castro, Anderson da Silva
+          Soares, Nádia Félix Felipe da Silva, Rafael Teixeira Sousa, Ayrton Denner da Silva Amaral.
+          Sponsered by Data-H, Aviso Urgente, and Americas Health Labs.
+        </td>
+      </tr>
+    </table>
+    </h1>
 
     <h1>Code releases and AllenNLP integration</h1>
     <p>There are reference implementations of the pre-trained bidirectional language model available in both PyTorch and TensorFlow.  The PyTorch verison is fully integrated into AllenNLP, with a <a href="https://github.com/allenai/allennlp/blob/master/tutorials/how_to/elmo.md">detailed tutorial available.</a>  The TensorFlow version is also available in <a href="https://github.com/allenai/bilm-tf">bilm-tf.</a>
