@@ -1,3 +1,12 @@
+- title:    "Syntactic Scaffolds for Semantic Structures"
+  authors:  "Swabha Swayamdipta, Sam Thomson, Kenton Lee, Luke Zettlemoyer, Chris Dyer, Noah A. Smith"
+  venue:    "EMNLP 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Syntactic-Scaffolds-for-Semantic-Structures-Swayamdipta-Thomson/d3d919b9e67c4100127ee4d828069b116bdcb7d8"
+  - code:   "https://github.com/swabhs/scaffolding"
+
+###############################################################################
+
 - title:    "Reasoning about Actions and State Changes by Injecting Commonsense Knowledge"
   authors:  "Niket Tandon, Bhavana Dalvi Mishra, Joel Grus, Wen-tau Yih, Antoine Bosselut, Peter Clark"
   venue:    "EMNLP 2018"
