@@ -1,3 +1,12 @@
+- title:    "A Hierarchical Multi-task Approach for Learning Embeddings from Semantic Tasks"
+  authors:  "Victor Sanh, Thomas Wolf, Sebastian Ruder"
+  venue:    "AAAI 2019"
+  links:
+  - paper:  "https://arxiv.org/abs/1811.06031"
+  - code:   "https://github.com/huggingface/hmtl"
+
+###############################################################################
+
 - title:    "Syntactic Scaffolds for Semantic Structures"
   authors:  "Swabha Swayamdipta, Sam Thomson, Kenton Lee, Luke Zettlemoyer, Chris Dyer, Noah A. Smith"
   venue:    "EMNLP 2018"
