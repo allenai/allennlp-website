@@ -336,7 +336,8 @@
     codeBlocks:
     - language: "Bash"
       code: |
-        allennlp train training_config/event2mind.jsonnet --serialization-dir output_path
+        allennlp dry-run -o '{"dataset_reader": {"dummy_instances_for_vocab_generation": true}} {"vocabulary": {"min_count": {"source_tokens": 2}}}' training_config/event2mind.json --serialization-dir vocab_output_path
+        allennlp train -o '{"vocabulary": {"directory_path": "vocab_output_path/vocabulary/"}}' training_config/event2mind.json --serialization-dir output_path
   demoUrl: "http://demo.allennlp.org/event2mind"
 
 ###############################################################################
