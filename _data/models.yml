@@ -8,10 +8,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"passage": "The Matrix is a 1999 science fiction action film written and directed by The Wachowskis, starring Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano.", "question": "Who stars in The Matrix?"}' > mc-examples.jsonl
+        echo '{"passage": "The Matrix is a 1999 science fiction action film written and directed by The Wachowskis, starring Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano.", "question": "Who stars in The Matrix?"}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz \
-            mc-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -51,10 +50,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' > te-examples.jsonl
+        echo '{"hypothesis": "Two women are sitting on a blanket near some rocks talking about politics.", "premise": "Two women are wandering along the shore drinking iced tea."}' |
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz \
-            te-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/decomposable-attention-elmo-2018.02.19.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -94,10 +92,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' > srl-examples.jsonl
+        echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.05.25.tar.gz \
-            srl-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.05.25.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -130,10 +127,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"document": "The woman reading a newspaper sat on the bench with her dog."}' > coref-examples.jsonl
+        echo '{"document": "The woman reading a newspaper sat on the bench with her dog."}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz \
-            coref-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -166,10 +162,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' > ner-examples.jsonl
+        echo '{"sentence": "Did Uriah honestly think he could beat The Legend of Zelda in under three hours?"}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2018.04.26.tar.gz \
-            ner-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/ner-model-2018.04.26.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -202,10 +197,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > cparse-examples.jsonl
+        echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/elmo-constituency-parser-2018.03.14.tar.gz \
-            cparse-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/elmo-constituency-parser-2018.03.14.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -238,10 +232,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' > dparse-examples.jsonl
+        echo '{"sentence": "If I bring 10 dollars tomorrow, can you buy me lunch?"}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/biaffine-dependency-parser-ptb-2018.08.23.tar.gz \
-            dparse-examples.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/biaffine-dependency-parser-ptb-2018.08.23.tar.gz -
 
     - language: "Python"
       heading: "As a library"
@@ -274,10 +267,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"sentence": "John decided to run for office next month."}' > oie-examples.jsonl
+        echo '{"sentence": "John decided to run for office next month."}' | \
         allennlp predict https://s3-us-west-2.amazonaws.com/allennlp/models/openie-model.2018-08-20.tar.gz \
-            oie-examples.jsonl \
-            --predictor=open-information-extraction
+            - --predictor=open-information-extraction
 
     - language: "Python"
       heading: "As a library"
@@ -310,10 +302,9 @@
     - language: "Bash"
       heading: "On the command line"
       code: |
-        echo '{"source": "PersonX drops a hint"}' > event2mind-example.jsonl
+        echo '{"source": "PersonX drops a hint"}' | \
         allennlp predict  \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz  \
-            event2mind-example.jsonl
+            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz -
 
     - language: "Python"
       heading: "As a library"
