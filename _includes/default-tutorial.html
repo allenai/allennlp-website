@@ -186,7 +186,7 @@ class LstmTagger(Model):
 {% highlight python %}
     def forward(self,
                 sentence: Dict[str, torch.Tensor],
-                labels: torch.Tensor = None) -> torch.Tensor:
+                labels: torch.Tensor = None) -> Dict[str, torch.Tensor]:
 {% endhighlight %}
 </div>
 <div class="annotated-code__code-block" id="c26">
