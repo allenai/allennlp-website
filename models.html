@@ -20,10 +20,13 @@
         <div class="constrained constrained--sm">
           <div class="banner--interior-hero__content">
             <h1>Models</h1>
-            <p class="t-sm">See how our models compare to the competition. AllenNLP provides strong
-            performance with reasonable runtimes, along with the infrastructure to easily run them.
-            All of our models are for the English language although we do have contributed models
-            for other languages.</p>
+            <p class="t-sm">AllenNLP provides strong performance with reasonable runtimes, along
+            with the infrastructure to easily run them.  All of our models are for the English
+            language although we do have some contributed models for other languages.</p>
+
+            <p class="t-sm">Please note that <a href="https://docs.nvidia.com/deeplearning/sdk/pdf/cuDNN-Developer-Guide.pdf">some CuDNN methods are non-deterministic</a>.
+            Additionally results may vary across drivers and GPU architectures.  Included below are the best
+            versions of the models we have trained.  If you retrain a model you may get different scores.</p>
           </div>
         </div>
       </div>
@@ -38,16 +41,6 @@
             </nav>
           </div>
           <div class="col-layout__content pure-u-1 pure-u-lg-3-4">
-
-            <div id="a-note-on-non-determinism" class="banner banner--intro-section js-dynamic-section" data-group="Our Models" data-label="A Note on Non-determinism">
-              <div class="constrained constrained--med constrained--intro-section">
-                <div class="padded-med">
-                  <h3>A Note on Non-determinism</h3>
-                  <p class="t-sm">It is well known (see <a href="https://www.semanticscholar.org/paper/Reporting-Score-Distributions-Makes-a-Difference-P-Reimers-Gurevych/0eae432f7edacb262f3434ecdb2af707b5b06481" target="_blank">Reimers and Gurevych, 2017</a>) that multiple runs of probabilistic deep learning algorithms can have large variance in overall scores.  Ideally this variance could be controlled by setting random-number generator seeds, and others would be able to retrain models with reproducible results.  Unfortunately, some CuDNN methods are non-deterministic (see section 2.5 of the <a href="https://docs.nvidia.com/deeplearning/sdk/pdf/cuDNN-Developer-Guide.pdf" target="_blank">CuDNN Developer's Guide</a>) and the rest are only deterministic on the same architecture, with the same number of GPU multiprocessors, and using the same version of CuDNN.</p>
-                  <p class="t-sm">We provide the best models we trained.  In other words, we have trained our models multiple times and selected the best result.  Please keep in mind that if you retrain any of the following models, you are likely to end up with a slightly worse evaluation.</p>
-                </div>
-              </div>
-            </div>
 
             {% include models-template.html %}
             {% include gallery-template.html %}
