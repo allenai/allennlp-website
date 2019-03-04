@@ -1,0 +1,61 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - DROP Dataset</title>
+  </head>
+  <body id="top" data-page="models">
+    <div id="page-content">
+      {% include header.html %}
+
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h2>DROP: A Reading Comprehension Benchmark Requiring <b>D</b>iscrete <b>R</b>easoning <b>O</b>ver <b>P</b>aragraphs</h2>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+
+        <p>
+        With system performance on existing reading comprehension benchmarks nearing or surpassing human performance, we need a new, hard
+        dataset that improves systems' capabilities to actually <i>read</i> paragraphs of text.  DROP is a crowdsourced,
+        adversarially-created, 96k-question benchmark, in which a system must resolve references in a question, perhaps to multiple input
+        positions, and perform discrete operations over them (such as addition, counting, or sorting).  These operations require a much
+        more comprehensive understanding of the content of paragraphs than what was necessary for prior datasets.
+        </p>
+
+        <p>
+        AllenNLP provides an easy way for you to get started working on this dataset, with a dataset reader that can be used with any model
+        you design, and a reference implementation of the NAQANet model that was introduced in the DROP paper.  Links to more information
+        are below.
+        </p>
+
+        <li><a href="", target="_blank">Paper</a>, describing the dataset and our initial model for it, Numerically-Augmented QANet
+          (NAQANet), that adds some rudimentary numerical reasoning capability on top of
+          <a href="https://www.semanticscholar.org/paper/QANet%3A-Combining-Local-Convolution-with-Global-for-Yu-Dohan/8c1b00128e74f1cd92aede3959690615695d5101">QANet</a>.</li>
+        <li><a href="https://s3-us-west-2.amazonaws.com/allennlp/datasets/drop/drop_dataset.zip">Data</a>, with about 77k questions in the
+        train set and 9.5k questions in the dev set (and a similar number in a hidden test set).</li>
+        <li>Code for the NAQANet model lives in AllenNLP:
+          <a href="https://github.com/allenai/allennlp/blob/master/allennlp/data/dataset_readers/reading_comprehension/drop.py">dataset reader</a>,
+          <a href="https://github.com/allenai/allennlp/blob/master/allennlp/models/reading_comprehension/naqanet.py">NAQANet model</a>.
+          Code for the other baselines in the paper may get added to AllenNLP in the future; open an issue on github if there's something
+          in particular you'd like to see.
+
+        <li><a href="https://leaderboard.allenai.org", target="_blank">Leaderboard</a> with the hidden test set coming soon on
+            <a href="https://leaderboard.allenai.org">leaderboard.allenai.org</a>.  It will have an automated docker-based evaluation on
+            the test set, and it will be up in time for evaluating EMNLP submissions (by early April).
+        </li>
+
+        <li><a href="https://demo.allennlp.org/reading-comprehension/NjI4NjM5">NAQANet demo</a> - see how well current NLP systems
+          understand paragraphs! If you find something interesting, <a href="https://twitter.com/ai2_allennlp">let us know on twitter</a>!
+      </div>
+
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
