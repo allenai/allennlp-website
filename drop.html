@@ -14,6 +14,7 @@
         <div class="constrained constrained--sm">
           <div class="banner--interior-hero__content">
             <h2>DROP: A Reading Comprehension Benchmark Requiring <b>D</b>iscrete <b>R</b>easoning <b>O</b>ver <b>P</b>aragraphs</h2>
+            <p class="t-sm">Dheeru Dua, Yizhong Wang, Pradeep Dasigi,<br> Gabriel Stanovsky, Sameer Singh and Matt Gardner<br>NAACL 2019.</p>
           </div>
         </div>
       </div>
@@ -28,13 +29,13 @@
         </p>
 
         <p>
-        AllenNLP provides an easy way for you to get started working on this dataset, with a dataset reader that can be used with any model
-        you design, and a reference implementation of the NAQANet model that was introduced in the DROP paper.  Links to more information
-        are below.
+        AllenNLP provides an easy way for you to get started with this dataset, with a dataset reader that can be used with any model you
+        design, and a reference implementation of the NAQANet model that was introduced in the DROP paper.  Find more details in the links
+        below.
         </p>
 
-        <li><a href="TODO", target="_blank">Paper</a>, describing the dataset and our initial model for it, Numerically-Augmented QANet
-          (NAQANet), that adds some rudimentary numerical reasoning capability on top of
+        <li><a href="https://arxiv.org/abs/1903.00161", target="_blank">Paper</a>, describing the dataset and our initial model for it,
+          Numerically-Augmented QANet (NAQANet), that adds some rudimentary numerical reasoning capability on top of
           <a href="https://www.semanticscholar.org/paper/QANet%3A-Combining-Local-Convolution-with-Global-for-Yu-Dohan/8c1b00128e74f1cd92aede3959690615695d5101">QANet</a>.</li>
         <li><a href="https://s3-us-west-2.amazonaws.com/allennlp/datasets/drop/drop_dataset.zip">Data</a>, with about 77k questions in the
         train set and 9.5k questions in the dev set (and a similar number in a hidden test set).</li>
@@ -50,7 +51,21 @@
         </li>
 
         <li><a href="https://demo.allennlp.org/reading-comprehension/NjI4NjM5">NAQANet demo</a> - see how well current NLP systems
-          understand paragraphs! If you find something interesting, <a href="https://twitter.com/ai2_allennlp">let us know on twitter</a>!
+          understand paragraphs! The examples in the select box at the top should give you some sense of what kinds of questions are in
+          DROP, what the system can do well, and a bit of what it can't. Change the paragraphs, input your own, try your own complex
+          questions, and see what you find.  If you find something interesting,
+          <a href="https://twitter.com/ai2_allennlp">let us know on twitter</a>!
+
+        <p><i>Citation:</i>
+        <pre>
+@inproceedings{Dua2019DROP,
+  author={Dheeru Dua and Yizhong Wang and Pradeep Dasigi and Gabriel Stanovsky and Sameer Singh and Matt Gardner},
+  title={  {DROP}: A Reading Comprehension Benchmark Requiring Discrete Reasoning Over Paragraphs},
+  booktitle={Proc. of NAACL},
+  year={2019}
+}
+        </pre>
+        </p>
       </div>
 
       {% include footer.html %}
