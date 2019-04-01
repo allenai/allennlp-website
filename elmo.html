@@ -103,14 +103,13 @@ The ELMo 5.5B model was trained on a dataset of 5.5B tokens consisting of Wikipe
 In tasks where we have made a direct comparison, the 5.5B model has slightly higher performance then the original ELMo model, so we recommend it as a default model.
 </p>
     <h1>Contributed ELMo Models</h1>
-    ELMo models have been contributed for other languages.  We maintain a list of contributed models
-    here but are unable to respond to quality issues ourselves.
+    ELMo models have been trained for other languages and domains. We maintain a list of models here but are unable to respond to quality issues ourselves.
     <table>
       <tr style="border-bottom: 2px solid black;">
         <td style="border-right: 1px solid black;"><b>Model</b></td>
         <td><b>Link(Weights/Options File)</b></td>
         <td style="border-right: 2px solid black;">&nbsp;</td>
-        <td><b>Contributor</td>
+        <td><b>Contributor/Notes</td>
       </tr>
       <tr>
         <td style="border-right: 1px solid black;">Portuguese</td>
@@ -125,8 +124,20 @@ In tasks where we have made a direct comparison, the 5.5B model has slightly hig
         <td style="border-right: 1px solid black;">Japanese</td>
         <td><a href="https://elmoja.blob.core.windows.net/elmoweights/weights.hdf5">weights</a></td>
         <td style="border-right: 2px solid black;"><a href="https://elmoja.blob.core.windows.net/elmoweights/options.json">options</a></td>
-        <td>
-          <a href="https://exawizards.com/en/">ExaWizards Inc.</a> Enkhbold Bataa, Joshua Wu.
+        <td><a href="https://exawizards.com/en/">ExaWizards Inc.</a> Enkhbold Bataa, Joshua Wu.</td>
+      </tr>
+      <tr>
+        <td style="border-right: 1px solid black;">PubMed</td>
+        <td><a href="https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/contributed/pubmed/elmo_2x4096_512_2048cnn_2xhighway_weights_PubMed_only.hdf5">weights<a/></td>
+        <td style="border-right: 2px solid black;"><a href="https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/contributed/pubmed/elmo_2x4096_512_2048cnn_2xhighway_options.json">options<a/></td>
+        <td>Matthew Peters
+        </td>
+      </tr>
+      <tr>
+        <td style="border-right: 1px solid black;">Transformer ELMo</td>
+        <td><a href="https://s3-us-west-2.amazonaws.com/allennlp/models/transformer-elmo-2019.01.10.tar.gz">model archive<a/></td>
+        <td style="border-right: 2px solid black;"></td>
+        <td>Joel Grus and Brendan Roof. See <a href="https://github.com/allenai/allennlp/blob/master/tutorials/how_to/training_transformer_elmo.md">the tutorial</a> for usage instructions.
         </td>
       </tr>
     </table>
