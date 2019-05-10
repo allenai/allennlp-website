@@ -1,3 +1,92 @@
+- title:    "Be Consistent! Improving Procedural Text Comprehensionusing Label Consistency"
+  authors:  "Xinya Du, Bhavana Dalvi Mishra, Niket Tandon, Antoine Bosselut, Wen-tau Yih, Peter Clark, Claire Cardie"
+  venue:    "NAACL 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Be-Consistent-!-Improving-Procedural-Text-using-Du-Mishra/6a4b27f8bde3e8cd65f4d9633339f7149b878672"
+  - code:   "https://github.com/allenai/propara"
+
+###############################################################################
+- title:    "Structural Scaffolds for Citation Intent Classification in Scientific Publications"
+  authors:  "Arman Cohan, Waleed Ammar, Madeleine van Zuylen, Field Cady"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Structural-Scaffolds-for-Citation-Intent-in-Cohan-Ammar/99dd70ad75af11ce84098f58e5a9ae522cc73e3b"
+  - code:   "https://github.com/allenai/scicite"
+
+###############################################################################
+- title:    "Combining Distant and Direct Supervision for Neural Relation Extraction"
+  authors:  "Iz Beltagy, Kyle Lo, Waleed Ammar"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Combining-Distant-and-Direct-Supervision-for-Neural-Beltagy-Lo/8ed76934cf262f38aa9fa0d937c2dcd4d2673684"
+  - code:   "https://github.com/allenai/comb_dist_direct_relex/"
+
+###############################################################################
+- title:    "Still a Pain in the Neck:Evaluating Text Representations on Lexical Composition"
+  authors:  "Vered Shwartz, Ido Dagan"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Still-a-Pain-in-the-Neck%3A-Evaluating-Text-on-Shwartz-Dagan/1b7613d21b074d7bc1bdb868a5b46751b2064d17"
+  - code:   "https://github.com/vered1986/lexcomp"
+
+###############################################################################
+- title:    "Zoho at SemEval-2019 Task 9: Semi-supervised Domain Adaptation using Tri-training for Suggestion Mining"
+  authors:  "S. R. Mahadeva Prasanna, Sri Ananda Seelan"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Zoho-at-SemEval-2019-Task-9%3A-Semi-supervised-Domain-Prasanna-Seelan/05ae1917294570cc42e3d39799720bb4fc8d3d93"
+  - code:   "https://github.com/sai-prasanna/suggestion-mining-semeval19"
+
+###############################################################################
+- title:    "75 Languages, 1 Model: Parsing Universal Dependencies Universally"
+  authors:  "Daniel Kondratyuk"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/75-Languages%2C-1-Model%3A-Parsing-Universal-Kondratyuk/6a2daaa16306c8b06d7711e55ffe9ca08dd68c7a"
+  - code:   "https://github.com/hyperparticle/udify"
+
+###############################################################################
+- title:    "DROP: A Reading Comprehension Benchmark Requiring Discrete Reasoning Over Paragraphs"
+  authors:  "Dheeru Dua, Yizhong Wang, Pradeep Dasigi, Gabriel Stanovsky, Sameer Singh, Matt Gardner"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/DROP%3A-A-Reading-Comprehension-Benchmark-Requiring-Dua-Wang/248352852f5baa2ef333077c6084a618cb1ea0fd"
+  - code:   "https://allennlp.org/drop"
+
+###############################################################################
+- title:    "Linguistic Knowledge and Transferability of Contextual Representations"
+  authors:  "Nelson F. Liu, Matt Gardner, Yonatan Belinkov, Matthew Peters, Noah A. Smith"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Linguistic-Knowledge-and-Transferability-of-Liu-Gardner/d6bd07b10bc5b5c547632857766cb51fc1c465c0"
+  - code:   "https://github.com/nelson-liu/contextual-repr-analysis"
+
+###############################################################################
+- title:    "Cross-Lingual Alignment of Contextual Word Embeddings, with Applications to Zero-shot Dependency Parsing"
+  authors:  "Tal Schuster, Ori Ram, Regina Barzilay, Amir Globerson"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Cross-Lingual-Alignment-of-Contextual-Word-with-to-Schuster-Ram/cc7db99e041c5c231df677c6366c53b520897fe7#featured-content"
+  - code:   "https://github.com/TalSchuster/CrossLingualELMo"
+
+###############################################################################
+
+- title:    "Word Pair Convolutional Model for Happy Moment Classification"
+  authors:  "Michael Saxon, Samarth Bhandari, Lewis Ruskin, Gabrielle Honda"
+  venue:    "AAAI 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Word-Pair-Convolutional-Model-for-Happy-Moment-Saxon-Bhandari/7a2f67e8b1b94e8fab5019f94acf5bd3508f5f73"
+  - code:   "https://github.com/luminositylab/CL-AFF-ST"
+
+###############################################################################
+- title:    "Polyglot Contextual Representations Improve Crosslingual Transfer"
+  authors:  "Phoebe Mulcaire, Jungo Kasai, Noah A. Smith"
+  venue:    "ArXiv 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Polyglot-Contextual-Representations-Improve-Mulcaire-Kasai/13b9e15261f7ad7faa6e22eaff35bf991de59e61"
+  - code:   "https://github.com/pmulcaire/rosita"
+
+###############################################################################
 - title:    "A Hierarchical Multi-task Approach for Learning Embeddings from Semantic Tasks"
   authors:  "Victor Sanh, Thomas Wolf, Sebastian Ruder"
   venue:    "AAAI 2019"
