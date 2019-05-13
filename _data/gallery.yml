@@ -46,14 +46,6 @@
   - code:   "https://github.com/hyperparticle/udify"
 
 ###############################################################################
-- title:    "DROP: A Reading Comprehension Benchmark Requiring Discrete Reasoning Over Paragraphs"
-  authors:  "Dheeru Dua, Yizhong Wang, Pradeep Dasigi, Gabriel Stanovsky, Sameer Singh, Matt Gardner"
-  venue:    "ArXiv 2019"
-  links:
-  - paper:  "https://www.semanticscholar.org/paper/DROP%3A-A-Reading-Comprehension-Benchmark-Requiring-Dua-Wang/248352852f5baa2ef333077c6084a618cb1ea0fd"
-  - code:   "https://allennlp.org/drop"
-
-###############################################################################
 - title:    "Linguistic Knowledge and Transferability of Contextual Representations"
   authors:  "Nelson F. Liu, Matt Gardner, Yonatan Belinkov, Matthew Peters, Noah A. Smith"
   venue:    "ArXiv 2019"
