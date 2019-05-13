@@ -8,7 +8,7 @@
 ###############################################################################
 - title:    "Structural Scaffolds for Citation Intent Classification in Scientific Publications"
   authors:  "Arman Cohan, Waleed Ammar, Madeleine van Zuylen, Field Cady"
-  venue:    "ArXiv 2019"
+  venue:    "NAACL 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Structural-Scaffolds-for-Citation-Intent-in-Cohan-Ammar/99dd70ad75af11ce84098f58e5a9ae522cc73e3b"
   - code:   "https://github.com/allenai/scicite"
@@ -16,7 +16,7 @@
 ###############################################################################
 - title:    "Combining Distant and Direct Supervision for Neural Relation Extraction"
   authors:  "Iz Beltagy, Kyle Lo, Waleed Ammar"
-  venue:    "ArXiv 2019"
+  venue:    "NAACL 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Combining-Distant-and-Direct-Supervision-for-Neural-Beltagy-Lo/8ed76934cf262f38aa9fa0d937c2dcd4d2673684"
   - code:   "https://github.com/allenai/comb_dist_direct_relex/"
@@ -48,7 +48,7 @@
 ###############################################################################
 - title:    "Linguistic Knowledge and Transferability of Contextual Representations"
   authors:  "Nelson F. Liu, Matt Gardner, Yonatan Belinkov, Matthew Peters, Noah A. Smith"
-  venue:    "ArXiv 2019"
+  venue:    "NAACL 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Linguistic-Knowledge-and-Transferability-of-Liu-Gardner/d6bd07b10bc5b5c547632857766cb51fc1c465c0"
   - code:   "https://github.com/nelson-liu/contextual-repr-analysis"
@@ -56,7 +56,7 @@
 ###############################################################################
 - title:    "Cross-Lingual Alignment of Contextual Word Embeddings, with Applications to Zero-shot Dependency Parsing"
   authors:  "Tal Schuster, Ori Ram, Regina Barzilay, Amir Globerson"
-  venue:    "ArXiv 2019"
+  venue:    "NAACL 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Cross-Lingual-Alignment-of-Contextual-Word-with-to-Schuster-Ram/cc7db99e041c5c231df677c6366c53b520897fe7#featured-content"
   - code:   "https://github.com/TalSchuster/CrossLingualELMo"
@@ -73,7 +73,7 @@
 ###############################################################################
 - title:    "Polyglot Contextual Representations Improve Crosslingual Transfer"
   authors:  "Phoebe Mulcaire, Jungo Kasai, Noah A. Smith"
-  venue:    "ArXiv 2019"
+  venue:    "NAACL 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Polyglot-Contextual-Representations-Improve-Mulcaire-Kasai/13b9e15261f7ad7faa6e22eaff35bf991de59e61"
   - code:   "https://github.com/pmulcaire/rosita"
