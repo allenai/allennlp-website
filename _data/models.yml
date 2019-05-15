@@ -36,7 +36,7 @@
       code: |
         allennlp train training_config/bidaf.jsonnet -s output_path
 
-  demoUrl: "http://demo.allennlp.org/machine-comprehension"
+  demoUrl: "http://demo.allennlp.org/reading-comprehension"
 
 ###############################################################################
 
