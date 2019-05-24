@@ -24,7 +24,7 @@
 ###############################################################################
 - title:    "Still a Pain in the Neck: Evaluating Text Representations on Lexical Composition"
   authors:  "Vered Shwartz, Ido Dagan"
-  venue:    "ArXiv 2019"
+  venue:    "TACL 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Still-a-Pain-in-the-Neck%3A-Evaluating-Text-on-Shwartz-Dagan/1b7613d21b074d7bc1bdb868a5b46751b2064d17"
   - code:   "https://github.com/vered1986/lexcomp"
@@ -32,7 +32,7 @@
 ###############################################################################
 - title:    "Zoho at SemEval-2019 Task 9: Semi-supervised Domain Adaptation using Tri-training for Suggestion Mining"
   authors:  "S. R. Mahadeva Prasanna, Sri Ananda Seelan"
-  venue:    "ArXiv 2019"
+  venue:    "SemEval 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Zoho-at-SemEval-2019-Task-9%3A-Semi-supervised-Domain-Prasanna-Seelan/05ae1917294570cc42e3d39799720bb4fc8d3d93"
   - code:   "https://github.com/sai-prasanna/suggestion-mining-semeval19"
