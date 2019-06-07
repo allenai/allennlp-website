@@ -304,13 +304,13 @@
       code: |
         echo '{"source": "PersonX drops a hint"}' | \
         allennlp predict  \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz -
+            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.10.26.tar.gz -
 
     - language: "Python"
       heading: "As a library"
       code: |
         from allennlp.predictors.predictor import Predictor
-        predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz")
+        predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.10.26.tar.gz")
         predictor.predict(
           source="PersonX drops a hint"
         )
@@ -320,7 +320,7 @@
     - language: "Bash"
       code: |
         allennlp evaluate \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.09.17.tar.gz  \
+            https://s3-us-west-2.amazonaws.com/allennlp/models/event2mind-2018.10.26.tar.gz  \
             https://raw.githubusercontent.com/uwnlp/event2mind/9855e83c53083b62395cc7e1af6ee9411515a14e/docs/data/test.csv
 
   - label: "Training"
