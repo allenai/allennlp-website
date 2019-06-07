@@ -79,6 +79,15 @@
   - code:   "https://github.com/pmulcaire/rosita"
 
 ###############################################################################
+
+- title:    "Repurposing Entailment for Multi-Hop Question Answering Tasks"
+  authors:  "Harsh Trivedi, Heeyoung Kwon, Tushar Khot, Ashish Sabharwal, Niranjan Balasubramanian"
+  venue:    "NAACL 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Repurposing-Entailment-for-Multi-Hop-Question-Tasks-Trivedi-Kwon/686c7531e4e5c51a0275496971af66fd994cb113"
+  - code:   "https://github.com/StonyBrookNLP/multee"
+
+###############################################################################
 - title:    "A Hierarchical Multi-task Approach for Learning Embeddings from Semantic Tasks"
   authors:  "Victor Sanh, Thomas Wolf, Sebastian Ruder"
   venue:    "AAAI 2019"
