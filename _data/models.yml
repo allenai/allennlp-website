@@ -84,7 +84,7 @@
 
 - title: "Semantic Role Labeling"
   description: |
-    Semantic Role Labeling (SRL) models recover the latent predicate argument structure of a sentence. SRL builds representations that answer basic questions about sentence meaning, including "who" did "what" to “whom," etc. The AllenNLP SRL model is a reimplementation of [a deep BiLSTM model (He et al, 2017)](https://www.semanticscholar.org/paper/Deep-Semantic-Role-Labeling-What-Works-and-What-s-He-Lee/a3ccff7ad63c2805078b34b8514fa9eab80d38e9). The implemented model closely matches the published model but replaces GloVe embeddings with ELMo representations, achieving an F1 of 84.9% on [English Ontonotes 5.0 dataset using the CONLL 2011/12 shared task format](http://cemantix.org/data/ontonotes.html). These results are currently state of the art for this task.
+   Semantic Role Labeling (SRL) recovers the latent predicate argument structure of a sentence, providing representations that answer basic questions about sentence meaning, including “who” did “what” to “whom,” etc. The AllenNLP toolkit provides the following SRL visualization, which can be used for any SRL model in AllenNLP. This page demonstrates a reimplementation of [a BERT based model (Shi et al, 2019)](https://arxiv.org/abs/1904.05255) with some modifications (no additional parameters apart from a linear classification layer), which is currently the state of the art single model for English PropBank SRL (Newswire sentences). It achieves 86.49 test F1 on the Ontonotes 5.0 dataset.
 
   codeTabs:
   - label: "Prediction"
@@ -94,13 +94,13 @@
       code: |
         echo '{"sentence": "Did Uriah honestly think he could beat the game in under three hours?"}' | \
         allennlp predict \
-            https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.05.25.tar.gz -
+            https://s3-us-west-2.amazonaws.com/allennlp/models/bert-base-srl-2019.06.17.tar.gz -
 
     - language: "Python"
       heading: "As a library"
       code: |
         from allennlp.predictors.predictor import Predictor
-        predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/srl-model-2018.05.25.tar.gz")
+        predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/bert-base-srl-2019.06.17.tar.gz")
         predictor.predict(
           sentence="Did Uriah honestly think he could beat the game in under three hours?"
         )
