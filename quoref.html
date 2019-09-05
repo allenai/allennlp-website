@@ -1,0 +1,62 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - Quoref Dataset</title>
+  </head>
+  <body id="top">
+    <div id="page-content">
+      {% include header.html %}
+
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h2>Quoref: A Reading Comprehension Dataset with Questions Requiring Coreferential Reasoning</h2>
+	    <p class="t-sm">Pradeep Dasigi, Nelson F. Liu, Ana Marasović, <br> Noah A. Smith, and Matt Gardner<br>EMNLP-IJCNLP 2019.</p>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+
+        <p>
+	Machine comprehension of texts longer than a single sentence often requires coreference resolution.
+	However, most current reading comprehension benchmarks do not contain complex coreferential phenomena and hence fail
+	to evaluate the ability of models to resolve coreference. We present a new crowdsourced
+	dataset containing more than 24K span-selection questions that require resolving coreference among
+	entities in about 4.7K English paragraphs from Wikipedia.
+        </p>
+
+        <p>
+        AllenNLP provides an easy way for you to get started with this dataset, with a dataset reader that can be used with any model you
+        design, and a reference implementation of the basline models used in the paper.  Find more details in the links
+        below.
+        </p>
+
+        <li><a href="https://www.semanticscholar.org/paper/Quoref%3A-A-Reading-Comprehension-Dataset-with-Dasigi-Liu/315642b4698f327ce1f7a76e8973f34f9b54cecd", target="_blank">Paper</a>, describing the dataset and our basline models for it.</li>
+        <li><a href="https://quoref-dataset.s3-us-west-2.amazonaws.com/train_and_dev/quoref-train-dev-v0.1.zip">Data</a>, with over 19K questions in the
+        train set and over 2.4K questions in the dev set (and a similar number in a hidden test set). The data is distributed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">CC BY-SA 4.0</a> license.</li>
+
+        <li><a href="https://leaderboard.allenai.org/quoref", target="_blank">Leaderboard</a> with an automated docker-based evaluation on
+            a hidden test set.
+        </li>
+
+        <p><i>Citation:</i>
+        <pre>
+@inproceedings{Dasigi2019Quoref,
+  author={Pradeep Dasigi and Nelson F. Liu and Ana Marasovi\'{c} and Noah A. Smith and Matt Gardner},
+  title={Quoref: A Reading Comprehension Dataset with Questions Requiring Coreferential Reasoning},
+  booktitle={Proc. of EMNLP-IJCNLP},
+  year={2019}
+}
+        </pre>
+        </p>
+      </div>
+
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
