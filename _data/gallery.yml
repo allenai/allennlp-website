@@ -1,3 +1,27 @@
+- title:    "Improving Open Information Extraction via Iterative Rank-Aware Learning"
+  authors:  "Zhengbao Jiang, Pengcheng Yin, Graham Neubig"
+  venue:    "ACL 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Improving-Open-Information-Extraction-via-Iterative-Jiang-Yin/0daa754c06f2bc82ac1b4e4abdcdb2c65a69f19a"
+  - code:   "https://github.com/jzbjyb/oie_rank"
+
+###############################################################################
+- title:    "MultiQA: An Empirical Investigation of Generalization and Transfer in Reading Comprehension"
+  authors:  "Alon Talmor, Jonathan Berant"
+  venue:    "ACL 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/MultiQA%3A-An-Empirical-Investigation-of-and-Transfer-Talmor-Berant/d9f4894b26c754cc557cc6ae118a95ab8f8de465"
+  - code:   "github.com/alontalmor/multiqa"
+
+###############################################################################
+- title:    "Compositional Semantic Parsing across Graphbanks"
+  authors:  "Matthias Lindemann, Jonas Groschwitz, Alexander Koller"
+  venue:    "ACL 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Compositional-Semantic-Parsing-across-Graphbanks-Lindemann-Groschwitz/671a05535da65f9fc22800b5aa94795fc670ac45"
+  - code:   "https://github.com/coli-saar/am-parser"
+
+###############################################################################
 - title:    "What do you learn from context? Probing for sentence structure in contextualized word representations"
   authors:  "Ian Tenney, Patrick Xia, Berlin Chen, Alex Wang, Adam Poliak, R. Thomas McCoy, Najoung Kim, Benjamin Van Durme, Samuel R. Bowman, Dipanjan Das, Ellie Pavlick"
   venue:    "ICLR 2019"
@@ -167,6 +191,14 @@
   links:
   - paper:  "https://www.semanticscholar.org/paper/Bilateral-Multi-Perspective-Matching-for-Natural-Wang-Hamza/b9d220520a5da7d302107aacfe875b8e2977fdbe"
   - code:   "https://github.com/allenai/allennlp/pull/1594"
+
+###############################################################################
+- title:    "Can You Tell Me How to Get Past Sesame Street? Sentence-Level Pretraining Beyond Language Modeling"
+  authors:  "Alex Wang, Jan Hula, Patrick Xia, Raghavendra Pappagari, R. Thomas McCoy, Roma Patel, Najoung Kim, Ian Tenney, Yinghui Huang, Katherin Yu, Shuning Jin, Berlin Chen, Benjamin Van Durme, Edouard Grave, Ellie Pavlick, Samuel R. Bowman"
+  venue:    "ACL 2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Compositional-Semantic-Parsing-across-Graphbanks-Lindemann-Groschwitz/671a05535da65f9fc22800b5aa94795fc670ac45"
+  - code:   "https://github.com/nyu-mll/jiant/tree/bert-friends-exps"
 
 ###############################################################################
 
