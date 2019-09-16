@@ -4,7 +4,7 @@
 <html lang="en-us">
   <head>
     {% include meta.html %}
-    <title>AllenNLP - Models</title>
+    <title>AllenNLP - User Gallery</title>
   </head>
   <body id="top" data-page="models">
     <div id="page-content">
@@ -16,17 +16,10 @@
         </div>
       </div>
 
-      <div class="banner banner--interior-hero">
+      <div class="banner banner--interior-hero banner--short">
         <div class="constrained constrained--sm">
           <div class="banner--interior-hero__content">
-            <h1>Models</h1>
-            <p class="t-sm">AllenNLP provides strong performance with reasonable runtimes, along
-            with the infrastructure to easily run them.  All of our models are for the English
-            language although we do have some contributed models for other languages.</p>
-
-            <p class="t-sm">Please note that <a href="https://docs.nvidia.com/deeplearning/sdk/pdf/cuDNN-Developer-Guide.pdf">some CuDNN methods are non-deterministic</a>.
-            Additionally results may vary across drivers and GPU architectures.  Included below are the best
-            versions of the models we have trained.  If you retrain a model you may get different scores.</p>
+            <h1>User Gallery</h1>
           </div>
         </div>
       </div>
@@ -42,7 +35,6 @@
           </div>
           <div class="col-layout__content pure-u-1 pure-u-lg-3-4">
 
-            {% include models-template.html %}
             {% include gallery-template.html %}
 
             {% comment %}
