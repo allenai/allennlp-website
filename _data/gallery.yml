@@ -1,3 +1,11 @@
+- title:    "What do you learn from context? Probing for sentence structure in contextualized word representations"
+  authors:  "Ian Tenney, Patrick Xia, Berlin Chen, Alex Wang, Adam Poliak, R. Thomas McCoy, Najoung Kim, Benjamin Van Durme, Samuel R. Bowman, Dipanjan Das, Ellie Pavlick"
+  venue:    "ICLR 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/What-do-you-learn-from-context-Probing-for-sentence-Tenney-Xia/e2587eddd57bc4ba286d91b27c185083f16f40ee"
+  - code:   "https://github.com/nyu-mll/jiant"
+
+###############################################################################
 - title:    "Be Consistent! Improving Procedural Text Comprehension using Label Consistency"
   authors:  "Xinya Du, Bhavana Dalvi Mishra, Niket Tandon, Antoine Bosselut, Wen-tau Yih, Peter Clark, Claire Cardie"
   venue:    "NAACL 2019"
