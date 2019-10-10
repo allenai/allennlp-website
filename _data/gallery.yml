@@ -1,6 +1,6 @@
 - title:    "Probabilistic Neural-symbolic Models for Interpretable Visual Question Answering"
   authors:  "Ramakrishna Vedantam, Karan Desai, Stefan Lee, Marcus Rohrbach, Dhruv Batra, Devi Parikh"
-  venue:    "ICML 201"
+  venue:    "ICML 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/Probabilistic-Neural-Symbolic-Models-for-Visual-Vedantam-Desai/cef77310f326bd30b172459dbecaedf228fc7b23"
   - code:   "https://github.com/kdexd/probnmn-clevr"
