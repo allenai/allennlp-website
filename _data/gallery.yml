@@ -1,3 +1,11 @@
+- title:    "Nocaps: Novel Object Captioning at Scale"
+  authors:  "Harsh Agrawal, Karan Desai, Xinlei Chen, Rishabh Jain, Xinlei Chen, Dhruv Batra, Mark S Johnson, Dhruv Batra, Devi Parikh"
+  venue:    "2018"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Nocaps%3A-Novel-Object-Captioning-at-Scale-Agrawal-Desai/8b55402ffee2734bfc7d5d7595500916e1ef04e8"
+  - code:   "https://github.com/nocaps-org/updown-baseline"
+
+###############################################################################
 - title:    "Improving Open Information Extraction via Iterative Rank-Aware Learning"
   authors:  "Zhengbao Jiang, Pengcheng Yin, Graham Neubig"
   venue:    "ACL 2019"
