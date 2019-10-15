@@ -6,6 +6,31 @@
   - code:   "https://github.com/nocaps-org/updown-baseline"
 
 ###############################################################################
+- title:    "Probabilistic Neural-symbolic Models for Interpretable Visual Question Answering"
+  authors:  "Ramakrishna Vedantam, Karan Desai, Stefan Lee, Marcus Rohrbach, Dhruv Batra, Devi Parikh"
+  venue:    "ICML 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Probabilistic-Neural-Symbolic-Models-for-Visual-Vedantam-Desai/cef77310f326bd30b172459dbecaedf228fc7b23"
+  - code:   "https://github.com/kdexd/probnmn-clevr"
+
+###############################################################################
+- title:    "Procedural Reasoning Networks for Understanding Multimodal Procedures"
+  authors:  "Mustafa Sercan Amac, Semih Yagcioglu, Aykut Erdem, Erkut Erdem"
+  venue:    "CoNLL 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/Procedural-Reasoning-Networks-for-Understanding-Amac-Yagcioglu/dfb92b8424c5e0f912f240b3bb9c746fe19e891e"
+  - code:   "https://github.com/hucvl/prn"
+
+###############################################################################
+- title:    "LINSPECTOR WEB: A Multilingual Probing Suite for Word Representations"
+  authors:  "Max Eichler, Gözde Gül Şahin, Iryna Gurevych"
+  venue:    "t EMNLP 2019"
+  links:
+  - paper:  "https://www.semanticscholar.org/paper/LINSPECTOR-WEB%3A-A-Multilingual-Probing-Suite-for-Eichler-Sahin/0fbcf7faef54f59a1869795faaa11a3ea1f40d6c"
+  - code:   "https://github.com/UKPLab/linspector-web"
+>>>>>>> 6d9800a8cfe42151f240a08d9132f3444fa61104
+
+###############################################################################
 - title:    "Improving Open Information Extraction via Iterative Rank-Aware Learning"
   authors:  "Zhengbao Jiang, Pengcheng Yin, Graham Neubig"
   venue:    "ACL 2019"
