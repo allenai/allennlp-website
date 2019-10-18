@@ -28,7 +28,6 @@
   links:
   - paper:  "https://www.semanticscholar.org/paper/LINSPECTOR-WEB%3A-A-Multilingual-Probing-Suite-for-Eichler-Sahin/0fbcf7faef54f59a1869795faaa11a3ea1f40d6c"
   - code:   "https://github.com/UKPLab/linspector-web"
->>>>>>> 6d9800a8cfe42151f240a08d9132f3444fa61104
 
 ###############################################################################
 - title:    "Improving Open Information Extraction via Iterative Rank-Aware Learning"
