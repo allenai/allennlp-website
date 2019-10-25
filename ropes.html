@@ -1,0 +1,53 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - ROPES Dataset</title>
+  </head>
+  <body id="top">
+    <div id="page-content">
+      {% include header.html %}
+
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h2>Reasoning Over Paragraph Effects in Situations </h2>
+	    <p class="t-sm">Kevin Lin, Oyvind Tafjord, Peter Clark, Matt Gardner
+        <br>MRQA@EMNLP 2019.</p>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+
+        <p>
+        ROPES is a reading comprehension dataset that tests a system's ability to apply knowledge from reading to novel situations.
+    In this crowdsourced, 14k question-answering benchmark, a system is required to read a passage of expository text (eg. Wikipedia, textbooks), and use the causal relationships in the text to answer questions about a novel situation.
+	</p>
+
+        <li><a href="https://www.semanticscholar.org/paper/Reasoning-Over-Paragraph-Effects-in-Situations-Lin-Tafjord/2ebb01d08022a52c1025302379873dedb5100035", target="_blank">Paper</a>, describing the dataset and our baseline models for it.</li>
+        <li><a href="https://ropes-dataset.s3-us-west-2.amazonaws.com/train_and_dev/ropes-train-dev-v1.0.tar.gz
+">Data</a>, with over 10K questions in the
+        train set and over 1.6K questions in the dev set (and a similar number in a hidden test set). The data is distributed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">CC BY-SA 4.0</a> license.</li>
+        <li><a href="https://leaderboard.allenai.org/ropes", target="_blank">Leaderboard</a> with an automated docker-based evaluation on
+            a hidden test set.
+        </li>
+        <p><i>Citation:</i>
+        <pre>
+@inproceedings{Lin2019ReasoningOP,
+  author={Kevin Lin and Oyvind Tafjord and Peter Clark and Matt Gardner},
+  title={Reasoning Over Paragraph Effects in Situations},
+  booktitle={MRQA@EMNLP},
+  year={2019}
+}
+       </pre>
+        </p>
+      </div>
+
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
