@@ -147,13 +147,11 @@ a,
   transition: color $transition-properties, opacity $transition-properties;
 
   &:hover {
-    color: $blue;
+    color: $blue-hover;
     text-decoration: underline;
   }
 
   &:active {
-    // opacity: .66;
-    // color: $blue;
     transition-duration: 0s;
   }
 }

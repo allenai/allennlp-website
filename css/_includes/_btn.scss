@@ -14,12 +14,12 @@
   }
 
   &:hover {
-    background: $blue-active;
+    background: $blue-hover;
+    text-decoration: none;
   }
 
   &:active {
     opacity: .66;
-    background: $blue;
     transition-duration: 0s;
   }
 }
