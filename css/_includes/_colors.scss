@@ -5,20 +5,19 @@ $black: #000000;
 $off-black: #111212;
 $slate: #162328;
 $banner-hero: #1c292f;
-//$blue: #60a6d7;
-$blue: #2085bc;
-$blue-light: #40affd;
-$blue-med-light: #3597d4;
-$blue-med: #309add;
+$blue: #306BEC;
+$blue-active: #2B55CF;
 $gray-light: #f6f8fa;
 $gray-med: #e0e0e0;
 $muted-gray-blue: #213744;
 $gray-light-overlay: #edf1f5;
-
+$nav-inactive: #666D74;
 $text: #232323;
 $text-secondary: #8c9296;
 $text-faded: fade-out($text, 0.25);
 $default-code-color: #333333;
+$alert-blue: #ecf7ff;
+$alert-blue-border: #8fd0fc;
 
 .c-text-secondary {
   color: $text-secondary;
@@ -28,8 +27,8 @@ $default-code-color: #333333;
   background: $slate;
 }
 
-.c-bg-blue-med-light {
-  background: $blue-med-light;
+.c-bg-blue {
+  background: $blue;
 }
 
 .c-bg-gray-light {

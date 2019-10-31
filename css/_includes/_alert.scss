@@ -4,8 +4,8 @@
   margin: 30*$em 0;
 
   &.alert--info {
-    border-color: lighten($blue-light, 15);
-    background: lighten($blue-light, 34);
+    border-color: $alert-blue-border;
+    background: $alert-blue;
 
     &,
     strong {
@@ -13,7 +13,7 @@
     }
 
     a {
-      color: $blue-med-light;
+      color: $blue;
       text-decoration: underline;
       font-weight: normal;
     }

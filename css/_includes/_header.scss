@@ -69,11 +69,10 @@
           a {
             box-sizing: border-box;
             display: block;
-            color: $blue;
+            color: $nav-inactive;
             text-decoration: none;
             transition: color 150ms linear;
-            font-weight: 600;
-            @include t-crisp;
+            font-weight: 500;
             font-size: 15px;
             line-height: 1.4;
             position: relative;
@@ -87,11 +86,11 @@
             }
 
             &:hover {
-              color: #bed2dd;
+              color: $blue-active;
             }
 
             &:active {
-              color: #374168;
+              color: $blue-active;
               opacity: 1;
             }
           }
@@ -99,7 +98,7 @@
           &.nav__link--selected {
             a {
               border-bottom-color: $blue;
-              @include t-smooth;
+              color: $blue-active;
             }
           }
         }
