@@ -147,7 +147,6 @@ a,
   transition: color $transition-properties, opacity $transition-properties;
 
   &:hover {
-    color: $blue-hover;
     text-decoration: underline;
   }
 
