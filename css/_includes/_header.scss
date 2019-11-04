@@ -69,11 +69,10 @@
           a {
             box-sizing: border-box;
             display: block;
-            color: $blue;
+            color: $color-n8;
             text-decoration: none;
             transition: color 150ms linear;
-            font-weight: 600;
-            @include t-crisp;
+            font-weight: 500;
             font-size: 15px;
             line-height: 1.4;
             position: relative;
@@ -87,19 +86,19 @@
             }
 
             &:hover {
-              color: #bed2dd;
+              color: $color-b4;
             }
 
             &:active {
-              color: #374168;
+              color: $color-b6;
               opacity: 1;
             }
           }
 
           &.nav__link--selected {
             a {
-              border-bottom-color: $blue;
-              @include t-smooth;
+              border-bottom-color: $color-b5;
+              color: $color-b6;
             }
           }
         }
@@ -123,7 +122,7 @@
       display: block;
       margin-top: 10*$em;
       margin-left: 10*$em;
-      fill: $blue;
+      fill: $color-b5;
     }
   }
 }
@@ -244,7 +243,7 @@
               @include u-pe;
               @include u-h100;
               width: 4*$em;
-              background: $blue;
+              background: $color-b5;
               display: block;
               top: 0;
               left: 0;

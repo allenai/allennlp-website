@@ -5,21 +5,21 @@
   @include u-mp0;
   color: $white !important;
   display: block;
-  background: $blue;
+  background: $color-b5;
   padding: 18*$em 28*$em;
   transition: background-color $transition-properties, opacity $transition-properties;
 
   &.btn--blue {
-    background: $blue;
+    background: $color-b5;
   }
 
   &:hover {
-    background: $blue-light;
+    background: $color-b4;
+    text-decoration: none;
   }
 
   &:active {
     opacity: .66;
-    background: $blue;
     transition-duration: 0s;
   }
 }

@@ -142,17 +142,15 @@ h2 {
 a,
 .more {
   @include t-link;
-  color: $blue;
+  color: $color-b6;
   font-weight: bold;
   transition: color $transition-properties, opacity $transition-properties;
 
   &:hover {
-    color: $blue-light;
+    text-decoration: underline;
   }
 
   &:active {
-    opacity: .66;
-    color: $blue;
     transition-duration: 0s;
   }
 }
@@ -222,7 +220,7 @@ th {
   td {
     &,
     * {
-      color: $blue;
+      color: $color-b5;
     }
 
     sub {
