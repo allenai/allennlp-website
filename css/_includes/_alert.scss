@@ -4,16 +4,16 @@
   margin: 30*$em 0;
 
   &.alert--info {
-    border-color: $alert-blue-border;
-    background: $alert-blue;
+    border-color: $color-b3;
+    background: $color-b1;
 
     &,
     strong {
-      color: $blue;
+      color: $color-b5;
     }
 
     a {
-      color: $blue;
+      color: $color-b5;
       text-decoration: underline;
       font-weight: normal;
     }

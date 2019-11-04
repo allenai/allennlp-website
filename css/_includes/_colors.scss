@@ -5,20 +5,22 @@ $black: #000000;
 $off-black: #111212;
 $slate: #162328;
 $banner-hero: #1c292f;
-$blue: #306BEC;
-$blue-active: #2B55CF;
-$blue-hover: #4789FF;
 $gray-light: #f6f8fa;
 $gray-med: #e0e0e0;
 $muted-gray-blue: #213744;
 $gray-light-overlay: #edf1f5;
-$nav-inactive: #666D74;
 $text: #232323;
 $text-secondary: #8c9296;
 $text-faded: fade-out($text, 0.25);
 $default-code-color: #333333;
-$alert-blue: #ecf7ff;
-$alert-blue-border: #8fd0fc;
+
+// Varnish colors
+$color-b1: #F0F7FF; // B1 blue
+$color-b3: #80BDFF; // B3 blue
+$color-b4: #2F85F7; // B4 blue
+$color-b5: #2376E5; // B5 blue
+$color-b6: #265ED4; // B6 blue
+$color-n8: #616c7a; // N8 gray
 
 .c-text-secondary {
   color: $text-secondary;
@@ -29,7 +31,7 @@ $alert-blue-border: #8fd0fc;
 }
 
 .c-bg-blue {
-  background: $blue;
+  background: $color-b5;
 }
 
 .c-bg-gray-light {
