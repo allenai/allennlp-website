@@ -1,3 +1,12 @@
+- title:    "Automatic Fact-Guided Sentence Modification"
+  authors:  "Darsh J Shah, Tal Schuster, Regina Barzilay"
+  venue:    "2019"
+  links:
+  - paper:  "https://arxiv.org/pdf/1909.13838.pdf"
+  - code:   "https://github.com/TalSchuster/TokenMasker"
+
+###############################################################################
+
 - title:    "Nocaps: Novel Object Captioning at Scale"
   authors:  "Harsh Agrawal, Karan Desai, Xinlei Chen, Rishabh Jain, Xinlei Chen, Dhruv Batra, Mark S Johnson, Dhruv Batra, Devi Parikh"
   venue:    "2018"
