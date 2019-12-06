@@ -1,6 +1,6 @@
 - title:    "Automatic Fact-Guided Sentence Modification"
   authors:  "Darsh J Shah, Tal Schuster, Regina Barzilay"
-  venue:    "2019"
+  venue:    "AAAI 2020"
   links:
   - paper:  "https://arxiv.org/pdf/1909.13838.pdf"
   - code:   "https://github.com/TalSchuster/TokenMasker"
@@ -33,7 +33,7 @@
 ###############################################################################
 - title:    "LINSPECTOR WEB: A Multilingual Probing Suite for Word Representations"
   authors:  "Max Eichler, Gözde Gül Şahin, Iryna Gurevych"
-  venue:    "t EMNLP 2019"
+  venue:    "EMNLP 2019"
   links:
   - paper:  "https://www.semanticscholar.org/paper/LINSPECTOR-WEB%3A-A-Multilingual-Probing-Suite-for-Eichler-Sahin/0fbcf7faef54f59a1869795faaa11a3ea1f40d6c"
   - code:   "https://github.com/UKPLab/linspector-web"
