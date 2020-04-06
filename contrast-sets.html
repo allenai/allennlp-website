@@ -1,0 +1,166 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - Contrast Sets</title>
+  </head>
+  <body id="top">
+    <div id="page-content">
+      {% include header.html %}
+
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+	  <h2>Evaluating NLP Models via <b>Contrast Sets</b></h2>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+
+      <h3>What are Contrast Sets?</h3>
+        <p>
+	Standard test sets for supervised learning evaluate in-distribution
+	generalization. Unfortunately, when a dataset has systematic gaps
+	(e.g., annotation artifacts), these evaluations are misleading: a model
+	can learn simple decision rules that perform well on the test set but
+	do not capture a dataset's intended capabilities. We propose a new
+	annotation paradigm for NLP that helps to close systematic gaps in the
+	test data. In particular, after a dataset is constructed, we recommend
+	that the dataset authors manually perturb the test instances in small
+	but meaningful ways that (typically) change the gold label, creating
+	<b>contrast sets</b>. Contrast sets provide a local view of a model's
+	decision boundary, which can be used to more accurately evaluate a
+	model's true linguistic capabilities.  We demonstrate the efficacy of
+	contrast sets by creating them for <b>10</b> diverse NLP datasets
+	(e.g., DROP reading comprehension, UD parsing, IMDb sentiment
+	analysis).  Although our contrast sets are not explicitly adversarial,
+	model performance is significantly lower on them than on the original
+	test sets---up to 25% in some cases. We release our contrast sets as
+	new evaluation benchmarks and encourage future dataset construction
+	efforts to follow similar annotation processes.
+        </p>
+	
+	<p>Here is <a href="", target="_blank">the paper</a>.</p>
+
+      <h3>Individual Datasets</h3>
+      <table style="width:80%">
+	<tr>
+	  <th>Dataset</th>
+	  <th>Contrast Sets</th>
+	  <th>Type of NLP Task</th>
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/BoolQ%3A-Exploring-the-Surprising-Difficulty-of-Clark-Lee/9770fff7379a7ab9006b48939462354dda9a2053">BoolQ (Clark et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/BoolQ">Data</a>
+	  </td>
+	  <td>Reading Comprehension</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/DROP%3A-A-Reading-Comprehension-Benchmark-Requiring-Dua-Wang/dda6fb309f62e2557a071522354d8c2c897a2805">DROP (Dua et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/DROP">Data</a>
+	  </td>
+	  <td>Reading Comprehension</td>
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/%22Going-on-a-vacation%22-takes-longer-than-%22Going-for-Zhou-Khashabi/81b4920ad488affaee27389ff9540b7fea90a4ce">MC-TACO (Zhou et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/MCTACO">Data</a>
+	  </td>
+	  <td>Reading Comprehension</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/Reasoning-Over-Paragraph-Effects-in-Situations-Lin-Tafjord/2ebb01d08022a52c1025302379873dedb5100035">ROPES (Lin et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/ropes">Data</a>
+	  </td>
+	  <td>Reading Comprehension</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/Quoref%3A-A-Reading-Comprehension-Dataset-with-Dasigi-Liu/3838387ea8dd1bb8c2306be5a63c1c120075c5a2">Quoref (Dasigi et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/quoref">Data</a>
+	  </td>
+	  <td>Reading Comprehension</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/Learning-Word-Vectors-for-Sentiment-Analysis-Maas-Daly/649d03490ef72c5274e3bccd03d7a299d2f8da91">IMDb Sentiment Analysis (Maas et al., 2011)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/IMDb">Data</a>
+	  </td>
+	  <td>Classification</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/A-Multi-Axis-Annotation-Scheme-for-Event-Temporal-Ning-Wu/bff8ae9e28323d217b9ad5a7321e58f79607f557">MATRES (Ning et al., 2018)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/MATRES">Data</a>
+	  </td>
+	  <td>Classification</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/A-Corpus-for-Reasoning-About-Natural-Language-in-Suhr-Zhou/cf336d272a30d6ad6141db67faa64deb8791cd61">NLVR2 (Suhr et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/nlvr2">Data</a>
+	  </td>
+	  <td>Classification</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/Seeing-Things-from-a-Different-Angle%3A-Discovering-Chen-Khashabi/3e9cfcf73c6b8000d6724650fdc48d5f1a5802b1">PERSPECTRUM (Chen et al., 2019)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/perspectrum">Data</a>
+	  </td>
+	  <td>Classification</td>	
+	</tr>
+	<tr>
+	  <td>
+		  <a href="https://www.semanticscholar.org/paper/Universal-Dependencies-v1%3A-A-Multilingual-Treebank-Nivre-Marneffe/d115eceab7153d2a1dc6fbf6b99c3bdf1b0cdd46">UD English (Nivre et al., 2016)</a><br>
+	  </td>
+	  <td>
+		  <a href="https://github.com/allenai/contrast-sets/tree/master/UD_English">Data</a>
+	  </td>
+	  <td>Parsing</td>	
+	</tr>
+      </table>
+
+      <h3>Citation</h3>
+        <pre>
+	@article{alberti2019bert,
+	  title={Evaluating NLP Models via Contrast Sets},
+	  author={Gardner, Matt and Artzi, Yoav and Basmova, Victoria and Berant, Jonathan and Bogin, Ben and Chen, Sihao
+	    and Dasigi, Pradeep and Dua, Dheeru and Elazar, Yanai and Gottumukkala, Ananth and Gupta, Nitish
+	    and Hajishirzi, Hanna and Ilharco, Gabriel and Khashabi, Daniel and Lin, Kevin and Liu, Jiangming
+	    and Liu, Nelson F. and Mulcaire, Phoebe and Ning, Qiang and Singh, Sameer and Smith, Noah A.
+	    and Subramanian, Sanjay and Tsarfaty, Reut and Wallace, Eric and Zhang, Ally and Zhou, Ben},
+	  journal={arXiv preprint},
+	  year={2020}
+	}
+        </pre>
+      </div>
+
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
