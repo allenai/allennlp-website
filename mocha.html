@@ -1,0 +1,76 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - MOCHA Dataset</title>
+  </head>
+  <body id="top">
+    <div id="page-content">
+      {% include header.html %}
+
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h2>MOCHA: A Dataset for Training and Evaluating Generative Reading Comprehension Metrics</h2>
+            <p>Anthony Chen, Gabriel Stanovsky, Sameer Singh, and Matt Gardner<br>EMNLP 2020.</p>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+
+        <p>
+          Posing reading comprehension as a generation problem provides a great deal of flexibility, allowing for open-ended questions with few restrictions on possible answers.
+          However, progress is impeded by existing generation metrics, which rely on token overlap and are agnostic to the nuances of reading comprehension.
+          To address this, we introduce a benchmark for training and evaluating generative reading comprehension metrics: <b>M</b>odeling <b>C</b>orrectness with <b>H</b>uman <b>A</b>nnotations. 
+          MOCHA contains 40K human judgement scores on model outputs from 6 diverse question answering datasets and an additional set of minimal pairs for evaluation.
+          Using MOCHA, we train an evaluation metric: LERC, a <b>L</b>earned <b>E</b>valuation metric for <b>R</b>eading <b>C</b>omprehension, to mimic human judgement scores.
+        </p>
+
+        <p>
+          <b>Find out more in the links below.</b>
+        </p>
+
+        <li><a href="", target="_blank">Paper:</a> 
+          EMNLP 2020 paper describing MOCHA and LERC.</a>.</li>
+
+        <li><a href="">Data:</a> 
+          MOCHA contains ~40K instances split into train, validation, and test sets. It is distributed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">CC BY-SA 4.0</a> license.</li>
+
+        <li>
+          <a href="">Code:</a> Coming soon!
+          This will include code for reproducing LERC and an evaluation script.
+          We will also be providing a trained version of LERC to be used for evaluation.
+          The code base heavily relies on <a href="https://github.com/pytorch/pytorch", target="_blank">PyTorch</a>, <a href="https://github.com/huggingface/transformers", target="_blank">HuggingFace Transformers</a>, and <a href="https://github.com/allenai/allennlp", target="_blank">AllenNLP</a>.
+        </li>
+
+        <li>
+          <a href="", target="_blank">Leaderboard:</a> Coming soon!
+        </li>
+
+        <li><a href="">Demo:</a> Coming soon! 
+          You'll be able to see how well a learned metric evaluates generated answers in comparison to other metrics like BLEU, METEOR, and BERTScore.
+          The examples should give you some sense of what kinds of questions are in MOCHA, and what LERC can and cannot currently handle.
+          If you find something interesting, <a href="https://twitter.com/ai2_allennlp">let us know on twitter</a>! 
+        </li>
+
+        <p>
+          <b>Citation:</b>
+          <pre>
+          @inproceedings{Chen2020MOCHA,
+            author={Anthony Chen and Gabriel Stanovsky and Sameer Singh and Matt Gardner},
+            title={MOCHA: A Dataset for Training and Evaluating Generative Reading Comprehension Metrics},
+            booktitle={EMNLP},
+            year={2020}
+          }
+          </pre>
+        </p>
+      </div>
+
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
