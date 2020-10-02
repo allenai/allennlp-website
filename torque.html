@@ -1,0 +1,46 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    {% include meta.html %}
+    <title>AllenNLP - TORQUE Dataset</title>
+  </head>
+  <body id="top">
+    <div id="page-content">
+      {% include header.html %}
+
+      <div class="banner banner--interior-hero">
+        <div class="constrained constrained--sm">
+          <div class="banner--interior-hero__content">
+            <h2>TORQUE: A Reading Comprehension Dataset of Temporal ORdering QUEstions</h2>
+            <p class="t-sm">Qiang Ning, Hao Wu, Rujun Han,<br>Nanyun Peng, Matt Gardner, and Dan Roth<br>EMNLP 2020</p>
+          </div>
+        </div>
+      </div>
+      <div class="constrained constrained--med">
+
+        <p>
+        A critical part of reading is being able to understand the temporal relationships between events described in a passage of text, even when those relationships are not explicitly stated. However, current machine reading comprehension benchmarks have practically no questions that test temporal phenomena, so systems trained on these benchmarks have no capacity to answer questions such as "what happened before/after [some event]?" We introduce TORQUE, a new English reading comprehension benchmark built on 3.2k news snippets with 21k human-generated questions querying temporal relationships. Results show that RoBERTa-large achieves an exact-match score of 51% on the test set of TORQUE, about 30% behind human performance.
+        </p>
+
+        <li><a href="https://www.semanticscholar.org/paper/TORQUE%3A-A-Reading-Comprehension-Dataset-of-Temporal-Ning-Wu/36d6c8895bbc755964b8b2136c6fd6087a7af089", target="_blank">Paper</a>, describing the dataset and our initial model for it.</li>
+        <li><a href="https://github.com/rujunhan/TORQUE">Reproduction package</a></li>
+        <li>More to come...</li>
+        <pre>
+@inproceedings{NWHPGR20,
+  author={Qiang Ning and Hao Wu and Rujun Han and Nanyun Peng and Matt Gardner and Dan Roth},
+  title={ {TORQUE}: A Reading Comprehension Dataset of Temporal Ordering Questions},
+  booktitle={Proc. of EMNLP},
+  year={2020}
+}
+        </pre>
+        </p>
+      </div>
+
+      {% include footer.html %}
+    </div>
+    {% include svg-sprite.html %}
+    {% include scripts.html %}
+  </body>
+</html>
