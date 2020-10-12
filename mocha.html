@@ -2,63 +2,91 @@
 ---
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     {% include meta.html %}
     <title>AllenNLP - MOCHA Dataset</title>
-  </head>
-  <body id="top">
-    <div id="page-content">
-      {% include header.html %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <style>
+        .constrained--med {
+            max-width: 77em;
+            padding: 1.25em 1.125em 3.75em 1.125em;
+        }
 
-      <div class="banner banner--interior-hero">
+        .headshot {
+            width: 12em;
+            margin: 0.2rem;
+        }
+    </style>
+</head>
+
+<body id="top">
+<div id="page-content">
+    {% include header.html %}
+
+    <div class="banner banner--interior-hero">
         <div class="constrained constrained--sm">
-          <div class="banner--interior-hero__content">
-            <h2>MOCHA: A Dataset for Training and Evaluating Generative Reading Comprehension Metrics</h2>
-            <p>Anthony Chen, Gabriel Stanovsky, Sameer Singh, and Matt Gardner<br>EMNLP 2020.</p>
-          </div>
+            <div class="banner--interior-hero__content">
+                <h2>MOCHA: A Dataset for Training and Evaluating Generative Reading Comprehension Metrics</h2>
+                <p>Anthony Chen, Gabriel Stanovsky, Sameer Singh, and Matt Gardner<br>EMNLP 2020.</p>
+            </div>
         </div>
-      </div>
-      <div class="constrained constrained--med">
+    </div>
+
+    <div class="constrained constrained--med">
 
         <p>
-          Posing reading comprehension as a generation problem provides a great deal of flexibility, allowing for open-ended questions with few restrictions on possible answers.
-          However, progress is impeded by existing generation metrics, which rely on token overlap and are agnostic to the nuances of reading comprehension.
-          To address this, we introduce a benchmark for training and evaluating generative reading comprehension metrics: <b>MO</b>deling <b>C</b>orrectness with <b>H</b>uman <b>A</b>nnotations. 
-          MOCHA contains 40K human judgement scores on model outputs from 6 diverse question answering datasets and an additional set of minimal pairs for evaluation.
-          Using MOCHA, we train an evaluation metric: LERC, a <b>L</b>earned <b>E</b>valuation metric for <b>R</b>eading <b>C</b>omprehension, to mimic human judgement scores.
+            Posing reading comprehension as a generation problem provides a great deal of flexibility, allowing for
+            open-ended questions with few restrictions on possible answers.
+            However, progress is impeded by existing generation metrics, which rely on token overlap and are agnostic to
+            the nuances of reading comprehension.
+            To address this, we introduce a benchmark for training and evaluating generative reading comprehension
+            metrics: <b>MO</b>deling <b>C</b>orrectness with <b>H</b>uman <b>A</b>nnotations.
+            MOCHA contains 40K human judgement scores on model outputs from 6 diverse question answering datasets and an
+            additional set of minimal pairs for evaluation.
+            Using MOCHA, we train an evaluation metric: LERC, a <b>L</b>earned <b>E</b>valuation metric for <b>R</b>eading
+            <b>C</b>omprehension, to mimic human judgement scores.
         </p>
 
         <p>
-          <b>Find out more in the links below.</b>
+            <b>Find out more in the links below.</b>
         </p>
 
-        <li><a href="", target="_blank">Paper:</a> 
-          EMNLP 2020 paper describing MOCHA and LERC.</a>.</li>
+        <li><a href="https://arxiv.org/abs/2010.03636" , target="_blank">Paper:</a>
+            EMNLP 2020 paper describing MOCHA and LERC.
+        </li>
 
-        <li><a href="">Data:</a> 
-          MOCHA contains ~40K instances split into train, validation, and test sets. It is distributed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">CC BY-SA 4.0</a> license.</li>
-
-        <li>
-          <a href="">Code:</a> Coming soon!
-          This will include code for reproducing LERC and an evaluation script.
-          We will also be providing a trained version of LERC to be used for evaluation.
-          The code base heavily relies on <a href="https://github.com/pytorch/pytorch", target="_blank">PyTorch</a>, <a href="https://github.com/huggingface/transformers", target="_blank">HuggingFace Transformers</a>, and <a href="https://github.com/allenai/allennlp", target="_blank">AllenNLP</a>.
+        <li><a href="https://github.com/anthonywchen/MOCHA/blob/main/data/" target="_blank">Data:</a>
+            MOCHA contains ~40K instances split into train, validation, and test sets. It is distributed under the <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">CC BY-SA 4.0</a> license.
         </li>
 
         <li>
-          <a href="", target="_blank">Leaderboard:</a> Coming soon!
+            <a href="https://github.com/anthonywchen/MOCHA" target="_blank">Code:</a> Coming soon!
+            This will include code for reproducing LERC and an evaluation script.
+            We will also be providing a trained version of LERC to be used for evaluation.
+            The code base heavily relies on <a href="https://github.com/pytorch/pytorch" , target="_blank">PyTorch</a>,
+            <a href="https://github.com/huggingface/transformers" , target="_blank">HuggingFace Transformers</a>, and <a
+                href="https://github.com/allenai/allennlp" , target="_blank">AllenNLP</a>.
         </li>
 
-        <li><a href="">Demo:</a> Coming soon! 
-          You'll be able to see how well a learned metric evaluates generated answers in comparison to other metrics like BLEU, METEOR, and BERTScore.
-          The examples should give you some sense of what kinds of questions are in MOCHA, and what LERC can and cannot currently handle.
-          If you find something interesting, <a href="https://twitter.com/ai2_allennlp">let us know on twitter</a>! 
+        <li>
+            <a href="" target="_blank">Leaderboard:</a> Coming soon!
+        </li>
+
+        <li><a href="" target="_blank">Demo:</a> Coming soon!
+            You'll be able to see how well a learned metric evaluates generated answers in comparison to other metrics
+            like BLEU, METEOR, and BERTScore.
+            The examples should give you some sense of what kinds of questions are in MOCHA, and what LERC can and
+            cannot currently handle.
+            If you find something interesting, <a href="https://twitter.com/ai2_allennlp">let us know on twitter</a>!
         </li>
 
         <p>
-          <b>Citation:</b>
-          <pre>
-          @inproceedings{Chen2020MOCHA,
+            <b>Citation:</b>
+        <pre>
+          @inproceedings{Chen2020MOCHAAD,
             author={Anthony Chen and Gabriel Stanovsky and Sameer Singh and Matt Gardner},
             title={MOCHA: A Dataset for Training and Evaluating Generative Reading Comprehension Metrics},
             booktitle={EMNLP},
@@ -66,11 +94,50 @@
           }
           </pre>
         </p>
-      </div>
 
-      {% include footer.html %}
+        <div id="authors" class="anchor-target">
+            <h3>Paper Authors</h3>
+            <div class="row" style="margin: 0 auto;">
+                <div class="card headshot box-shadow">
+                    <img class="card-img-top" src="assets/mocha-photos/anthony.jpg" alt="anthony">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <a href="https://anthonywchen.github.io/" target="_blank">Anthony Chen</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card headshot box-shadow">
+                    <img class="card-img-top" src="assets/mocha-photos/gabriel.jpg" alt="gabriel">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <a href="https://gabrielstanovsky.github.io/" target="_blank">Gabriel Stanovsky</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card headshot box-shadow">
+                    <img class="card-img-top" src="assets/mocha-photos/sameer.jpg" alt="sameer">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <a href="http://sameersingh.org/" target="_blank">Sameer Singh</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card headshot box-shadow">
+                    <img class="card-img-top" src="assets/mocha-photos/matt.jpg" alt="matt">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <a href="https://matt-gardner.github.io/" target="_blank">Matt Gardner</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    {% include svg-sprite.html %}
-    {% include scripts.html %}
-  </body>
+
+    {% include footer.html %}
+</div>
+{% include svg-sprite.html %}
+{% include scripts.html %}
+</body>
 </html>
