@@ -15,6 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 
 url: "https://allenai.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/allennlp-website"
 
 # Build settings
 markdown: kramdown
