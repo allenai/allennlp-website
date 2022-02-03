@@ -1,3 +1,7 @@
+NOTE: we no longer use this website at allennlp.org, as we created an AllenNLP team page at allenai.org.  However, this repo is still served via GitHub pages to provide access to some paper pages that were made in the past.
+
+CONTACT: michaels
+
 # AllenNLP Website
 
 The AllenNLP website is for the most part a static website. There is no CMS driving any of the content. However, the site is using html abstraction (in the form of includes) to make it easier to edit and maintain. Includes are not a feature of static html, so this abstraction is being handled via [Jekyll](https://jekyllrb.com/).
